@@ -1,0 +1,4 @@
+# third-party screenshots kept locally only
+references/**/*.jpg
+references/**/*.jpeg
+references/**/*.png
