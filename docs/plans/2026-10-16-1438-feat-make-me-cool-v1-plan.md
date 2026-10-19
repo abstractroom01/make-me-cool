@@ -37,6 +37,13 @@ This section records founder decisions made after the plan was written. Where it
 - R45. **Badges.** The launch set is twelve badges: a week, a month, a quarter and a year of cool; first told, ten told, fifty told; explorer (5 subjects) and polymath (all 10); comeback; weekend regular; cool month. Badges mark real behaviour, record what earned them, are never taken away, and are shown at the end of the session. This replaces R33.
 - R46. **Streak counter.** A separate visible streak counts consecutive finished days with the one free rest day a week (R17). It earns the streak badges. It is not an input to the cool score.
 
+- R47. **Freemium.** The daily story, quiz, "tell someone", the next-day question, the cool score, the streak, the badges, reminders, the curator note, and the last 7 days of past stories are free for everyone. A paid layer ("plus", name to be decided) adds the full archive with search, "behind the story" (source notes, what the curator cut, rabbit-hole links) and member perks tied to Abstract events; Tonight mode and guest-curator seasons follow. No ads. Never sold: streak repair, score boosts, hearts or any relief from invented pain. A paywall never appears inside the daily loop or on the result screen.
+- R48. **Payments.** Payment is taken on the web through an Indian gateway's hosted checkout (UPI and cards), in test mode first and live after the gateway's business verification. The server confirms every payment through a signature-verified, idempotent webhook before it grants any entitlement; the client is never trusted. Card data never touches our servers.
+- R49. **Subscription management.** The user can see their plan, price including tax, next renewal date and invoices, and can cancel in the app in two taps with access continuing to the end of the paid period. Failed renewals follow a grace period and retries and never lock the free product. Refunds follow a written refund policy.
+- R50. **Pricing is configuration.** Plans (monthly, annual, optionally a founding-member plan) and their prices live in configuration, not code. Prices are not set in this plan.
+- R51. **Public launch, staged.** Release 1 is a public launch, staged: final checks, a soft public launch to the waitlist and community, then wider. Launch gates: 21 checked stories, live payments tested end to end, privacy, terms and refund policy live, sign-in with a fallback on Android, monitoring and a kill switch, a named support owner, instrumentation, and a legal and tax review.
+- R52. **Revenue events.** The events in `docs/strategy/07-monetisation-and-public-launch.md` section 6.3 are instrumented so conversion, renewal, churn and refunds can be measured.
+
 **Superseded or deferred**
 
 - R12 (daily recalls): [DEFERRED] until retention shows they are worth their content and build cost.
@@ -49,7 +56,7 @@ This section records founder decisions made after the plan was written. Where it
 - R40 (the Abstract character): [DEFERRED] as animated art; a still mark may be used.
 - R6, R17, R28: the cadence is one full-length story every day, including weekends. Weekend bonus stories no longer exist as a separate thing.
 
-**Units affected.** U4 (rules engine), U8 (score screens), U13 (celebrations) and U15 (quests, gems, badges, spark) must be rewritten for R43 to R46. U12 gains the closed-beta instrumentation. U9 and U10 are deferred. These rewrites happen in the build checkpoint, not here.
+**Units affected.** A new payments and entitlements unit is needed (R47 to R52). U4 (rules engine), U8 (score screens), U13 (celebrations) and U15 (quests, gems, badges, spark) must be rewritten for R43 to R46. U12 gains the closed-beta instrumentation. U9 and U10 are deferred. These rewrites happen in the build checkpoint, not here.
 
 
 ### Summary

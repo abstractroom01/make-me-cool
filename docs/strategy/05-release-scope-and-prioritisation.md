@@ -1,5 +1,8 @@
 # Abstract: the next coherent release, MoSCoW and acceptance criteria
 
+> **Update 2026-10-19 (see `07-monetisation-and-public-launch.md`):** Release 1 is now a **staged public launch**, not a closed beta, and it **includes payments** (a freemium paid layer). Where this document says "closed beta" or lists payments as "won't now", document 07 wins.
+
+
 Checkpoint 5 (Deliver, part 1). Builds on `00-decision-log.md` to `04-cool-score-and-badges.md`.
 
 Labels: [Fact] sourced or observed. [Decision] founder decided. [Hypothesis] untested. [Rec] my recommendation.

@@ -1,5 +1,8 @@
 # Abstract: user flows, design principles, AARRR growth system, human curation, lifecycle
 
+> **Update 2026-10-19 (see `07-monetisation-and-public-launch.md`):** the Revenue stage of AARRR is now **in scope for Release 1** and the launch is a **staged public launch**. Section 9.2 "Revenue" and the lifecycle table are superseded by document 07.
+
+
 Checkpoint 6 (Deliver, part 2). Builds on `05-release-scope-and-prioritisation.md`. Flowcharts are written in Mermaid, which GitHub renders; if your viewer shows code instead, open the file on GitHub.
 
 Labels: [Fact] sourced. [Hypothesis] untested. [Rec] my recommendation. Targets and thresholds are **not** invented here; they are calibrated later from the beta.
