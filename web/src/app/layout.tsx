@@ -1,9 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Jost } from "next/font/google";
+import { Josefin_Sans } from "next/font/google";
 import "./globals.css";
 
-const jost = Jost({ variable: "--font-jost", subsets: ["latin"], weight: ["500", "600", "700"] });
-const inter = Inter({ variable: "--font-inter", subsets: ["latin"], weight: ["400", "500"] });
+const josefin = Josefin_Sans({ variable: "--font-josefin", subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 
 export const metadata: Metadata = {
   title: "make me cool",
@@ -15,7 +14,7 @@ export const viewport: Viewport = { width: "device-width", initialScale: 1, them
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${jost.variable} ${inter.variable}`}>
+    <html lang="en" className={josefin.variable}>
       <body className="min-h-dvh">{children}</body>
     </html>
   );

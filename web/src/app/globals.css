@@ -19,8 +19,8 @@
   --color-alert: var(--red);
   --color-paper: var(--paper);
   --color-mist: var(--mist);
-  --font-display: var(--font-jost);
-  --font-sans: var(--font-inter);
+  --font-display: var(--font-josefin);
+  --font-sans: var(--font-josefin);
 }
 
 html { scroll-behavior: smooth; }
@@ -28,11 +28,11 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--paper);
   color: var(--deep);
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-josefin), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, .display { font-family: var(--font-jost), system-ui, sans-serif; letter-spacing: -0.02em; }
+h1, h2, h3, .display { font-family: var(--font-josefin), system-ui, sans-serif; letter-spacing: -0.02em; }
 
 /* type scale: phone first, grows on tablet and desktop */
 .t-display { font-size: clamp(2.75rem, 9vw, 5.75rem); line-height: 0.98; font-weight: 700; }
@@ -52,7 +52,7 @@ h1, h2, h3, .display { font-family: var(--font-jost), system-ui, sans-serif; let
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
   border-radius: 999px; padding: 0.95rem 1.75rem;
-  font-family: var(--font-jost), system-ui, sans-serif; font-weight: 700; font-size: 1.0625rem;
+  font-family: var(--font-josefin), system-ui, sans-serif; font-weight: 700; font-size: 1.0625rem;
   letter-spacing: 0.01em; cursor: pointer; border: 0;
   transition: transform 0.08s ease, box-shadow 0.08s ease, opacity 0.2s;
   min-height: 52px;

@@ -63,7 +63,7 @@ function Tin({ x, y, mark }: { x: number; y: number; mark?: string }) {
       <rect x={x - 28} y={y - 36} width="56" height="9" rx="4" fill={P} fillOpacity="0.8" />
       <rect x={x - 28} y={y + 27} width="56" height="9" rx="4" fill={P} fillOpacity="0.8" />
       <circle cx={x} cy={y} r="16" fill={P} />
-      <text x={x} y={y + 7} textAnchor="middle" fontSize="22" fontWeight="700" fill={R} style={{ fontFamily: "var(--font-jost), sans-serif" }}>
+      <text x={x} y={y + 7} textAnchor="middle" fontSize="22" fontWeight="700" fill={R} style={{ fontFamily: "var(--font-josefin), sans-serif" }}>
         {mark ?? "S"}
       </text>
     </g>
@@ -145,7 +145,7 @@ export function Visual({ id }: { id: string }) {
               <Face x={x} y={76} r={28} />
             </g>
           ))}
-          <text x="160" y="146" textAnchor="middle" fontSize="11" fill={P} fillOpacity="0.85" style={{ fontFamily: "var(--font-inter), sans-serif" }}>
+          <text x="160" y="146" textAnchor="middle" fontSize="11" fill={P} fillOpacity="0.85" style={{ fontFamily: "var(--font-josefin), sans-serif" }}>
             same face, every time
           </text>
         </Frame>
@@ -186,7 +186,7 @@ export function Visual({ id }: { id: string }) {
         <Frame label="two chefs, two claims">
           <Hat x={88} />
           <Hat x={232} />
-          <text x="160" y="84" textAnchor="middle" fontSize="38" fontWeight="700" fill={Y} style={{ fontFamily: "var(--font-jost), sans-serif" }}>
+          <text x="160" y="84" textAnchor="middle" fontSize="38" fontWeight="700" fill={Y} style={{ fontFamily: "var(--font-josefin), sans-serif" }}>
             vs
           </text>
         </Frame>
@@ -205,7 +205,7 @@ export function Visual({ id }: { id: string }) {
           <Pin x={160} y={64} c={R} />
           <Pin x={250} y={64} c={P} />
           {["punjab", "glasgow", "britain"].map((t, k) => (
-            <text key={t} x={70 + k * 90} y="138" textAnchor="middle" fontSize="12" fill={P} style={{ fontFamily: "var(--font-inter), sans-serif" }}>
+            <text key={t} x={70 + k * 90} y="138" textAnchor="middle" fontSize="12" fill={P} style={{ fontFamily: "var(--font-josefin), sans-serif" }}>
               {t}
             </text>
           ))}
@@ -247,7 +247,7 @@ export function Visual({ id }: { id: string }) {
       return (
         <Frame label="a dictionary">
           <Book x={116} y={26} w={88} h={104} />
-          <text x="160" y="104" textAnchor="middle" fontSize="13" fontWeight="700" fill={D} style={{ fontFamily: "var(--font-jost), sans-serif" }}>
+          <text x="160" y="104" textAnchor="middle" fontSize="13" fontWeight="700" fill={D} style={{ fontFamily: "var(--font-josefin), sans-serif" }}>
             1985
           </text>
         </Frame>
@@ -268,7 +268,7 @@ export function Visual({ id }: { id: string }) {
           {Array.from({ length: 12 }).map((_, k) => (
             <circle key={k} cx={52 + (k % 6) * 43} cy={54 + Math.floor(k / 6) * 48} r="15" fill={k === 0 ? Y : P} />
           ))}
-          <text x="160" y="146" textAnchor="middle" fontSize="11" fill={P} fillOpacity="0.85" style={{ fontFamily: "var(--font-inter), sans-serif" }}>
+          <text x="160" y="146" textAnchor="middle" fontSize="11" fill={P} fillOpacity="0.85" style={{ fontFamily: "var(--font-josefin), sans-serif" }}>
             about a dozen fluent speakers, once
           </text>
         </Frame>
