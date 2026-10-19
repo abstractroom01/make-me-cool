@@ -65,8 +65,9 @@ function Step({ n, title, text }: { n: string; title: string; text: string }) {
   );
 }
 
-export function Landing() {
+export function Landing({ onPlay }: { onPlay: () => void }) {
   const [more, setMore] = useState(false);
+  const [signIn, setSignIn] = useState(false);
 
   return (
     <div>
@@ -109,8 +110,18 @@ export function Landing() {
               <li>something to actually say at the houseparty</li>
             </ul>
             <div className="mt-8 max-w-xl">
-              <SignInForm id="hero" />
-              <p className="t-caption mt-3 text-paper/80">free. we&apos;ll email you a magic link. no password.</p>
+              <button className="btn btn-yellow w-full sm:w-auto" onClick={onPlay}>
+                play today&apos;s story
+              </button>
+              <p className="t-caption mt-3 text-paper/80">free. no account needed. we&apos;ll ask you to save your score after.</p>
+              <button className="t-caption mt-3 underline text-paper/90" onClick={() => setSignIn(!signIn)}>
+                {signIn ? "hide sign in" : "already playing? sign in"}
+              </button>
+              {signIn && (
+                <div className="arrive mt-3">
+                  <SignInForm id="hero" />
+                </div>
+              )}
             </div>
           </div>
           <div className="flex justify-center lg:justify-end">
@@ -171,9 +182,9 @@ export function Landing() {
             become <span className="accent-on-light">disgustingly</span> more cool
           </h2>
           <ol className="mt-10 grid gap-5 md:grid-cols-3">
-            <Step n="1" title="read one story" text="every weekday you get one short story. a film trick, a dish everyone argues about, a language made up for aliens. you flip through it like cards." />
+            <Step n="1" title="read one story" text="every day you get one short story. a film trick, a dish everyone argues about, a language made up for aliens. you flip through it like cards." />
             <Step n="2" title="answer four questions" text="nothing scary. the last one asks what you'd actually say about it at a party, and you pick the best line." />
-            <Step n="3" title="come back tomorrow" text="finishing a story lights your streak. do it again the next day and it grows. you can miss one weekday a week and keep it." />
+            <Step n="3" title="come back tomorrow" text="finishing a story lights your streak. do it again the next day and it grows. you get one rest day a week, and you keep it." />
           </ol>
         </div>
       </section>
@@ -206,6 +217,35 @@ export function Landing() {
         </div>
       </section>
 
+      {/* free and plus */}
+      <section className="bg-paper px-5 py-16 md:px-8 md:py-24">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="t-headline max-w-3xl">
+            free for the <span className="accent-on-light">daily story.</span> plus for going deeper.
+          </h2>
+          <div className="mt-8 grid gap-5 md:grid-cols-2">
+            <div className="rounded-[14px] border-2 border-[#cfdcdb] bg-white p-6 shadow-[0_4px_0_#cfdcdb]">
+              <p className="display text-2xl font-bold">free, always</p>
+              <ul className="t-body mt-3 space-y-2 text-deep/85">
+                <li>today&apos;s story, picked by a person</li>
+                <li>the quiz and the line to say out loud</li>
+                <li>your cool score, streak and badges</li>
+                <li>the last 7 days of stories</li>
+              </ul>
+            </div>
+            <div className="rounded-[14px] bg-deep p-6 text-paper shadow-[0_4px_0_#021f22]">
+              <p className="display text-2xl font-bold">plus</p>
+              <ul className="t-body mt-3 space-y-2 text-paper/90">
+                <li>the full archive of past stories</li>
+                <li>behind the story: sources and what we&apos;re still checking</li>
+                <li>more to come, only when it exists</li>
+              </ul>
+              <p className="t-caption mt-4 text-paper/75">pay once for a pass. no auto-renewal. your pass helps pay the people who find and check the stories.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* the abstract room */}
       <section className="bg-deep px-5 py-16 text-paper md:px-8 md:py-24">
         <div className="mx-auto max-w-6xl">
@@ -231,7 +271,9 @@ export function Landing() {
           </p>
           <div className="mt-10 max-w-xl on-deep">
             <p className="t-title mb-3">still scrolling? that&apos;s literally the problem.</p>
-            <SignInForm id="foot" />
+            <button className="btn btn-yellow" onClick={onPlay}>
+              play today&apos;s story
+            </button>
           </div>
         </div>
       </section>
@@ -239,7 +281,10 @@ export function Landing() {
       <footer className="bg-paper px-5 py-8 text-deep md:px-8">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 text-sm">
           <span className="display font-bold">make me cool</span>
-          <span className="flex gap-5">
+          <span className="flex flex-wrap gap-5">
+            <a className="underline" href="/privacy">privacy</a>
+            <a className="underline" href="/terms">terms</a>
+            <a className="underline" href="/refunds">refunds</a>
             <a className="underline" href="https://theabstractroom.com/" target="_blank" rel="noopener noreferrer">
               theabstractroom.com
             </a>

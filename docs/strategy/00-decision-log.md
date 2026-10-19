@@ -18,6 +18,11 @@ Newest last. Only decisions the founder has made. Everything else is a recommend
 | 12 | 2026-10-19 | The curator is the founder for now. | Founder |
 | 13 | 2026-10-19 | **Revenue is in scope for Release 1.** Payment integration is required for the next submission. The model is freemium: part free, a paid layer on top. Exact pricing is decided later. | Founder |
 | 14 | 2026-10-19 | Release 1 is a **public launch**, not a closed beta. (My recommendation: stage it. See `07-monetisation-and-public-launch.md`.) | Founder |
+| 15 | 2026-10-19 | No waitlist. People can **play directly**; payment is never forced up front. The first story is playable without an account. | Founder |
+| 16 | 2026-10-19 | The freemium free and paid line in `07-monetisation-and-public-launch.md` section 2.2 is approved. | Founder |
+| 17 | 2026-10-19 | The next submission is due **21 Oct 2026** and **needs live payments**. | Founder |
+| 18 | 2026-10-19 | Abstract has a registered business and a Razorpay account; we use them. | Founder |
+| 19 | 2026-10-19 | The curator workload: "we will manage". No extra hire is assumed for now. | Founder |
 
 ## Still open
 D3 core loop detail (retell-first flow); D4 human curation workflow (the founder is the curator and also the only checker: see the staffing risk in checkpoint 1); D5 platform; D6 sign-in; D7 gamification scope; D8 social; D9 business model details (pricing, founding offer, gateway and entity); D10 release definition; D11 design system.

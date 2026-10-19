@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "make me cool",
   description: "a daily workout for your personality. from the home of the abstract room.",
   icons: { icon: "/brand/icon-main.png" },
+  manifest: "/manifest.webmanifest",
 };
 
 export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#04363a" };

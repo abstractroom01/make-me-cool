@@ -9,6 +9,8 @@ export type Question =
 
 export type Story = {
   id: string;
+  publishDate: string;
+  why: string;
   title: string;
   fields: string[];
   minutes: number;
@@ -24,6 +26,8 @@ export type Story = {
 export const stories: Story[] = [
   {
     id: "kuleshov",
+    publishDate: "2026-10-19",
+    why: "i picked this because it explains something you do every day: reading meaning into whatever sits next to a face or a word.",
     title: "the kuleshov effect",
     fields: ["cinema", "psychology"],
     minutes: 5,
@@ -81,6 +85,8 @@ export const stories: Story[] = [
   },
   {
     id: "tikka",
+    publishDate: "2026-10-20",
+    why: "i picked this because everyone assumes a famous dish has one inventor, and the real story is a better argument.",
     title: "who invented chicken tikka masala?",
     fields: ["food", "history"],
     minutes: 5,
@@ -140,6 +146,8 @@ export const stories: Story[] = [
   },
   {
     id: "klingon",
+    publishDate: "2026-10-21",
+    why: "i picked this because it shows what a language actually is, by looking at one invented for aliens.",
     title: "the klingon language",
     fields: ["language", "cinema"],
     minutes: 5,
@@ -193,6 +201,137 @@ export const stories: Story[] = [
         answer: 1,
         why: "it uses the idea, not just a fact.",
       },
+    ],
+  },
+
+  {
+    id: "mozart",
+    publishDate: "2026-10-22",
+    why: "i picked this because everyone repeats it and almost nobody has seen the study.",
+    title: "the mozart effect",
+    fields: ["psychology", "music"],
+    minutes: 5,
+    hook: "playing mozart to your baby won't make them smarter. the study never involved babies.",
+    cards: [
+      { kind: "scene", tag: "you've heard it", text: "\"mozart makes you smarter.\" you've heard it. here's what actually happened!" },
+      { kind: "scene", tag: "1993", text: "frances rauscher, gordon shaw and catherine ky published a short paper in the journal nature. 36 college students listened to a mozart sonata, a relaxation exercise, or silence." },
+      { kind: "scene", tag: "the result", text: "then they did spatial puzzles from an iq test. after mozart, a small boost! it faded within about 15 minutes. and iq itself was never measured." },
+      { kind: "scene", tag: "the headlines", text: "a 1994 new york times column said mozart \"actually makes you smarter.\" a 1997 book stretched it to babies." },
+      { kind: "scene", tag: "1998", text: "georgia's governor zell miller proposed $105,000 a year so every newborn in the state got a classical music cd. he reportedly played \"ode to joy\" for lawmakers and asked if they felt smarter!" },
+      { kind: "scene", tag: "later studies", text: "mixed. a 2010 review of 39 studies found little evidence, with bigger effects in studies linked to the original researchers, and strong publication bias. other work suggests mood and arousal explain it." },
+      { kind: "explain", tag: "what it means", text: "a small, specific result got repeated until it became a big, general claim. the study was real. the claim wasn't." },
+      { kind: "say", tag: "say it out loud", text: "a headline is a story about a study. it is not the study!" },
+      { kind: "crew", tag: "for your crew", text: "what \"fact\" did you believe that turned out to be a headline?" },
+    ],
+    takeaway: "a headline is a story about a study, not the study.",
+    starter: "what's something you \"know\" that you've never actually checked?",
+    caveat: "sample story, not yet fact-checked. the sample size, the sonata and the fading effect come from a summary of the paper; check the paper itself. the georgia proposal date and amount need a news record.",
+    sources: [
+      { label: "wikipedia: mozart effect", url: "https://en.wikipedia.org/wiki/Mozart_effect" },
+      { label: "npr transcript", url: "https://www.npr.org/transcripts/128104580" },
+    ],
+    quiz: [
+      { type: "mcq", prompt: "what did the 1993 study test?", options: ["general intelligence", "spatial reasoning tasks", "babies' memory"], answer: 1, why: "it tested spatial puzzles, not general intelligence." },
+      { type: "mcq", prompt: "how long did the boost last?", options: ["a lifetime", "about 15 minutes at most", "one week"], answer: 1, why: "the effect faded within minutes." },
+      { type: "fill", prompt: "finish the line", before: "the study never measured", after: ".", answer: ["iq"], why: "it measured a spatial task, not iq." },
+      { type: "line", prompt: "a coworker says \"play mozart to the baby, it boosts iq.\" which would you say?", options: ["that's been debunked.", "the original study had college students, a short spatial test, and the effect faded in minutes. the baby part came from headlines.", "science changes all the time."], answer: 1, why: "it uses the idea, instead of just dismissing." },
+    ],
+  },
+  {
+    id: "trolley",
+    publishDate: "2026-10-23",
+    why: "i picked this because it turns an old philosophy puzzle into something you can argue about at dinner.",
+    title: "the trolley problem and 40 million decisions",
+    fields: ["philosophy", "psychology", "technology"],
+    minutes: 5,
+    hook: "40 million decisions were collected on who a self-driving car should hit. the answers changed by country.",
+    cards: [
+      { kind: "scene", tag: "the switch", text: "a runaway trolley will hit five people. you can pull a switch so it hits one person instead. what do you do?" },
+      { kind: "scene", tag: "most people", text: "most people say: pull the switch." },
+      { kind: "scene", tag: "the bridge", text: "now: same five people, same trolley. but to stop it you must push a large man off a bridge. most people say: no!" },
+      { kind: "scene", tag: "the puzzle", text: "same maths: five lives versus one. different answer! why?" },
+      { kind: "scene", tag: "the names", text: "the puzzle was introduced by the philosopher philippa foot in 1967. judith jarvis thomson named it the \"trolley problem\" in 1976." },
+      { kind: "scene", tag: "2018", text: "mit's moral machine let people decide who a self-driving car should spare. about 40 million decisions, from 233 countries and territories. people broadly preferred sparing humans over pets, more people over fewer, and younger over older. but the strength of those preferences varied across countries." },
+      { kind: "explain", tag: "what it means", text: "gut reactions aren't one rulebook. \"right\" can change with how the question is asked, and with where you grew up." },
+      { kind: "say", tag: "say it out loud", text: "same maths, different feeling. that's why ethics is hard!" },
+      { kind: "crew", tag: "for your crew", text: "would you push the man? what changed between the switch and the bridge?" },
+    ],
+    takeaway: "same maths, different feeling. that's why ethics is hard.",
+    starter: "would you pull the switch? would you push the man? what's different?",
+    caveat: "sample story, not yet fact-checked. this is a hypothetical about death, so keep the tone calm. check the exact counts against the nature paper.",
+    sources: [
+      { label: "wikipedia: trolley problem", url: "https://en.wikipedia.org/wiki/Trolley_problem" },
+      { label: "mit: the moral machine experiment", url: "https://www.media.mit.edu/publications/the-moral-machine-experiment" },
+    ],
+    quiz: [
+      { type: "mcq", prompt: "who named it the \"trolley problem\"?", options: ["philippa foot", "judith jarvis thomson", "plato"], answer: 1, why: "foot introduced the puzzle in 1967; thomson named it in 1976." },
+      { type: "mcq", prompt: "what was the moral machine?", options: ["an mit online experiment on self-driving car dilemmas", "a car brand", "a film"], answer: 0, why: "it collected about 40 million decisions online." },
+      { type: "fill", prompt: "finish the line", before: "most people approve of pulling the switch but not of", after: "the man.", answer: ["pushing"], why: "same maths, different feeling." },
+      { type: "line", prompt: "your friend asks how a self-driving car should choose who to save. which would you say?", options: ["it should save the most people. simple.", "people say \"pull the switch\" but not \"push the man\", even with the same maths. and a 40-million-decision study found the answers vary by country. so there isn't one obvious rule.", "that's too dark to think about."], answer: 1, why: "it uses the idea and respects the complexity." },
+    ],
+  },
+  {
+    id: "wave",
+    publishDate: "2026-10-24",
+    why: "i picked this because the most famous wave in art took a surprising trip onto a french music score.",
+    title: "the wave on debussy's cover",
+    fields: ["art", "music", "nature"],
+    minutes: 5,
+    hook: "the most famous wave in art was printed on the cover of a french orchestra score. and it may not be a tsunami.",
+    cards: [
+      { kind: "scene", tag: "you know this", text: "you know this wave!" },
+      { kind: "scene", tag: "the print", text: "it's a japanese woodblock print by hokusai, from around 1830 to 1832. part of a series called thirty-six views of mount fuji." },
+      { kind: "scene", tag: "find fuji", text: "find fuji! it's the tiny peak in the middle. the wave is the star." },
+      { kind: "scene", tag: "tsunami?", text: "people call it a tsunami. writers say it more likely shows a giant ordinary ocean wave." },
+      { kind: "scene", tag: "1905, paris", text: "claude debussy's orchestral work la mer premiered on 15 october. the first printed edition's cover used hokusai's wave!" },
+      { kind: "explain", tag: "what it means", text: "art travels. a japanese print reached a french composer's cover." },
+      { kind: "say", tag: "say it out loud", text: "art doesn't stay in its box. a japanese print ended up on a french score!" },
+      { kind: "crew", tag: "for your crew", text: "what book or album cover made you pick it up?" },
+    ],
+    takeaway: "art doesn't stay in its box.",
+    starter: "what book or album cover made you pick it up?",
+    caveat: "sample story, not yet fact-checked. \"more likely an ordinary wave\" comes from popular articles; confirm with a museum note. the publisher of the 1905 edition needs checking.",
+    sources: [
+      { label: "wikipedia: la mer (debussy)", url: "https://en.wikipedia.org/wiki/La_mer_(Debussy)" },
+    ],
+    quiz: [
+      { type: "mcq", prompt: "who made the print?", options: ["hokusai", "van gogh", "monet"], answer: 0, why: "katsushika hokusai, around 1830 to 1832." },
+      { type: "mcq", prompt: "which french work's first edition used it on the cover?", options: ["la mer", "boléro", "clair de lune"], answer: 0, why: "debussy's la mer." },
+      { type: "fill", prompt: "finish the line", before: "la mer premiered in", after: "in 1905.", answer: ["paris"], why: "it premiered in paris on 15 october 1905." },
+      { type: "line", prompt: "a friend at a gallery says \"that's the tsunami painting.\" which would you say?", options: ["it's by hokusai.", "it's actually a woodblock print, and it's more likely a giant ordinary wave than a tsunami. it was even on the cover of debussy's la mer.", "i love japanese art."], answer: 1, why: "it uses the idea, not just a name." },
+    ],
+  },
+  {
+    id: "yosegaki",
+    publishDate: "2026-10-25",
+    why: "i picked this because a small object holds a big human story. handle with care.",
+    title: "the flag that went home",
+    fields: ["history", "culture", "language"],
+    minutes: 5,
+    hook: "a us marine took a flag from a fallen japanese soldier. 73 years later he did this.",
+    cards: [
+      { kind: "scene", tag: "the flag", text: "this is a japanese flag. look at the writing." },
+      { kind: "scene", tag: "yosegaki", text: "it's called a yosegaki hinomaru: \"yosegaki\" means a collection of writing. friends and family wrote good-luck messages around the red circle before a soldier left." },
+      { kind: "scene", tag: "souvenirs", text: "many american soldiers took them home as souvenirs. a flag was easy to carry." },
+      { kind: "scene", tag: "1944, saipan", text: "us marine marvin strombo took one from a fallen soldier. he kept it, and promised to return it." },
+      { kind: "scene", tag: "the search", text: "decades later he asked the obon society, a non-profit that returns these flags, for help. they traced it to sadao yasue." },
+      { kind: "scene", tag: "2017", text: "strombo, then 93, flew to japan and handed the flag to yasue's surviving family." },
+      { kind: "explain", tag: "what it means", text: "an object can carry a person. a name written in ink can wait 73 years for someone to read it." },
+      { kind: "say", tag: "say it out loud", text: "some wars end in 1945. for some families, one ended in 2017." },
+      { kind: "crew", tag: "for your crew", text: "what object at home holds someone's handwriting?" },
+    ],
+    takeaway: "an object can carry a person.",
+    starter: "what object in your home holds someone's handwriting?",
+    caveat: "sample story, not yet fact-checked. this is a story about war and loss: review the tone. sources differ on yasue's rank, so it is left out.",
+    sources: [
+      { label: "wikipedia: good luck flag", url: "https://en.wikipedia.org/wiki/Good_Luck_Flag" },
+      { label: "knkx: wwii vet returns flag", url: "https://www.knkx.org/news/2017-08-16/wwii-vet-returns-flag-taken-from-fallen-japanese-soldier-in-1944" },
+    ],
+    quiz: [
+      { type: "mcq", prompt: "what does \"yosegaki\" mean?", options: ["collection of writing", "good luck", "victory"], answer: 0, why: "a collection of writing, from friends and family." },
+      { type: "mcq", prompt: "who returned the flag in 2017?", options: ["marvin strombo", "rex ziak", "a museum"], answer: 0, why: "the marine who had kept it since 1944." },
+      { type: "fill", prompt: "finish the line", before: "the flags carried messages of good", after: ".", answer: ["luck"], why: "good-luck messages from loved ones." },
+      { type: "line", prompt: "someone says history is just dates. which would you say?", options: ["history matters.", "a us marine kept a dead soldier's flag for 73 years and returned it to the family in 2017. history is also things people carry.", "the war ended in 1945."], answer: 1, why: "it uses the idea and tells a story." },
     ],
   },
 ];

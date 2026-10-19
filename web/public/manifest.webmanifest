@@ -1,0 +1,12 @@
+{
+  "name": "make me cool",
+  "short_name": "make me cool",
+  "description": "a daily workout for your personality. from the home of the abstract room.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#04363a",
+  "theme_color": "#04363a",
+  "icons": [
+    { "src": "/brand/icon-main.png", "sizes": "any", "type": "image/png", "purpose": "any" }
+  ]
+}
