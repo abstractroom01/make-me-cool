@@ -22,6 +22,36 @@ deepened: 2026-10-16
 
 ## Product Contract
 
+### Direction update, 2026-10-19 (supersedes the requirements named below)
+
+This section records founder decisions made after the plan was written. Where it conflicts with a requirement below, **this section wins**. The full reasoning is in `docs/strategy/` (`00-decision-log.md` and checkpoints 01 to 06). Requirements it replaces are marked `[SUPERSEDED]` or `[DEFERRED]` in place; they are kept for traceability, not deleted.
+
+**Product centre:** retelling. The person can say what they learned out loud, to someone, the same day. Success is "told it", not "completed".
+
+**New and changed requirements**
+
+- R41. **Retell-first.** After the quiz the app asks "who will you tell this to today?" and offers a one-tap share of a human-written retell card. The next day it asks once, "did you tell it? how did it land?" (this replaces the "did you use it?" tap in R16). The answer is a signal, never a reward on its own, and it is never tied to the streak.
+- R42. **Curator dispatch.** Every story shows the curator's name and a short note on why it was picked and what could not be confirmed. The founder is the curator for now. The app may claim only what the workflow really does: a story is labelled "checked" only if a named person checked each claim against two sources.
+- R43. **Cool score, as a rate.** The cool score is shown over 7, 30, 90 and 365 days: `round(100 × (0.7 × finished_days/N + 0.3 × told_days/N))`. A finished day is a story finished before local midnight of its publish day; a told day is a "yes, I told it" answer. N is the window length minus days with no published story, minus one rest day per rolling 7 days (the "one free miss"), minus days before the user joined; in a user's first week N for the 7-day window is never below 7. The 30, 90 and 365-day windows unlock once the user has been around that long. The score may fall, but copy never says "you lost". The user can hide it. A "how is this calculated?" link is always available. Weights are hypotheses to calibrate. This replaces R13, R14 and R15.
+- R44. **Today you became X% cooler.** After a finished story the result screen shows the rise in the 7-day score caused by that story as `(after − before) / before × 100`, only when the before-score is at least 20 and X is at least 1. Otherwise it shows the plain move ("30 → 40"). This changes R29.
+- R45. **Badges.** The launch set is twelve badges: a week, a month, a quarter and a year of cool; first told, ten told, fifty told; explorer (5 subjects) and polymath (all 10); comeback; weekend regular; cool month. Badges mark real behaviour, record what earned them, are never taken away, and are shown at the end of the session. This replaces R33.
+- R46. **Streak counter.** A separate visible streak counts consecutive finished days with the one free rest day a week (R17). It earns the streak badges. It is not an input to the cool score.
+
+**Superseded or deferred**
+
+- R12 (daily recalls): [DEFERRED] until retention shows they are worth their content and build cost.
+- R13, R14, R15 (ownership-based cool score, ownership decay, range map score): [SUPERSEDED] by R43. The range signal survives only as the explorer and polymath badges.
+- R21, R26 (crews, crew leave and report): [DEFERRED] (social waits until the core loop is proven).
+- R31 (spark growth and gems at streak goals): the spark may remain a visual of the streak (R46); gems are [DEFERRED].
+- R32 (daily quests and chest): [DEFERRED].
+- R33 (monthly badges and achievements): [SUPERSEDED] by R45.
+- R34 (playful profile), R36 (cool lines feed), R37 (library): [DEFERRED]. R35's Share is kept because R41 needs it; Remember is [DEFERRED].
+- R40 (the Abstract character): [DEFERRED] as animated art; a still mark may be used.
+- R6, R17, R28: the cadence is one full-length story every day, including weekends. Weekend bonus stories no longer exist as a separate thing.
+
+**Units affected.** U4 (rules engine), U8 (score screens), U13 (celebrations) and U15 (quests, gems, badges, spark) must be rewritten for R43 to R46. U12 gains the closed-beta instrumentation. U9 and U10 are deferred. These rewrites happen in the build checkpoint, not here.
+
+
 ### Summary
 
 "make me cool" is a mobile-first app by The Abstract Room, used on phones. Each weekday it sends one story as a swipeable card deck, followed by a short quiz that trains the user to say the idea out loud. A cool score, a range map, a growing spark streak, quests, and badges show progress, with celebrations along the way. Private crews of up to 5 friends share reflections and nudge each other, and an optional playful profile lets people show what they care about.
@@ -98,14 +128,14 @@ People stop being curious because life removes the structure for it, not because
 
 - R10. The quiz has four to five questions: two concept or recall multiple-choice questions, one fill-in-the-blank, one best-line question, and one optional reflection shared with the crew. Story plus quiz fits about five minutes.
 - R11. The best-line question offers three options (a good use of the idea, a name-drop, a vague take), shows a one-line reason after answering, and awards full points for the best, half for the second-best. It is untimed. The quiz's multiple-choice questions are timed with a speed bonus; the tap-only review recalls in R12 are untimed.
-- R12. Each daily session includes one to two quick tap-only recalls of earlier stories, chosen by which are fading fastest.
+- R12. [DEFERRED, see Direction update] Each daily session includes one to two quick tap-only recalls of earlier stories, chosen by which are fading fastest.
 
 **Progress and rewards**
 
-- R13. The cool score is out of 100, derived from stories owned (up to 60, reached at 50 owned stories), range (up to 25), and told-it-out-loud (up to 15, the share of the user's last 14 "did you use it" taps answered yes), and the user can tap it to see how it is built.
-- R14. The cool score falls only when owned stories fade or recent "did you use it" answers are no, never because a day was missed. A recall is a tap-only review of an earlier story (R12), not a question about the same day's story. A story becomes owned after two correct recalls on later days (about day 2 and day 7), stays owned for 30 days, and each later correct recall extends the hold to 60 days and then 90 days; a missed recall makes it fading, not lost.
-- R15. A range map shows the ten starting fields and lines between fields linked by intersection stories the user has completed. Range scores half on fields lit (of 10) and half on distinct field pairs linked, capped at 20 pairs.
-- R16. The day after a story, the app asks one tap: did you use it?
+- R13. [SUPERSEDED, see Direction update] The cool score is out of 100, derived from stories owned (up to 60, reached at 50 owned stories), range (up to 25), and told-it-out-loud (up to 15, the share of the user's last 14 "did you use it" taps answered yes), and the user can tap it to see how it is built.
+- R14. [SUPERSEDED, see Direction update] The cool score falls only when owned stories fade or recent "did you use it" answers are no, never because a day was missed. A recall is a tap-only review of an earlier story (R12), not a question about the same day's story. A story becomes owned after two correct recalls on later days (about day 2 and day 7), stays owned for 30 days, and each later correct recall extends the hold to 60 days and then 90 days; a missed recall makes it fading, not lost.
+- R15. [SUPERSEDED, see Direction update] A range map shows the ten starting fields and lines between fields linked by intersection stories the user has completed. Range scores half on fields lit (of 10) and half on distinct field pairs linked, capped at 20 pairs.
+- R16. [CHANGED by R41] The day after a story, the app asks one tap: did you use it?
 - R17. Streaks count completion of the daily story on any day of the week. Each week the streak survives one missed day automatically, and a second miss that week breaks it. A day with no published story never counts against the user. (Rewritten for the seven-day cadence; the weekday and weekend wording elsewhere in this plan is superseded and is to be cleaned up at the next planning pass.) Points earn a 1.5x multiplier from a 7-day streak and 2x from 30 days. Points show as a running weekly total, separate from the cool score and not an input to it. A story counts for the day it was published if the user finishes it before local midnight, however late it was opened. If push permission is declined, the app asks once more after day 3 and otherwise relies on the Today tab, with no penalty. The streak screen shows a Monday-to-Friday strip with weekend bonus days marked apart, and says the kind rule plainly: one missed weekday a week is covered.
 - R18. Progress messages shift from points earned toward identity ("you're becoming genuinely interesting").
 
@@ -116,7 +146,7 @@ People stop being curious because life removes the structure for it, not because
 
 **Crews**
 
-- R21. Crews hold 3 to 5 friends, are private, and members see each other's reflections, react, and nudge members who have not finished. A member creates a crew and shares a private invite link that expires after 7 days and stops working once the crew has 5 members; only people with the link can join. A crew works from its first member; 3 members is the suggested minimum, shown as an "invite more" prompt until reached. The invite can also be shown as a QR code to scan in person. A user with no crew sees an invite prompt in place of the crew reflection and can skip it.
+- R21. [DEFERRED, see Direction update] Crews hold 3 to 5 friends, are private, and members see each other's reflections, react, and nudge members who have not finished. A member creates a crew and shares a private invite link that expires after 7 days and stops working once the crew has 5 members; only people with the link can join. A crew works from its first member; 3 members is the suggested minimum, shown as an "invite more" prompt until reached. The invite can also be shown as a QR code to scan in person. A user with no crew sees an invite prompt in place of the crew reflection and can skip it.
 
 **Brand**
 
@@ -128,7 +158,7 @@ People stop being curious because life removes the structure for it, not because
 
 **Safety and data**
 
-- R26. A crew member can leave a crew at any time and can report a crew reflection or a crewmate's shared profile content to the content team.
+- R26. [DEFERRED, see Direction update] A crew member can leave a crew at any time and can report a crew reflection or a crewmate's shared profile content to the content team.
 - R27. A privacy policy and consent notice appear at sign-up, users can delete their account and personal data from the You tab, and analytics tools never receive reflection text or phone numbers.
 - R28. Weekend bonus stories earn points and count toward ownership and range like weekday stories, but never affect a streak.
 
@@ -142,23 +172,23 @@ People stop being curious because life removes the structure for it, not because
 
 **Celebrations and quotes**
 
-- R29. After every finished session a result screen shows the score change, streak, and points, one line in the product voice, and a celebrating Abstract character with confetti, and the user taps to claim the result. Each quiz answer gets an instant feedback sheet: a cheer for a right answer, the correction for a wrong one. Larger moments mark streak levels of 7, 14, 30, and 50 days (the goal the user picked gets the biggest one), a first owned story, and 50 owned stories. With reduced motion on, celebrations show still frames.
+- R29. [CHANGED by R44] After every finished session a result screen shows the score change, streak, and points, one line in the product voice, and a celebrating Abstract character with confetti, and the user taps to claim the result. Each quiz answer gets an instant feedback sheet: a cheer for a right answer, the correction for a wrong one. Larger moments mark streak levels of 7, 14, 30, and 50 days (the goal the user picked gets the biggest one), a first owned story, and 50 owned stories. With reduced motion on, celebrations show still frames.
 - R30. A quote about ideas, wisdom, or being cool appears on the result screen and at milestones, from a curated bank. Every quote is rewritten to include the word "cool" and credited "after" the person, never shown as their exact words; the original wording and its source are recorded and checked like a story fact.
-- R31. The first completed day lights a spark with a swipe up, and the spark grows at streak goals of 7, 14, 30, and 50 days. The spark grows and gems credit at all four levels for every user. The user picks one of them as a goal at first run, and reaching that goal gets the biggest celebration (R29).
-- R32. Each day three small quests (finish the story, do the recalls, and save a line or post a reflection) fill a bar, and completing all of them opens a chest that gives gems. Only quests that can be done that day are offered (no recall quest when none is due, no story quest on a rest day), the chest opens when every offered quest is done, and a day with none offered shows the rest pose. Missing a quest costs nothing. Gems are also earned from streak goals and milestones, are recorded by the server, and are spent on a streak cover (one extra covered missed weekday, held one at a time) and on cosmetic items. There is no real-money purchase in v1.
-- R33. The You tab shows monthly badges and achievements: first story, streaks of 7, 14, 30, and 50 days, first owned story, 50 owned stories, first reflection, and a monthly badge for the fields explored that month.
+- R31. [CHANGED: gems deferred; spark is the streak visual, see Direction update] The first completed day lights a spark with a swipe up, and the spark grows at streak goals of 7, 14, 30, and 50 days. The spark grows and gems credit at all four levels for every user. The user picks one of them as a goal at first run, and reaching that goal gets the biggest celebration (R29).
+- R32. [DEFERRED, see Direction update] Each day three small quests (finish the story, do the recalls, and save a line or post a reflection) fill a bar, and completing all of them opens a chest that gives gems. Only quests that can be done that day are offered (no recall quest when none is due, no story quest on a rest day), the chest opens when every offered quest is done, and a day with none offered shows the rest pose. Missing a quest costs nothing. Gems are also earned from streak goals and milestones, are recorded by the server, and are spent on a streak cover (one extra covered missed weekday, held one at a time) and on cosmetic items. There is no real-money purchase in v1.
+- R33. [SUPERSEDED, see Direction update] The You tab shows monthly badges and achievements: first story, streaks of 7, 14, 30, and 50 days, first owned story, 50 owned stories, first reflection, and a monthly badge for the fields explored that month.
 
 **Profile and library**
 
-- R34. The You tab holds an optional profile built from playful prompts (for example what you are obsessed with, your most useless skill, your biography title, what you do for work, your city), interest chips, a short intro, and an avatar that defaults to a coloured initial with an optional photo. Each answer has its own visibility, private by default, and crewmates see only what a user shares. A gentle card shows how many optional steps remain. Nothing in the profile is required.
+- R34. [DEFERRED, see Direction update] The You tab holds an optional profile built from playful prompts (for example what you are obsessed with, your most useless skill, your biography title, what you do for work, your city), interest chips, a short intro, and an avatar that defaults to a coloured initial with an optional photo. Each answer has its own visibility, private by default, and crewmates see only what a user shares. A gentle card shows how many optional steps remain. Nothing in the profile is required.
 - R35. Takeaway cards and quotes have Remember, which adds the line to a personal Saved list, and Share, which creates a branded card with the line and the user's handle.
-- R36. A swipe feed of cool lines, made of rewritten quotes (R30) and the takeaway lines of past stories, with a Saved tab, is reachable from the Today tab.
-- R37. A library behind the Today tab lists past stories with a random pick; replaying a story does not change streaks, points, ownership, range, quests, gems, or badges.
+- R36. [DEFERRED, see Direction update] A swipe feed of cool lines, made of rewritten quotes (R30) and the takeaway lines of past stories, with a Saved tab, is reachable from the Today tab.
+- R37. [DEFERRED, see Direction update] A library behind the Today tab lists past stories with a random pick; replaying a story does not change streaks, points, ownership, range, quests, gems, or badges.
 
 **Vision and community**
 
 - R38. The opening screen shows the headline "knowing stuff is sexy", two small lines beneath it, "make me cool" and "become disgustingly cool", and the Abstract Room lockup (R39). A "read more" control expands the founder's manifesto in visible text, starting "we've stopped being curious". All vision copy is lowercase, promises five minutes a day, and lives in one content file the founder edits (`docs/content/vision-copy.md`); the landing page and store listing use the same words.
-- R40. The Abstract character is a small expressive creature built from the logo's overlapping squares in teal and yellow, named Abstract, with a dry, snobby, secretly warm personality in the product voice. It appears in the first-run screens, quiz feedback sheets, the result and milestone screens, the spark moment, and empty states, in seven poses (welcome, thinking, cheer, shrug, dance, spark, rest). Its brief lives in `docs/content/character-brief.md`.
+- R40. [DEFERRED as animated art, see Direction update] The Abstract character is a small expressive creature built from the logo's overlapping squares in teal and yellow, named Abstract, with a dry, snobby, secretly warm personality in the product voice. It appears in the first-run screens, quiz feedback sheets, the result and milestone screens, the spark moment, and empty states, in seven poses (welcome, thinking, cheer, shrug, dance, spark, rest). Its brief lives in `docs/content/character-brief.md`.
 - R39. The line "from the home of the abstract room" appears on the opening screen, in an About section on the You tab with the company description, a group photo, and links to the website and Instagram (`docs/content/about-copy.md`), in the store listing and the web footer, and as a subtle mark on every share card.
 
 ### Key Flows
