@@ -12,6 +12,10 @@ Newest last. Only decisions the founder has made. Everything else is a recommend
 | 6 | 2026-10-19 | **D1:** the centre of the product is **retelling**: the person can say it out loud the same day. | Founder |
 | 7 | 2026-10-19 | "Gruen effect" means the Gruen transfer (a warning, not a tool). "Perkins' Law" means Parkinson's Law (a hard five-minute ceiling). | Founder |
 | 8 | 2026-10-19 | Develop stage: explore 6 to 8 distinct concepts before choosing one. | Founder |
+| 9 | 2026-10-19 | The layered direction is approved: daily deck, retell-first ("tell someone today", then a next-day "did it land?"), and a named curator dispatch. Tonight mode is the second hook once there are enough stories. | Founder |
+| 10 | 2026-10-19 | A **cool score** and **badges** are added to the first coherent release. Other mechanics (gems, quests, leaderboards, crews, voice, pair game) wait. | Founder |
+| 11 | 2026-10-19 | The cool score is shown over 7, 30, 90 and 365 days, with a celebratory moment such as "today you became 33% cooler". Exact definition in `04-cool-score-and-badges.md`, pending confirmation. | Founder |
+| 12 | 2026-10-19 | The curator is the founder for now. | Founder |
 
 ## Still open
-D3 core loop detail; D4 human curation workflow; D5 platform; D6 sign-in; D7 gamification scope; D8 social; D9 business model; D10 release definition; D11 design system.
+D3 core loop detail (retell-first flow); D4 human curation workflow (the founder is the curator and also the only checker: see the staffing risk in checkpoint 1); D5 platform; D6 sign-in; D7 gamification scope; D8 social; D9 business model; D10 release definition; D11 design system.
