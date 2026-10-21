@@ -9,13 +9,19 @@ export function LegalShell({ title, children }: { title: string; children: React
           ← make me cool
         </a>
         <h1 className="t-headline mt-4">{title}</h1>
-        <p className="t-caption mt-1 text-deep/65">last updated 19 october 2026</p>
+        <p className="t-caption mt-1 text-deep/65">last updated 21 october 2026</p>
         <div className="t-body mt-6 space-y-4 text-deep/90 [&_h2]:display [&_h2]:mt-8 [&_h2]:text-2xl [&_h2]:font-bold [&_li]:ml-5 [&_li]:list-disc">
           {children}
         </div>
-        <p className="t-caption mt-10 text-deep/65">
-          questions? write to {business.supportEmail ? <a className="underline" href={`mailto:${business.supportEmail}`}>{business.supportEmail}</a> : "us through theabstractroom.com"}.
-        </p>
+        <div className="t-caption mt-10 space-y-1 text-deep/65">
+          <p>
+            questions? write to {business.supportEmail ? <a className="underline" href={`mailto:${business.supportEmail}`}>{business.supportEmail}</a> : "us through theabstractroom.com"}.
+          </p>
+          {business.legalName && <p>operated by {business.legalName}.</p>}
+          {business.address && <p>{business.address}</p>}
+          {business.gstin && <p>gstin: {business.gstin}</p>}
+          {business.grievanceContact && <p>grievance contact: {business.grievanceContact}</p>}
+        </div>
       </div>
     </div>
   );
@@ -44,7 +50,7 @@ export function Privacy() {
       </ul>
       <h2>who helps us run this</h2>
       <p>
-        supabase (database, sign-in and email), vercel (hosting) and razorpay (payments). they process data for us to provide the service.
+        supabase (database, sign-in and email), vercel (hosting) and razorpay (payments). they process data for us to provide the service. our database is hosted in mumbai, india. the website itself is served through vercel&apos;s network, which may run in other countries. sign-in emails are sent through gmail.
       </p>
       <h2>how long we keep it</h2>
       <p>

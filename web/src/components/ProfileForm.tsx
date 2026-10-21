@@ -63,7 +63,10 @@ export function ProfileForm({ session, onDone }: { session: Session; onDone: (p:
           </div>
           <label className="flex items-start gap-3 text-sm">
             <input type="checkbox" className="mt-0.5 h-5 w-5 accent-[#04363a]" checked={adult} onChange={(e) => setAdult(e.target.checked)} />
-            i&apos;m 18 or older
+            <span>
+              i&apos;m 18 or older, and i agree to the <a className="underline" href="/terms" target="_blank" rel="noopener noreferrer">terms</a> and{" "}
+              <a className="underline" href="/privacy" target="_blank" rel="noopener noreferrer">privacy policy</a>
+            </span>
           </label>
           {err && (
             <p className="t-caption rounded-[14px] bg-alert px-3 py-2 text-white" role="alert">

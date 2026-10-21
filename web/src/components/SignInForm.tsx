@@ -51,6 +51,9 @@ export function SignInForm({ id }: { id: string }) {
       <button className="btn btn-yellow sm:w-auto" disabled={state === "sending"}>
         {state === "sending" ? "sending..." : "make me cool"}
       </button>
+      <p className="t-caption w-full opacity-80 sm:basis-full">
+        by continuing you agree to our <a className="underline" href="/terms">terms</a> and <a className="underline" href="/privacy">privacy policy</a>.
+      </p>
       <p id={`${id}-hint`} className="sr-only">
         we email you a one-time sign-in link
       </p>
