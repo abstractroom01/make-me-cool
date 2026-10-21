@@ -17,12 +17,23 @@ export async function loadPlans(): Promise<Plan[]> {
   return (data as Plan[]) ?? [];
 }
 
-export type PlusState = { active: boolean; until: string | null };
+export type PlusState = { active: boolean; until: string | null; trial: boolean };
 
 export async function loadPlus(userId: string): Promise<PlusState> {
-  const { data } = await supabase.from("entitlements").select("plus_until").eq("user_id", userId).maybeSingle();
-  if (!data) return { active: false, until: null };
-  return { active: new Date(data.plus_until).getTime() > Date.now(), until: data.plus_until };
+  const { data } = await supabase.from("entitlements").select("plus_until,trial_started_at").eq("user_id", userId).maybeSingle();
+  if (!data) return { active: false, until: null, trial: false };
+  const { data: paid } = await supabase.from("payments").select("id").eq("user_id", userId).eq("status", "paid").limit(1);
+  const active = new Date(data.plus_until).getTime() > Date.now();
+  return { active, until: data.plus_until, trial: !!data.trial_started_at && !(paid && paid.length > 0) };
+}
+
+export function planName(id: string): string {
+  return id === "plus_90d" ? "plus, 90 days" : id === "plus_1m" ? "plus, 30 days" : "plus pass";
+}
+
+export function daysLeft(iso: string | null): number {
+  if (!iso) return 0;
+  return Math.max(0, Math.ceil((new Date(iso).getTime() - Date.now()) / 86_400_000));
 }
 
 export type PaymentRow = { id: string; plan_id: string; amount_paise: number; status: string; created_at: string; paid_at: string | null };

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
-import { loadPayments, rupees, type PaymentRow, type PlusState } from "@/lib/billing";
+import { daysLeft, loadPayments, planName, rupees, type PaymentRow, type PlusState } from "@/lib/billing";
 import { business } from "@/data/curator";
 import { track } from "@/lib/analytics";
 
@@ -39,9 +39,9 @@ export function Billing({
         <section className="mt-6 rounded-[14px] bg-deep p-6 text-paper">
           {plus?.active ? (
             <>
-              <p className="t-caption font-semibold uppercase tracking-widest text-spark">your plus pass</p>
+              <p className="t-caption font-semibold uppercase tracking-widest text-spark">{plus.trial ? "your free plus trial" : "your plus pass"}</p>
               <p className="display mt-1 text-3xl font-bold">active until {fmt(plus.until)}</p>
-              <p className="t-body mt-2 text-paper/85">nothing renews automatically. nothing is charged unless you buy another pass, so there is nothing to cancel.</p>
+              <p className="t-body mt-2 text-paper/85">{plus.trial ? `${daysLeft(plus.until)} days left. ` : ""}nothing renews automatically. nothing is charged unless you buy a pass, so there is nothing to cancel.</p>
             </>
           ) : (
             <>
@@ -64,7 +64,7 @@ export function Billing({
             {rows.map((r) => (
               <li key={r.id} className="flex items-center justify-between rounded-[14px] border-2 border-[#cfdcdb] bg-white p-4">
                 <span>
-                  <span className="display block font-semibold">{r.plan_id === "plus_12m" ? "plus, 12 months" : "plus, 1 month"}</span>
+                  <span className="display block font-semibold">{planName(r.plan_id)}</span>
                   <span className="t-caption text-deep/70">{fmt(r.paid_at ?? r.created_at)}</span>
                 </span>
                 <span className="text-right">

@@ -7,7 +7,7 @@ import { allScores, buildTimeline, streaks } from "@/lib/score";
 import { isArchived, publishedStories, storyForToday, todayKey } from "@/lib/schedule";
 import { weekStrip } from "@/lib/week";
 import { downloadIcs } from "@/lib/ics";
-import type { PlusState } from "@/lib/billing";
+import { daysLeft, type PlusState } from "@/lib/billing";
 import type { Completion, Profile } from "@/lib/types";
 import { Check, Chip, Spark, WeekStrip } from "./ui";
 import { SignInForm } from "./SignInForm";
@@ -144,6 +144,12 @@ export function Today({
         <p className="t-body mt-2 text-deep/75">
           {todayDone ? "today's done. abstract is almost impressed." : "five minutes. one story. something to say out loud."}
         </p>
+
+        {plus?.active && plus.trial && (
+          <p className="t-caption mt-4 rounded-[14px] bg-mist p-3" role="status">
+            you&apos;re on your free plus trial: {daysLeft(plus.until)} days left. the archive and behind the story are open.
+          </p>
+        )}
 
         {!profile && (
           <section className="mt-6 rounded-[14px] border-2 border-deep bg-white p-5">

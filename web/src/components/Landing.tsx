@@ -238,6 +238,7 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
               <ul className="t-body mt-3 space-y-2 text-paper/90">
                 <li>the full archive of past stories</li>
                 <li>behind the story: sources and what we&apos;re still checking</li>
+                <li>7 days of plus free when you sign up</li>
                 <li>more to come, only when it exists</li>
               </ul>
               <p className="t-caption mt-4 text-paper/75">pay once for a pass. no auto-renewal. your pass helps pay the people who find and check the stories.</p>

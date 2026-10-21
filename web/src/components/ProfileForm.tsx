@@ -45,7 +45,7 @@ export function ProfileForm({ session, onDone }: { session: Session; onDone: (p:
             who <span className="accent-on-deep">are</span> you?
           </h1>
           <p className="t-body mt-4 max-w-md text-paper/85">
-            two quick things and you&apos;re in. abstract has opinions about everyone, so give it something to work with.
+            two quick things and you&apos;re in. you also get 7 days of plus free. abstract has opinions about everyone, so give it something to work with.
           </p>
         </div>
         <form onSubmit={save} className="arrive card-shadow space-y-4 rounded-[14px] bg-paper p-6 text-deep md:p-8">

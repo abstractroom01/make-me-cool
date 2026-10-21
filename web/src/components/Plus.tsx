@@ -108,11 +108,12 @@ export function Plus({
               </li>
             ))}
           </ul>
+          <p className="t-body mt-5 rounded-[14px] bg-paper/10 p-3 text-paper/90">new accounts get <strong>7 days of plus free</strong>, no payment needed.</p>
           <p className="t-caption mt-5 text-paper/70">coming later, not included yet: tonight mode, guest-curator seasons. we only sell what exists.</p>
         </section>
 
         {plus?.active && (
-          <p className="t-body mt-6 rounded-[14px] bg-mist p-4">you have plus until <strong>{fmt(plus.until)}</strong>. nothing renews automatically.</p>
+          <p className="t-body mt-6 rounded-[14px] bg-mist p-4">{plus.trial ? "your free trial runs until " : "you have plus until "}<strong>{fmt(plus.until)}</strong>. nothing renews automatically.</p>
         )}
 
         {done && <p className="t-body mt-6 rounded-[14px] bg-spark p-4 font-semibold" role="status">you&apos;re on plus. thank you!</p>}
