@@ -5,6 +5,7 @@ import "./globals.css";
 const josefin = Josefin_Sans({ variable: "--font-josefin", subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://makemecool.me"),
   title: "make me cool",
   description: "a daily workout for your personality. from the home of the abstract room.",
   icons: { icon: "/brand/icon-main.png" },

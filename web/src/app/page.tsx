@@ -152,6 +152,27 @@ export default function Home() {
     })();
   }, [userId, refreshRows, refreshPlus]);
 
+  // a shared link (/?story=id) opens that story straight away
+  const openedFromLink = useRef(false);
+  useEffect(() => {
+    if (!ready || openedFromLink.current) return;
+    const id = new URLSearchParams(window.location.search).get("story");
+    if (!id) return;
+    const target = stories.find((st) => st.id === id && st.publishDate <= todayKey());
+    if (!target) {
+      openedFromLink.current = true;
+      return;
+    }
+    if (session && profile === undefined) return; // wait until we know who this is
+    openedFromLink.current = true;
+    if (!(session && profile === null)) {
+      if (!session) setGuestMode(true);
+      track("story_started", { story: id, from: "share_link" }, session?.user.id);
+      go({ name: "deck", storyId: id });
+    }
+    window.history.replaceState(window.history.state, "", "/");
+  }, [ready, session, profile, go]);
+
   const signedOut = !session;
 
   function startStory(id: string) {

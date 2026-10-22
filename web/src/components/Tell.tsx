@@ -14,8 +14,9 @@ export function Tell({
   onContinue: () => void;
 }) {
   const [copied, setCopied] = useState(false);
-  const url = typeof window !== "undefined" ? window.location.origin : "";
-  const line = `${story.takeaway}\n\n${story.hook}\n\nfrom make me cool, by the abstract room. ${url}`;
+  const origin = typeof window !== "undefined" ? window.location.origin : "https://makemecool.me";
+  const link = `${origin}/s/${story.id}`;
+  const line = `${story.takeaway}\n\n${story.hook}\n\nplay it free: ${link}`;
   const canShare = typeof navigator !== "undefined" && typeof navigator.share === "function";
 
   async function nativeShare() {

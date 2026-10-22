@@ -3,12 +3,13 @@
 import { useState } from "react";
 import type { Question, Story } from "@/data/stories";
 import { Check, Steps } from "./ui";
+import { checkFill } from "@/lib/answers";
 
 const goodLines = ["nicely done!", "see, you knew that.", "okay, we're almost impressed.", "fine. that was good."];
 const badLines = ["not quite. no judgement. (some.)", "close. but no.", "bold answer. wrong, but bold."];
 
 function isRight(q: Question, picked: number | null, typed: string): boolean {
-  if (q.type === "fill") return q.answer.includes(typed.trim().toLowerCase());
+  if (q.type === "fill") return checkFill(typed, q.answer) !== "wrong";
   return picked === q.answer;
 }
 
@@ -49,6 +50,7 @@ export function Quiz({
 
   const praise = (right ? goodLines : badLines)[(i + (right ? 1 : 2)) % (right ? goodLines.length : badLines.length)];
   const answerText = q.type === "fill" ? q.answer[0] : q.options[q.answer];
+  const closeFill = checked && q.type === "fill" && checkFill(typed, q.answer) === "close";
 
   return (
     <div className="min-h-dvh bg-paper">
@@ -124,10 +126,10 @@ export function Quiz({
             <>
               <div role="status" aria-live="polite">
                 <p className={`display flex items-center gap-2 text-2xl font-bold ${right ? "text-deep" : "text-[#a62f25]"}`}>
-                  {right && <Check />} {praise}
+                  {right && <Check />} {closeFill ? "close enough! that counts." : praise}
                 </p>
                 <p className="t-body text-deep/85">
-                  {!right && (
+                  {(closeFill || !right) && (
                     <>
                       the answer: <strong>{answerText}</strong>.{" "}
                     </>
