@@ -6,7 +6,7 @@ import { Check, Steps } from "./ui";
 import { checkFill } from "@/lib/answers";
 
 const goodLines = ["nicely done!", "see, you knew that.", "okay, we're almost impressed.", "fine. that was good."];
-const badLines = ["not quite. no judgement. (some.)", "close. but no.", "bold answer. wrong, but bold."];
+const badLines = ["not quite. no judgement. (some.)", "not this time.", "bold answer. wrong, but bold."];
 
 function isRight(q: Question, picked: number | null, typed: string): boolean {
   if (q.type === "fill") return checkFill(typed, q.answer) !== "wrong";
@@ -108,6 +108,7 @@ export function Quiz({
                   disabled={checked}
                   onChange={(e) => setTyped(e.target.value)}
                   aria-label="your answer"
+                  placeholder="one word"
                   autoCapitalize="none"
                   autoCorrect="off"
                   autoFocus

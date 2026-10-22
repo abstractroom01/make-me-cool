@@ -62,3 +62,17 @@ Not borrowed on purpose: hearts or punishment for mistakes, aggressive guilt not
 - Compare thumbs-down reasons after the first 50 plays.
 
 Everything above remains a hypothesis until then.
+
+## 7. Tested on the web app (phone size, 375x812)
+
+Checked on the live site and a local build:
+- deck: progress bar present, "1 / 9" counter, no horizontal overflow on any card.
+- quiz: leaving after picking an answer asks to confirm; "i'm not sure" shows the answer; Enter checks; wrong answers explain why.
+- result, "go deeper", help and /how screens: no overflow; feedback saves to the database (test row removed).
+- all 23 resource and source links respond; two (Air & Space, the Met) block automated checks but are real pages.
+
+Problems found and fixed:
+1. the fill-in box gave no hint what to type: now says "one word".
+2. wrong answers could say "close. but no." even when far off: replaced with neutral lines.
+
+Not tested: account deletion on a real account, and email sign-in on this build. Still synthetic: all reader walkthroughs.
