@@ -210,7 +210,7 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
             <div className="rounded-[14px] border-2 border-line bg-white p-6 shadow-[0_4px_0_var(--line)]">
               <p className="display text-2xl font-bold">free, always</p>
               <ul className="t-body mt-3 space-y-2 text-deep/85">
-                <li>today&apos;s story, picked by a person</li>
+                <li>today&apos;s story, picked by sankalp</li>
                 <li>the quiz and the line to say out loud</li>
                 <li>your cool score, streak and badges</li>
                 <li>the last 7 days of stories</li>
