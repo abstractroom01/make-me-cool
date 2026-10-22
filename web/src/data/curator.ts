@@ -1,7 +1,11 @@
-// The curator name is deliberately empty for now (founder's decision, 19 Oct 2026).
-// While it is empty the app says "a person at the abstract room".
+// The person who picks the stories. Set by the founder on 22 Oct 2026.
+// photo: put a file in /public/curator/ and set the path here. While it is empty the app shows initials.
 export const curator = {
-  name: "",
+  name: "sankalp sharma",
+  role: "founder, the abstract room",
+  photo: "",
+  initials: "ss",
+  bio: "sankalp started the abstract room while studying business, after noticing there were hardly any places to talk about film, books and ideas with other people. six years on it is a community that meets online and in person. he picks every story here, lists where it came from, and says plainly what is still being checked.",
 };
 
 // Shown on the legal pages and the billing page.

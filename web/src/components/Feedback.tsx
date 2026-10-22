@@ -53,7 +53,7 @@ export function Feedback({ storyId, userId, dark = false }: { storyId: string; u
     <section className={`rounded-[14px] border-2 p-5 ${dark ? "border-paper/25" : "border-line bg-white"}`} aria-label="your feedback">
       {sent ? (
         <p className="t-body" role="status">
-          thanks. the person who picks these stories reads every answer.
+          thanks. sankalp reads every answer.
         </p>
       ) : (
         <>

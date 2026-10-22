@@ -1,6 +1,7 @@
 "use client";
 
 import { RoomPhotoImg } from "./Rooms";
+import { CuratorCard } from "./Curator";
 import { useEffect, useState } from "react";
 import { SignInForm } from "./SignInForm";
 import { Chip, Spark } from "./ui";
@@ -148,9 +149,10 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
           </h2>
           <div className="t-body space-y-3 text-deep/90">
             <p>
-              not an algorithm, and not a content farm. a person at the abstract room chooses each story, lists the sources, and says plainly what&apos;s still being checked.
+              not an algorithm, and not a content farm. sankalp sharma, the founder of the abstract room, chooses each story, lists the sources, and says plainly what&apos;s still being checked.
             </p>
             <p>we use AI to help deliver and personalise the app. we never use it to choose a story or sign one off.</p>
+            <CuratorCard />
           </div>
         </div>
       </section>

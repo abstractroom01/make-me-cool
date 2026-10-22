@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { stories } from "@/data/stories";
 import { curator } from "@/data/curator";
+import { CuratorBadge } from "./Curator";
 import { allScores, buildTimeline, streaks } from "@/lib/score";
 import { isArchived, publishedStories, storyForToday, todayKey } from "@/lib/schedule";
 import { weekStrip } from "@/lib/week";
@@ -230,9 +231,10 @@ export function Today({
             <p className="t-body mt-3 max-w-xl text-paper/85">{todays.hook}</p>
 
             <div className="mt-5 max-w-xl rounded-[14px] border-2 border-paper/25 p-4">
-              <p className="t-caption font-semibold uppercase tracking-widest text-spark">
-                picked by {curator.name || "a person at the abstract room"}
-              </p>
+              <div className="flex items-center gap-2">
+                <CuratorBadge size={28} dark />
+                <p className="t-caption font-semibold uppercase tracking-widest text-spark">picked by {curator.name}</p>
+              </div>
               <p className="t-body mt-1 text-paper/90">{todays.why}</p>
               <details className="mt-2">
                 <summary className="t-caption cursor-pointer text-paper/80 underline">what&apos;s still being checked</summary>

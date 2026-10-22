@@ -8,7 +8,9 @@ export function Reveal({ storyId }: { storyId: string }) {
     <figure className="mt-6 overflow-hidden rounded-[14px] border-2 border-paper/25">
       <p className="t-caption px-5 pt-4 font-semibold uppercase tracking-widest text-spark">the real thing</p>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={r.src} alt={r.alt} className="mt-3 max-h-[26rem] w-full object-cover" loading="lazy" />
+      <div className={`mt-3 ${r.light ? "bg-paper p-3" : ""}`}>
+        <img src={r.src} alt={r.alt} className={`w-full ${r.light ? "max-h-72 object-contain" : "max-h-[26rem] object-cover"}`} loading="lazy" />
+      </div>
       <figcaption className="px-5 py-4">
         <p className="t-body text-paper/90">{r.caption}</p>
         <p className="t-caption mt-1 text-paper/60">{r.credit}</p>

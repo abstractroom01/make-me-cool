@@ -162,7 +162,9 @@ export default function Home() {
   const openedFromLink = useRef(false);
   useEffect(() => {
     if (!ready || openedFromLink.current) return;
-    const id = new URLSearchParams(window.location.search).get("story");
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("story");
+    const ref = params.get("r") ?? "";
     if (!id) return;
     const target = stories.find((st) => st.id === id && st.publishDate <= todayKey());
     if (!target) {
@@ -174,7 +176,6 @@ export default function Home() {
     window.history.replaceState(window.history.state, "", "/"); // clean the address first, so back returns to a plain Today
     if (!(session && profile === null)) {
       if (!session) setGuestMode(true);
-      const ref = new URLSearchParams(window.location.search).get("r") ?? "";
       track("story_started", { story: id, from: "share_link", ref }, session?.user.id);
       go({ name: "deck", storyId: id });
     }
