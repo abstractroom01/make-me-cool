@@ -50,14 +50,19 @@ export function AppShell({
           <div className="relative flex items-center gap-2 md:gap-3">
             <button
               onClick={onPlus}
-              className={`rounded-full px-3 py-1.5 text-sm font-bold ${plus?.active ? "bg-deep text-spark" : "border-2 border-deep text-deep"}`}
+              className={`whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-bold ${plus?.active ? "bg-deep text-spark" : "border-2 border-deep text-deep"}`}
             >
-              {plus?.active ? (plus.trial ? `plus · ${daysLeft(plus.until)}d left` : "plus ✓") : <>plus<span className="hidden sm:inline"> · 7 days free</span></>}
+              {plus?.active ? (plus.trial ? `plus · ${daysLeft(plus.until)}d left` : "plus ✓") : <>plus<span className="hidden font-medium sm:inline"> · 7 days free</span></>}
             </button>
             {streak > 0 && (
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-spark px-3 py-1.5 text-sm font-bold" aria-label={`${streak} day streak`}>
+            <span className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-spark px-3 py-1.5 text-sm font-bold" aria-label={`${streak} day streak`}>
               <Spark size={18} /> {streak} day<span className="hidden sm:inline"> streak</span>
             </span>
+            )}
+            {!profile && (
+              <a href="#signin" className="whitespace-nowrap text-sm font-bold text-deep underline">
+                sign in
+              </a>
             )}
             <button
               onClick={onHelp}
@@ -253,7 +258,7 @@ export function Today({
         )}
 
         {!profile && (
-          <section className="mt-6 rounded-[14px] border-2 border-deep bg-white p-5">
+          <section id="signin" className="mt-6 rounded-[14px] border-2 border-deep bg-white p-5">
             <p className="t-title">save your score and streak</p>
             <p className="t-body mt-1 text-deep/80">
               right now your progress is saved on this phone only. if you clear your browser data or switch phones, it&apos;s gone. sign in with your email to keep it. free, no password.

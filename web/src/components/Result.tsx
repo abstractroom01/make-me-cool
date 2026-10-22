@@ -88,7 +88,7 @@ export function Result({
         <section className="mt-6 rounded-[14px] border-2 border-paper/25 p-5">
           <div className="grid grid-cols-3 gap-3 text-center">
             <div>
-              <p className="display text-3xl font-bold">{unlocked[0]?.score ?? 0}</p>
+              <p className="display text-3xl font-bold">{unlocked[0]?.score ?? 0}<span className="text-lg text-paper/70">/100</span></p>
               <p className="t-caption text-paper/75">cool score</p>
             </div>
             <div>

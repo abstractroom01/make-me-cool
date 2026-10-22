@@ -76,3 +76,21 @@ Problems found and fixed:
 2. wrong answers could say "close. but no." even when far off: replaced with neutral lines.
 
 Not tested: account deletion on a real account, and email sign-in on this build. Still synthetic: all reader walkthroughs.
+
+## 8. Heuristic evaluation of the running app (22 Oct 2026, 375px phone view)
+
+Walked landing, story deck, quiz, share, result, Today, "go deeper", help and /how. Scored by Nielsen heuristic; severity 1 (cosmetic) to 3 (serious).
+
+| # | heuristic | finding | sev | status |
+|---|---|---|---|---|
+| 1 | visibility of status | result showed "10 cool score" with no scale | 2 | fixed: now "10/100" |
+| 6 | recognition over recall | guest Today had no sign-in near the top; only a card far down | 2 | fixed: "sign in" link in header jumps to it |
+| 4 | consistency | header pills wrapped onto two lines on a phone ("plus · 7 days free", "1 day", "sign in") | 2 | fixed: shorter labels, no wrapping |
+| 8 | aesthetic design | hero text sat on a busy photo, weak contrast | 2 | fixed: darker overlay |
+| 9 | error recovery | fill-in box gave no hint what to type | 2 | fixed earlier: "one word" |
+| 9 | error recovery | wrong answers could say "close" | 1 | fixed earlier |
+| 2 | real-world match | "wrong, but bold" is flippant for a hard-won wrong answer | 1 | open (brand voice call) |
+| 10 | help | "behind the story (plus)" is unclear to a new user | 1 | open |
+| 7 | flexibility | no way to resume mid-story after closing it | 2 | open |
+
+Still open ideas: save quiz progress if the phone sleeps; larger card text option; a tiny "what's plus?" line on the paywall.

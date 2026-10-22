@@ -81,7 +81,7 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
         <img src="/brand/about-photo.webp" alt="" className="absolute inset-0 -z-20 h-full w-full object-cover object-[50%_20%]" />
         <div
           className="absolute inset-0 -z-10"
-          style={{ background: "linear-gradient(180deg, rgba(4,54,58,0.3) 0%, rgba(4,54,58,0.62) 38%, #04363a 92%)" }}
+          style={{ background: "linear-gradient(180deg, rgba(4,54,58,0.5) 0%, rgba(4,54,58,0.8) 38%, #04363a 92%)" }}
         />
         <div
           className="absolute inset-0 -z-10 hidden lg:block"
