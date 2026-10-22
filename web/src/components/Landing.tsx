@@ -27,9 +27,9 @@ function MockToday() {
   return (
     <div className="card-shadow w-full max-w-md rounded-[14px] bg-paper p-5 text-deep" aria-label="a preview of today's screen">
       <div className="flex items-center justify-between">
-        <span className="t-caption font-semibold uppercase tracking-widest text-deep/70">preview · today</span>
+        <span className="t-caption font-semibold uppercase tracking-widest text-deep/70">preview</span>
         <span className="inline-flex items-center gap-1.5 rounded-full bg-spark px-3 py-1 text-sm font-bold">
-          <Spark size={16} /> day 1 starts here
+          <Spark size={16} /> day 1
         </span>
       </div>
       <div className="mt-4 rounded-[14px] bg-deep p-5 text-paper">
@@ -107,8 +107,8 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
               <button className="btn btn-yellow w-full sm:w-auto" onClick={onPlay}>
                 play today&apos;s story
               </button>
-              <p className="t-body mt-3 font-semibold text-spark">sign up and get 7 days of plus free.</p>
-              <p className="t-caption mt-1 text-paper/80">no account needed to try it. we&apos;ll ask you to save your score after.</p>
+              <p className="t-body mt-3 font-semibold text-spark">free. no sign-up needed.</p>
+              <p className="t-caption mt-1 text-paper/85">about 5 minutes · 9 cards · 4 questions</p>
               <button className="t-caption mt-3 underline text-paper/90" onClick={() => setSignIn(!signIn)}>
                 {signIn ? "hide sign in" : "already playing? sign in"}
               </button>

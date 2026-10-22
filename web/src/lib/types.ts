@@ -22,5 +22,6 @@ export type View =
   | { name: "result"; storyId: string; correct: number; total: number; points: number; before: number; after: number; newBadges: string[] }
   | { name: "plus"; reason?: string }
   | { name: "billing" }
+  | { name: "explain" }
   | { name: "badges" }
   | { name: "behind"; storyId: string };

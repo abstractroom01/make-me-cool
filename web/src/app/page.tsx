@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
 import { supabase } from "@/lib/supabase";
 import { stories } from "@/data/stories";
@@ -28,6 +28,10 @@ function Blank() {
 
 type Pending = { before: number; after: number; newBadges: string[] };
 
+// steps inside one story replace each other in the browser history,
+// so the phone's back button always returns to Today in one tap
+const inStory = (v: View) => v.name === "quiz" || v.name === "tell" || v.name === "result";
+
 export default function Home() {
   const [session, setSession] = useState<Session | null>(null);
   const [ready, setReady] = useState(false);
@@ -35,10 +39,52 @@ export default function Home() {
   const [serverRows, setServerRows] = useState<Completion[]>([]);
   const [guestRows, setGuestRows] = useState<Completion[]>([]);
   const [plus, setPlus] = useState<PlusState | null>(null);
-  const [view, setView] = useState<View>({ name: "today" });
+  const [view, setViewState] = useState<View>({ name: "today" });
   const [guestMode, setGuestMode] = useState(false);
-  const [explain, setExplain] = useState(false);
   const [pending, setPending] = useState<Pending>({ before: 0, after: 0, newBadges: [] });
+  const viewRef = useRef<View>({ name: "today" });
+
+  const depthRef = useRef(0);
+
+  // move to a screen, keeping the browser's back button in step
+  const go = useCallback((next: View) => {
+    const from = viewRef.current;
+    const state = { v: next };
+    if (next.name === "today") {
+      // "back to today": step back through the history we added, so the back button never loops
+      if (depthRef.current > 0) {
+        window.history.go(-depthRef.current);
+        return;
+      }
+      window.history.replaceState(state, "");
+    } else if (inStory(next) && (inStory(from) || from.name === "deck")) {
+      window.history.replaceState(state, "");
+    } else {
+      window.history.pushState(state, "");
+      depthRef.current += 1;
+    }
+    viewRef.current = next;
+    setViewState(next);
+    window.scrollTo(0, 0);
+  }, []);
+
+  const back = useCallback(() => {
+    if (depthRef.current > 0) window.history.back();
+    else go({ name: "today" });
+  }, [go]);
+
+  useEffect(() => {
+    window.history.replaceState({ v: { name: "today" } }, "");
+    const onPop = (e: PopStateEvent) => {
+      const v = (e.state?.v as View | undefined) ?? { name: "today" };
+      depthRef.current = v.name === "today" ? 0 : Math.max(0, depthRef.current - 1);
+      viewRef.current = v;
+      setViewState(v);
+      window.scrollTo(0, 0);
+    };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
 
   const userId = session?.user.id;
   const completions = session ? serverRows : guestRows;
@@ -55,7 +101,8 @@ export default function Home() {
         setProfile(undefined);
         setServerRows([]);
         setPlus(null);
-        setView({ name: "today" });
+        viewRef.current = { name: "today" };
+        setViewState({ name: "today" });
       }
     });
     track("landing_viewed");
@@ -109,7 +156,7 @@ export default function Home() {
 
   function startStory(id: string) {
     track("story_started", { story: id }, userId);
-    setView({ name: "deck", storyId: id });
+    go({ name: "deck", storyId: id });
   }
 
   async function finishQuiz(storyId: string, correct: number, total: number) {
@@ -135,7 +182,7 @@ export default function Home() {
     track("quiz_finished", { story: storyId, correct, total }, userId);
     const afterScore = allScores(buildTimeline(next, today, joined))[0].score;
     setPending({ before: beforeScore, after: afterScore, newBadges: newBadgesFor(completions, next, today, joined) });
-    setView({ name: "tell", storyId, correct, total, points });
+    go({ name: "tell", storyId, correct, total, points });
   }
 
   async function shared(storyId: string, channel: string) {
@@ -189,15 +236,15 @@ export default function Home() {
   const joined = profile?.created_at?.slice(0, 10);
   const streak = streaks(buildTimeline(completions, todayKey(), joined)).current;
   const story = "storyId" in view ? stories.find((s) => s.id === view.storyId) : undefined;
-  const goToday = () => setView({ name: "today" });
-  const goPlus = (reason?: string) => setView({ name: "plus", reason });
+  const goToday = () => go({ name: "today" });
+  const goPlus = (reason?: string) => go({ name: "plus", reason });
 
-  if (explain) return <Explain onBack={() => setExplain(false)} />;
+  if (view.name === "explain") return <Explain onBack={() => back()} />;
 
   if (view.name === "deck" && story)
-    return <Deck story={story} onDone={() => setView({ name: "quiz", storyId: story.id })} onClose={goToday} />;
+    return <Deck story={story} onDone={() => go({ name: "quiz", storyId: story.id })} onClose={() => back()} />;
 
-  if (view.name === "quiz" && story) return <Quiz story={story} onFinish={(c, t) => finishQuiz(story.id, c, t)} onClose={goToday} />;
+  if (view.name === "quiz" && story) return <Quiz story={story} onFinish={(c, t) => finishQuiz(story.id, c, t)} onClose={() => back()} />;
 
   if (view.name === "tell" && story)
     return (
@@ -205,7 +252,7 @@ export default function Home() {
         story={story}
         onShared={(ch) => shared(story.id, ch)}
         onContinue={() =>
-          setView({ name: "result", storyId: story.id, correct: view.correct, total: view.total, points: view.points, ...pending })
+          go({ name: "result", storyId: story.id, correct: view.correct, total: view.total, points: view.points, ...pending })
         }
       />
     );
@@ -222,7 +269,7 @@ export default function Home() {
         newBadges={view.newBadges}
         completions={completions}
         guest={signedOut}
-        onExplain={() => setExplain(true)}
+        onExplain={() => go({ name: "explain" })}
         onNext={startStory}
         onHome={goToday}
       />
@@ -230,22 +277,16 @@ export default function Home() {
 
   if (view.name === "plus")
     return (
-      <Plus
-        session={session}
-        plus={plus}
-        reason={view.reason}
-        onBack={goToday}
-        onChanged={() => userId && refreshPlus(userId)}
-      />
+      <Plus session={session} plus={plus} reason={view.reason} onBack={() => back()} onChanged={() => userId && refreshPlus(userId)} />
     );
 
   if (view.name === "billing" && session)
-    return <Billing session={session} plus={plus} onBack={goToday} onPlus={() => goPlus()} />;
+    return <Billing session={session} plus={plus} onBack={() => back()} onPlus={() => goPlus()} />;
 
-  if (view.name === "badges") return <Badges completions={completions} onBack={goToday} />;
+  if (view.name === "badges") return <Badges completions={completions} onBack={() => back()} />;
 
   if (view.name === "behind")
-    return <Behind storyId={view.storyId} userId={userId} plus={plus} onBack={goToday} onPlus={() => goPlus("behind")} />;
+    return <Behind storyId={view.storyId} userId={userId} plus={plus} onBack={() => back()} onPlus={() => goPlus("behind")} />;
 
   return (
     <AppShell
@@ -254,8 +295,8 @@ export default function Home() {
       plus={plus}
       onHome={goToday}
       onPlus={() => goPlus()}
-      onBilling={() => setView({ name: "billing" })}
-      onBadges={() => setView({ name: "badges" })}
+      onBilling={() => go({ name: "billing" })}
+      onBadges={() => go({ name: "badges" })}
       onSignOut={() => supabase.auth.signOut()}
     >
       <Today
@@ -263,11 +304,11 @@ export default function Home() {
         completions={completions}
         plus={plus}
         onStart={startStory}
-        onBehind={(id) => setView({ name: "behind", storyId: id })}
+        onBehind={(id) => go({ name: "behind", storyId: id })}
         onPlus={goPlus}
-        onExplain={() => setExplain(true)}
+        onExplain={() => go({ name: "explain" })}
         onAnswerTold={answerTold}
-        onBadges={() => setView({ name: "badges" })}
+        onBadges={() => go({ name: "badges" })}
       />
     </AppShell>
   );
