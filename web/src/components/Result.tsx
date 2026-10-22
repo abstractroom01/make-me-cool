@@ -50,6 +50,7 @@ export function Result({
   const moment = coolerMoment(before, after);
   const nextStory = stories.find((s) => s.publishDate <= today && !completions.some((c) => c.story_id === s.id));
   const perfect = correct === total;
+  const tomorrow = stories.filter((s) => s.publishDate > today).sort((a, b) => a.publishDate.localeCompare(b.publishDate))[0];
   const earned = BADGES.filter((b) => newBadges.includes(b.id));
   const finishedDays = new Set(completions.map((c) => c.completed_on)).size;
 
@@ -154,6 +155,15 @@ export function Result({
             <div className="mt-3">
               <SignInForm id="result" />
             </div>
+          </section>
+        )}
+
+        {/* 4b. an open loop for tomorrow */}
+        {tomorrow && (
+          <section className="mt-6 rounded-[14px] border-2 border-spark/60 p-5">
+            <p className="t-caption font-semibold uppercase tracking-widest text-spark">tomorrow</p>
+            <p className="display mt-1 text-2xl font-bold leading-tight">{tomorrow.title}</p>
+            <p className="t-caption mt-1 text-paper/75">{tomorrow.fields.join(" + ")}</p>
           </section>
         )}
 

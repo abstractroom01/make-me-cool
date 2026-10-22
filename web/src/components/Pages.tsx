@@ -30,7 +30,7 @@ export function Badges({ completions, onBack }: { completions: Completion[]; onB
               {BADGES.filter((b) => b.group === g).map((b) => {
                 const has = earned.has(b.id);
                 return (
-                  <li key={b.id} className={`rounded-[14px] border-2 p-4 ${has ? "border-deep bg-spark" : "border-[#cfdcdb] bg-white opacity-80"}`}>
+                  <li key={b.id} className={`rounded-[14px] border-2 p-4 ${has ? "border-deep bg-spark" : "border-line bg-white opacity-80"}`}>
                     <p className="display flex items-center gap-2 text-lg font-bold">{has && <Check />} {b.name}</p>
                     <p className="t-caption mt-1 text-deep/80">{b.how}</p>
                   </li>

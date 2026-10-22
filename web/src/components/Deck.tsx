@@ -7,7 +7,7 @@ import { Visual } from "./Visual";
 
 const face: Record<Card["kind"], string> = {
   scene: "bg-deep text-paper",
-  explain: "bg-white text-deep border-2 border-[#cfdcdb]",
+  explain: "bg-white text-deep border-2 border-line",
   say: "bg-spark text-deep",
   crew: "bg-brand text-white",
 };

@@ -3,20 +3,25 @@
 import { useState } from "react";
 import type { Story } from "@/data/stories";
 import { Chip, Steps } from "./ui";
+import { shareText, squares } from "@/lib/share";
 
 export function Tell({
   story,
+  marks,
+  day,
   onShared,
   onContinue,
 }: {
   story: Story;
+  marks: boolean[];
+  day: number;
   onShared: (channel: string) => void;
   onContinue: () => void;
 }) {
   const [copied, setCopied] = useState(false);
   const origin = typeof window !== "undefined" ? window.location.origin : "https://makemecool.me";
   const link = `${origin}/s/${story.id}`;
-  const line = `${story.takeaway}\n\n${story.hook}\n\nplay it free: ${link}`;
+  const line = shareText({ title: story.title, day, marks, takeaway: story.takeaway, link });
   const canShare = typeof navigator !== "undefined" && typeof navigator.share === "function";
 
   async function nativeShare() {
@@ -52,6 +57,11 @@ export function Tell({
           <p className="t-body mt-3 text-deep/85">send this line to one person today. it takes five seconds, and it&apos;s how it sticks.</p>
 
           <div className="card-shadow mt-6 rounded-[14px] bg-spark p-6 text-deep">
+            {marks.length > 0 && (
+              <p className="t-caption mb-3 font-semibold" aria-label={`${marks.filter(Boolean).length} of ${marks.length} right`}>
+                day {day} · <span className="text-lg tracking-widest">{squares(marks)}</span> {marks.filter(Boolean).length}/{marks.length}
+              </p>
+            )}
             <p className="display text-2xl font-bold leading-tight md:text-3xl">&ldquo;{story.takeaway}&rdquo;</p>
             <p className="t-body mt-3 text-deep/85">{story.starter}</p>
           </div>

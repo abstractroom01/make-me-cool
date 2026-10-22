@@ -119,7 +119,7 @@ export function Plus({
         {done && <p className="t-body mt-6 rounded-[14px] bg-spark p-4 font-semibold" role="status">you&apos;re on plus. thank you!</p>}
 
         {!session ? (
-          <section className="mt-8 rounded-[14px] border-2 border-[#cfdcdb] bg-white p-6">
+          <section className="mt-8 rounded-[14px] border-2 border-line bg-white p-6">
             <p className="t-title">sign in to get plus</p>
             <p className="t-body mt-1 text-deep/80">it only takes your email. no password.</p>
             <div className="mt-3">
@@ -129,7 +129,7 @@ export function Plus({
         ) : plans === null ? (
           <p className="t-body mt-8 text-deep/70">loading...</p>
         ) : plans.length === 0 ? (
-          <p className="t-body mt-8 rounded-[14px] border-2 border-[#cfdcdb] bg-white p-5">plus passes open very soon. everything free works as usual.</p>
+          <p className="t-body mt-8 rounded-[14px] border-2 border-line bg-white p-5">plus passes open very soon. everything free works as usual.</p>
         ) : (
           <section className="mt-8">
             <h2 className="t-title">{plus?.active ? "add more time" : "choose a pass"}</h2>

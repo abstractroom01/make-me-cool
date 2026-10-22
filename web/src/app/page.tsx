@@ -44,6 +44,7 @@ export default function Home() {
   const [guestMode, setGuestMode] = useState(false);
   const [pending, setPending] = useState<Pending>({ before: 0, after: 0, newBadges: [] });
   const viewRef = useRef<View>({ name: "today" });
+  const [marks, setMarks] = useState<boolean[]>([]);
 
   const depthRef = useRef(0);
 
@@ -181,7 +182,8 @@ export default function Home() {
     go({ name: "deck", storyId: id });
   }
 
-  async function finishQuiz(storyId: string, correct: number, total: number) {
+  async function finishQuiz(storyId: string, correct: number, total: number, m: boolean[]) {
+    setMarks(m);
     const today = todayKey();
     const already = completions.find((c) => c.story_id === storyId);
     const joined = profile?.created_at?.slice(0, 10);
@@ -270,12 +272,14 @@ export default function Home() {
   if (view.name === "deck" && story)
     return <Deck story={story} onDone={() => go({ name: "quiz", storyId: story.id })} onClose={() => back()} />;
 
-  if (view.name === "quiz" && story) return <Quiz story={story} onFinish={(c, t) => finishQuiz(story.id, c, t)} onClose={() => back()} />;
+  if (view.name === "quiz" && story) return <Quiz story={story} onFinish={(c, t, m) => finishQuiz(story.id, c, t, m)} onClose={() => back()} />;
 
   if (view.name === "tell" && story)
     return (
       <Tell
         story={story}
+        marks={marks}
+        day={completions.length}
         onShared={(ch) => shared(story.id, ch)}
         onContinue={() =>
           go({ name: "result", storyId: story.id, correct: view.correct, total: view.total, points: view.points, ...pending })

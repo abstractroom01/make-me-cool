@@ -49,7 +49,7 @@ function MockToday() {
 
 function Step({ n, title, text }: { n: string; title: string; text: string }) {
   return (
-    <li className="rounded-[14px] border-2 border-[#cfdcdb] bg-white p-6 shadow-[0_4px_0_#cfdcdb]">
+    <li className="rounded-[14px] border-2 border-line bg-white p-6 shadow-[0_4px_0_var(--line)]">
       <span className="display flex h-11 w-11 items-center justify-center rounded-full bg-deep text-xl font-bold text-spark">{n}</span>
       <h3 className="t-title mt-4">{title}</h3>
       <p className="t-body mt-2 text-deep/80">{text}</p>
@@ -183,7 +183,7 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
             ].map(([id, vis]) => {
               const s = stories.find((x) => x.id === id)!;
               return (
-                <li key={id} className="w-[78%] shrink-0 snap-start overflow-hidden rounded-[14px] border-2 border-[#cfdcdb] bg-white shadow-[0_4px_0_#cfdcdb] sm:w-[46%] md:w-auto">
+                <li key={id} className="w-[78%] shrink-0 snap-start overflow-hidden rounded-[14px] border-2 border-line bg-white shadow-[0_4px_0_var(--line)] sm:w-[46%] md:w-auto">
                   <Visual id={vis} />
                   <div className="p-4">
                     <p className="t-caption font-semibold uppercase tracking-widest text-brand">{s.fields.join(" + ")}</p>
@@ -204,7 +204,7 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
             free for the <span className="accent-on-light">daily story.</span> plus for going deeper.
           </h2>
           <div className="mt-8 grid gap-5 md:grid-cols-2">
-            <div className="rounded-[14px] border-2 border-[#cfdcdb] bg-white p-6 shadow-[0_4px_0_#cfdcdb]">
+            <div className="rounded-[14px] border-2 border-line bg-white p-6 shadow-[0_4px_0_var(--line)]">
               <p className="display text-2xl font-bold">free, always</p>
               <ul className="t-body mt-3 space-y-2 text-deep/85">
                 <li>today&apos;s story, picked by a person</li>

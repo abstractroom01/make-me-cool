@@ -84,7 +84,7 @@ export function ResourceList({ items, dark = false }: { items: Resource[]; dark?
             </span>
           </>
         );
-        const base = `flex gap-3 rounded-[14px] border-2 p-3 ${dark ? "border-paper/25" : "border-[#cfdcdb] bg-white"}`;
+        const base = `flex gap-3 rounded-[14px] border-2 p-3 ${dark ? "border-paper/25" : "border-line bg-white"}`;
         return (
           <li key={r.title}>
             {r.url ? (

@@ -62,7 +62,7 @@ export function Billing({
         ) : (
           <ul className="mt-3 space-y-2">
             {rows.map((r) => (
-              <li key={r.id} className="flex items-center justify-between rounded-[14px] border-2 border-[#cfdcdb] bg-white p-4">
+              <li key={r.id} className="flex items-center justify-between rounded-[14px] border-2 border-line bg-white p-4">
                 <span>
                   <span className="display block font-semibold">{planName(r.plan_id)}</span>
                   <span className="t-caption text-deep/70">{fmt(r.paid_at ?? r.created_at)}</span>

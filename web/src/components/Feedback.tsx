@@ -35,7 +35,7 @@ export function Feedback({ storyId, userId, dark = false }: { storyId: string; u
   const muted = dark ? "text-paper/75" : "text-deep/70";
   const chip = (on: boolean) =>
     `rounded-full border-2 px-3 py-1.5 text-sm font-medium ${
-      on ? (dark ? "border-spark bg-spark text-deep" : "border-deep bg-deep text-spark") : dark ? "border-paper/40 text-paper" : "border-[#cfdcdb] bg-white text-deep"
+      on ? (dark ? "border-spark bg-spark text-deep" : "border-deep bg-deep text-spark") : dark ? "border-paper/40 text-paper" : "border-line bg-white text-deep"
     }`;
 
   async function submit() {
@@ -50,7 +50,7 @@ export function Feedback({ storyId, userId, dark = false }: { storyId: string; u
   }
 
   return (
-    <section className={`rounded-[14px] border-2 p-5 ${dark ? "border-paper/25" : "border-[#cfdcdb] bg-white"}`} aria-label="your feedback">
+    <section className={`rounded-[14px] border-2 p-5 ${dark ? "border-paper/25" : "border-line bg-white"}`} aria-label="your feedback">
       {sent ? (
         <p className="t-body" role="status">
           thanks. the person who picks these stories reads every answer.
@@ -97,7 +97,7 @@ export function Feedback({ storyId, userId, dark = false }: { storyId: string; u
         </>
       )}
 
-      <div className={`mt-4 border-t pt-3 ${dark ? "border-paper/20" : "border-[#e3eceb]"}`}>
+      <div className={`mt-4 border-t pt-3 ${dark ? "border-paper/20" : "border-line-soft"}`}>
         {noteSent ? (
           <p className="t-caption" role="status">
             got it. we&apos;ll check it.

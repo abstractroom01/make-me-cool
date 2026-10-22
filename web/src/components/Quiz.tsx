@@ -19,7 +19,7 @@ export function Quiz({
   onClose,
 }: {
   story: Story;
-  onFinish: (correct: number, total: number) => void;
+  onFinish: (correct: number, total: number, marks: boolean[]) => void;
   onClose: () => void;
 }) {
   const [i, setI] = useState(0);
@@ -27,6 +27,7 @@ export function Quiz({
   const [typed, setTyped] = useState("");
   const [checked, setChecked] = useState(false);
   const [correct, setCorrect] = useState(0);
+  const [marks, setMarks] = useState<boolean[]>([]);
 
   const q = story.quiz[i];
   const total = story.quiz.length;
@@ -50,7 +51,9 @@ export function Quiz({
   }
 
   function next() {
-    if (i + 1 >= total) return onFinish(correct, total);
+    const m = [...marks, right];
+    if (i + 1 >= total) return onFinish(correct, total, m);
+    setMarks(m);
     setI(i + 1);
     setPicked(null);
     setTyped("");
@@ -146,7 +149,7 @@ export function Quiz({
       {/* bottom sheet: check, then feedback */}
       <div
         className={`fixed inset-x-0 bottom-0 z-30 border-t-2 ${
-          checked ? (right ? "sheet border-[#b9d8d6] bg-mist" : "sheet border-[#f3c4bf] bg-[#fdeceb]") : "border-[#e3eceb] bg-paper"
+          checked ? (right ? "sheet border-[#b9d8d6] bg-mist" : "sheet border-[#f3c4bf] bg-[#fdeceb]") : "border-line-soft bg-paper"
         }`}
       >
         <div className="mx-auto flex max-w-xl flex-col gap-3 px-5 py-4 md:max-w-2xl md:flex-row md:items-center md:justify-between md:py-6">

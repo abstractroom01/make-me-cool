@@ -53,7 +53,7 @@ export function WeekStrip({
                     : "border-deep bg-transparent"
                   : dark
                     ? "border-paper/30"
-                    : "border-[#cfdcdb]"
+                    : "border-line"
             }`}
           >
             {d.done && <Check />}

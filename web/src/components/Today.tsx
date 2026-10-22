@@ -40,7 +40,7 @@ export function AppShell({
   const [menu, setMenu] = useState(false);
   return (
     <div className="min-h-dvh bg-paper">
-      <header className="sticky top-0 z-20 border-b-2 border-[#e3eceb] bg-paper/95 backdrop-blur">
+      <header className="sticky top-0 z-20 border-b-2 border-line-soft bg-paper/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3 md:px-8">
           <button onClick={onHome} className="flex items-center gap-2" aria-label="make me cool, home">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -83,7 +83,7 @@ export function AppShell({
               </button>
             )}
             {menu && profile && (
-              <div role="menu" className="card-shadow arrive absolute right-0 top-12 w-56 rounded-[14px] border-2 border-[#e3eceb] bg-white p-2">
+              <div role="menu" className="card-shadow arrive absolute right-0 top-12 w-56 rounded-[14px] border-2 border-line-soft bg-white p-2">
                 <p className="px-3 py-2 text-sm text-deep/70">@{profile.handle}</p>
                 <button role="menuitem" onClick={() => { setMenu(false); onBadges(); }} className="w-full rounded-[10px] px-3 py-2 text-left font-medium hover:bg-mist">
                   my badges
@@ -247,7 +247,7 @@ export function Today({
           </div>
         </section>
 
-        <p className="t-caption mt-4 rounded-[14px] border-2 border-[#cfdcdb] bg-white p-3 text-deep/80">
+        <p className="t-caption mt-4 rounded-[14px] border-2 border-line bg-white p-3 text-deep/80">
           these are sample stories. we&apos;re still fact-checking them, and each one lists what&apos;s still open.
         </p>
 
@@ -339,7 +339,7 @@ export function Today({
 
         {stage > 1 && (
         <section>
-          <button onClick={onBadges} className="w-full rounded-[14px] border-2 border-[#cfdcdb] bg-white p-4 text-left">
+          <button onClick={onBadges} className="w-full rounded-[14px] border-2 border-line bg-white p-4 text-left">
             <p className="display text-3xl font-bold">
               {doneIds.size}
               <span className="text-lg text-deep/60">/{stories.length}</span>
@@ -350,7 +350,7 @@ export function Today({
         )}
 
         {stage > 1 && (
-        <section className="rounded-[14px] border-2 border-[#cfdcdb] bg-white p-5">
+        <section className="rounded-[14px] border-2 border-line bg-white p-5">
           <p className="t-title">a daily reminder</p>
           <p className="t-caption mt-1 text-deep/70">adds a repeating event to your phone&apos;s calendar. no app permissions needed.</p>
           <div className="mt-3 flex items-center gap-2">
