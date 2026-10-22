@@ -286,6 +286,7 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 text-sm">
           <span className="display font-bold">make me cool</span>
           <span className="flex flex-wrap gap-5">
+            <a className="underline" href="/how">how stories are made</a>
             <a className="underline" href="/privacy">privacy</a>
             <a className="underline" href="/terms">terms</a>
             <a className="underline" href="/refunds">refunds</a>

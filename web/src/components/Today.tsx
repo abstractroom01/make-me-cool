@@ -20,6 +20,8 @@ export function AppShell({
   onPlus,
   onBilling,
   onBadges,
+  onHelp,
+  onDelete,
   onSignOut,
   children,
 }: {
@@ -30,6 +32,8 @@ export function AppShell({
   onPlus: () => void;
   onBilling: () => void;
   onBadges: () => void;
+  onHelp: () => void;
+  onDelete: () => void;
   onSignOut: () => void;
   children: React.ReactNode;
 }) {
@@ -55,6 +59,13 @@ export function AppShell({
               <Spark size={18} /> {streak} day<span className="hidden sm:inline"> streak</span>
             </span>
             )}
+            <button
+              onClick={onHelp}
+              className="display flex h-10 w-10 items-center justify-center rounded-full border-2 border-deep text-lg font-bold text-deep"
+              aria-label="how it works"
+            >
+              ?
+            </button>
             {profile && (
               <button
                 onClick={() => setMenu(!menu)}
@@ -75,8 +86,14 @@ export function AppShell({
                 <button role="menuitem" onClick={() => { setMenu(false); onBilling(); }} className="w-full rounded-[10px] px-3 py-2 text-left font-medium hover:bg-mist">
                   plus and billing
                 </button>
+                <button role="menuitem" onClick={() => { setMenu(false); onHelp(); }} className="w-full rounded-[10px] px-3 py-2 text-left font-medium hover:bg-mist">
+                  how it works
+                </button>
                 <button role="menuitem" onClick={onSignOut} className="w-full rounded-[10px] px-3 py-2 text-left font-medium hover:bg-mist">
                   sign out
+                </button>
+                <button role="menuitem" onClick={() => { setMenu(false); onDelete(); }} className="w-full rounded-[10px] px-3 py-2 text-left text-sm text-deep/70 hover:bg-mist">
+                  delete my account
                 </button>
               </div>
             )}
@@ -98,6 +115,7 @@ export function Today({
   plus,
   onStart,
   onBehind,
+  onDeeper,
   onPlus,
   onExplain,
   onAnswerTold,
@@ -108,6 +126,7 @@ export function Today({
   plus: PlusState | null;
   onStart: (storyId: string) => void;
   onBehind: (storyId: string) => void;
+  onDeeper: (storyId: string) => void;
   onPlus: (reason: string) => void;
   onExplain: () => void;
   onAnswerTold: (storyId: string, told: boolean | null, landed?: "laughed" | "asked_more" | "nothing") => void;
@@ -120,7 +139,6 @@ export function Today({
   const t = buildTimeline(completions, today, profile?.created_at ? profile.created_at.slice(0, 10) : undefined);
   const scores = allScores(t);
   const { current } = streaks(t);
-  const totalPoints = completions.reduce((a, c) => a + c.points, 0);
   const library = publishedStories(today).filter((s) => s.id !== todays.id);
   const toldPrompt = completions
     .filter((c) => c.completed_on < today && (c.told === null || c.told === undefined) && !c.told_answered_at)
@@ -213,10 +231,13 @@ export function Today({
               <button className="btn btn-yellow" onClick={() => onStart(todays.id)}>
                 {todayDone ? "read it again" : "start story"}
               </button>
-              <button className="btn btn-ghost !bg-transparent !text-paper !border-paper/40 !shadow-none" onClick={() => onBehind(todays.id)}>
-                behind the story {plus?.active ? "" : "· plus"}
+              <button className="btn btn-ghost !bg-transparent !text-paper !border-paper/40 !shadow-none" onClick={() => onDeeper(todays.id)}>
+                go deeper
               </button>
             </div>
+            <button className="t-caption mt-3 block underline text-paper/80" onClick={() => onBehind(todays.id)}>
+              behind the story {plus?.active ? "" : "(plus)"}
+            </button>
             <p className="t-caption mt-3 text-paper/75">about {todays.minutes} minutes · {todays.cards.length} cards · 4 questions</p>
           </div>
         </section>
@@ -234,7 +255,9 @@ export function Today({
         {!profile && (
           <section className="mt-6 rounded-[14px] border-2 border-deep bg-white p-5">
             <p className="t-title">save your score and streak</p>
-            <p className="t-body mt-1 text-deep/80">you&apos;re playing as a guest. sign in with your email and keep going tomorrow. free, no password.</p>
+            <p className="t-body mt-1 text-deep/80">
+              right now your progress is saved on this phone only. if you clear your browser data or switch phones, it&apos;s gone. sign in with your email to keep it. free, no password.
+            </p>
             <div className="mt-3">
               <SignInForm id="today" />
             </div>
@@ -259,7 +282,7 @@ export function Today({
                     <span className="shrink-0 rounded-full bg-deep px-3 py-1 text-sm font-semibold text-spark">plus</span>
                   ) : c ? (
                     <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-mist px-3 py-1 text-sm font-semibold">
-                      <Check /> {c.points} pts
+                      <Check /> done
                     </span>
                   ) : (
                     <span className="shrink-0 rounded-full bg-spark px-3 py-1 text-sm font-semibold">new</span>
@@ -310,12 +333,8 @@ export function Today({
         </section>
 
         {stage > 1 && (
-        <section className="grid grid-cols-2 gap-3">
-          <div className="rounded-[14px] border-2 border-[#cfdcdb] bg-white p-4">
-            <p className="display text-3xl font-bold">{totalPoints}</p>
-            <p className="t-caption text-deep/70">points</p>
-          </div>
-          <button onClick={onBadges} className="rounded-[14px] border-2 border-[#cfdcdb] bg-white p-4 text-left">
+        <section>
+          <button onClick={onBadges} className="w-full rounded-[14px] border-2 border-[#cfdcdb] bg-white p-4 text-left">
             <p className="display text-3xl font-bold">
               {doneIds.size}
               <span className="text-lg text-deep/60">/{stories.length}</span>

@@ -21,7 +21,7 @@ export type EventType =
   | "reminder_downloaded"
   | "error_shown";
 
-function anonId(): string {
+export function anonId(): string {
   try {
     let id = localStorage.getItem("mmc_anon");
     if (!id) {

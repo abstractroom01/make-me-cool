@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Question, Story } from "@/data/stories";
 import { Check, Steps } from "./ui";
 import { checkFill } from "@/lib/answers";
@@ -34,6 +34,15 @@ export function Quiz({
   const ready = q.type === "fill" ? typed.trim().length > 0 : picked !== null;
   const options = q.type === "fill" ? [] : q.options;
 
+  function skip() {
+    setChecked(true);
+  }
+
+  function leave() {
+    const started = i > 0 || checked || ready;
+    if (!started || window.confirm("leave the quiz? your answers so far won't be saved.")) onClose();
+  }
+
   function check() {
     const ok = isRight(q, picked, typed);
     if (ok) setCorrect((c) => c + 1);
@@ -48,6 +57,19 @@ export function Quiz({
     setChecked(false);
   }
 
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Enter") return;
+      const tag = (e.target as HTMLElement | null)?.tagName;
+      if (tag === "BUTTON" || tag === "A") return;
+      e.preventDefault();
+      if (checked) next();
+      else if (ready) check();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  });
+
   const praise = (right ? goodLines : badLines)[(i + (right ? 1 : 2)) % (right ? goodLines.length : badLines.length)];
   const answerText = q.type === "fill" ? q.answer[0] : q.options[q.answer];
   const closeFill = checked && q.type === "fill" && checkFill(typed, q.answer) === "close";
@@ -56,7 +78,7 @@ export function Quiz({
     <div className="min-h-dvh bg-paper">
       <div className="mx-auto flex min-h-dvh max-w-xl flex-col px-5 py-5 pb-48 md:max-w-2xl md:py-8">
         <div className="flex items-center gap-4">
-          <button onClick={onClose} className="rounded-full p-2 text-deep hover:bg-mist" aria-label="leave quiz">
+          <button onClick={leave} className="rounded-full p-2 text-deep hover:bg-mist" aria-label="leave quiz">
             <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M5 5l14 14M19 5L5 19" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" />
             </svg>
@@ -111,6 +133,11 @@ export function Quiz({
                 );
               })}
             </ul>
+          )}
+          {!checked && (
+            <button className="t-body mt-5 underline text-deep/70" onClick={skip}>
+              i&apos;m not sure. show me the answer
+            </button>
           )}
         </div>
       </div>

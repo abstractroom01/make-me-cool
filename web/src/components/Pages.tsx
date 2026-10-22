@@ -124,7 +124,7 @@ export function Behind({
           <section className="mt-6 rounded-[14px] bg-deep p-6 text-paper">
             <p className="display text-2xl font-bold">this part is plus</p>
             <p className="t-body mt-2 text-paper/85">
-              the sources behind this story, what&apos;s still being checked, and where to go deeper. the story itself is always free.
+              the sources behind this story and what&apos;s still being checked. the story itself is always free.
             </p>
             <button className="btn btn-yellow mt-4" onClick={onPlus}>
               see plus
@@ -144,20 +144,6 @@ export function Behind({
               <h2 className="t-title">where this came from</h2>
               <p className="t-body mt-2 whitespace-pre-line text-deep/90">{extra.source_notes}</p>
             </section>
-            {extra.rabbit_holes.length > 0 && (
-              <section>
-                <h2 className="t-title">go deeper</h2>
-                <ul className="mt-2 space-y-2">
-                  {extra.rabbit_holes.map((r) => (
-                    <li key={r.url}>
-                      <a className="underline" href={r.url} target="_blank" rel="noopener noreferrer">
-                        {r.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )}
           </div>
         )}
       </div>

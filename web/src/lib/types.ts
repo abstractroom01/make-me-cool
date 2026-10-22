@@ -23,5 +23,8 @@ export type View =
   | { name: "plus"; reason?: string }
   | { name: "billing" }
   | { name: "explain" }
+  | { name: "deeper"; storyId: string }
+  | { name: "help" }
+  | { name: "delete" }
   | { name: "badges" }
   | { name: "behind"; storyId: string };

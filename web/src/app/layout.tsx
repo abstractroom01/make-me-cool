@@ -10,6 +10,8 @@ export const metadata: Metadata = {
   description: "a daily workout for your personality. from the home of the abstract room.",
   icons: { icon: "/brand/icon-main.png" },
   manifest: "/manifest.webmanifest",
+  openGraph: { title: "make me cool", description: "one story a day. something to say out loud.", siteName: "make me cool", type: "website" },
+  twitter: { card: "summary_large_image" },
 };
 
 export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#04363a" };

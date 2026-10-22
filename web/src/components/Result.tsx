@@ -1,7 +1,8 @@
 "use client";
 
 import { stories } from "@/data/stories";
-import { curator } from "@/data/curator";
+import { ResourceList } from "./Resources";
+import { Feedback } from "./Feedback";
 import { BADGES, allScores, buildTimeline, coolerMoment, streaks } from "@/lib/score";
 import { todayKey } from "@/lib/schedule";
 import type { Completion } from "@/lib/types";
@@ -19,10 +20,14 @@ export function Result({
   newBadges,
   completions,
   guest,
+  userId,
+  onDeeper,
   onExplain,
   onNext,
   onHome,
 }: {
+  userId?: string;
+  onDeeper: () => void;
   storyId: string;
   correct: number;
   total: number;
@@ -69,7 +74,7 @@ export function Result({
         {moment.kind === "percent" ? (
           <p className="t-title mt-2 text-spark">today you became {moment.value}% cooler.</p>
         ) : (
-          <p className="t-title mt-2 text-spark">+{points} points · {current} day streak</p>
+          <p className="t-title mt-2 text-spark">{current} day streak</p>
         )}
 
         {/* 2. the line to say: the whole point */}
@@ -126,6 +131,21 @@ export function Result({
           </div>
         )}
 
+        {/* 3b. go deeper: not just articles */}
+        <section className="mt-6" aria-label="go deeper">
+          <p className="t-title">want more of this one?</p>
+          <div className="mt-3">
+            <ResourceList items={story.resources.slice(0, 2)} dark />
+          </div>
+          <button className="btn btn-ghost mt-3 w-full" onClick={onDeeper}>
+            see all {story.resources.length} (watch, listen, read)
+          </button>
+        </section>
+
+        <div className="mt-6">
+          <Feedback storyId={storyId} userId={userId} dark />
+        </div>
+
         {/* 4. save it (guests only) */}
         {guest && (
           <section className="mt-6 rounded-[14px] bg-paper p-5 text-deep">
@@ -163,9 +183,7 @@ export function Result({
           </ul>
           <p className="t-caption mt-2 text-paper/70">{story.caveat}</p>
         </details>
-        <p className="t-caption mt-6 text-paper/70">
-          see you tomorrow{curator.name ? `. ${curator.name}` : ""}.
-        </p>
+        <p className="t-caption mt-6 text-paper/70">see you tomorrow.</p>
       </div>
     </main>
   );

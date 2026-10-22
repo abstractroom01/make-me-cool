@@ -21,6 +21,7 @@ import { Result } from "@/components/Result";
 import { Plus } from "@/components/Plus";
 import { Billing } from "@/components/Billing";
 import { Badges, Behind, Explain } from "@/components/Pages";
+import { DeleteAccount, Deeper, Help } from "@/components/More";
 
 function Blank() {
   return <div className="min-h-dvh bg-deep" aria-busy="true" />;
@@ -261,6 +262,10 @@ export default function Home() {
   const goPlus = (reason?: string) => go({ name: "plus", reason });
 
   if (view.name === "explain") return <Explain onBack={() => back()} />;
+  if (view.name === "help") return <Help onBack={() => back()} />;
+  if (view.name === "deeper") return <Deeper storyId={view.storyId} userId={userId} onBack={() => back()} />;
+  if (view.name === "delete" && session)
+    return <DeleteAccount email={session.user.email ?? "your account"} onBack={() => back()} />;
 
   if (view.name === "deck" && story)
     return <Deck story={story} onDone={() => go({ name: "quiz", storyId: story.id })} onClose={() => back()} />;
@@ -290,6 +295,8 @@ export default function Home() {
         newBadges={view.newBadges}
         completions={completions}
         guest={signedOut}
+        userId={userId}
+        onDeeper={() => go({ name: "deeper", storyId: view.storyId })}
         onExplain={() => go({ name: "explain" })}
         onNext={startStory}
         onHome={goToday}
@@ -318,6 +325,8 @@ export default function Home() {
       onPlus={() => goPlus()}
       onBilling={() => go({ name: "billing" })}
       onBadges={() => go({ name: "badges" })}
+      onHelp={() => go({ name: "help" })}
+      onDelete={() => go({ name: "delete" })}
       onSignOut={() => supabase.auth.signOut()}
     >
       <Today
@@ -326,6 +335,7 @@ export default function Home() {
         plus={plus}
         onStart={startStory}
         onBehind={(id) => go({ name: "behind", storyId: id })}
+        onDeeper={(id) => go({ name: "deeper", storyId: id })}
         onPlus={goPlus}
         onExplain={() => go({ name: "explain" })}
         onAnswerTold={answerTold}
