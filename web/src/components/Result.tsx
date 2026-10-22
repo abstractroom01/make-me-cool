@@ -3,6 +3,8 @@
 import { stories } from "@/data/stories";
 import { ResourceList } from "./Resources";
 import { Feedback } from "./Feedback";
+import { Reveal } from "./Reveal";
+import { RoomsStrip } from "./Rooms";
 import { BADGES, allScores, buildTimeline, coolerMoment, streaks } from "@/lib/score";
 import { todayKey } from "@/lib/schedule";
 import type { Completion } from "@/lib/types";
@@ -85,6 +87,8 @@ export function Result({
           <p className="t-body mt-3 text-deep/85">{story.starter}</p>
         </section>
 
+        <Reveal storyId={storyId} />
+
         {/* 3. a quiet scoreboard */}
         <section className="mt-6 rounded-[14px] border-2 border-paper/25 p-5">
           <div className="grid grid-cols-3 gap-3 text-center">
@@ -146,6 +150,8 @@ export function Result({
         <div className="mt-6">
           <Feedback storyId={storyId} userId={userId} dark />
         </div>
+
+        <RoomsStrip lead="stories land best out loud. this is what that looks like at the abstract room." />
 
         {/* 4. save it (guests only) */}
         {guest && (

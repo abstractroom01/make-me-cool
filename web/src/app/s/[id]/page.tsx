@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { stories } from "@/data/stories";
 import { Visual } from "@/components/Visual";
+import { PlayLink } from "@/components/PlayLink";
 
 export function generateStaticParams() {
   return stories.map((s) => ({ id: s.id }));
@@ -50,9 +51,9 @@ export default async function SharedStory({ params }: { params: Promise<{ id: st
           <p className="display mt-2 text-3xl font-bold leading-tight">&ldquo;{s.takeaway}&rdquo;</p>
         </section>
 
-        <a className="btn btn-yellow mt-8 w-full" href={`/?story=${s.id}`}>
+        <PlayLink storyId={s.id} className="btn btn-yellow mt-8 w-full">
           play this story. it&apos;s free
-        </a>
+        </PlayLink>
         <p className="t-caption mt-3 text-center text-paper/80">about 5 minutes · {s.cards.length} cards · 4 questions · no sign-up needed</p>
 
         <p className="t-body mt-10 text-paper/85">

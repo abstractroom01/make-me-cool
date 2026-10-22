@@ -121,6 +121,7 @@ export function Today({
   onStart,
   onBehind,
   onDeeper,
+  sharePlays,
   onPlus,
   onExplain,
   onAnswerTold,
@@ -130,6 +131,7 @@ export function Today({
   completions: Completion[];
   plus: PlusState | null;
   onStart: (storyId: string) => void;
+  sharePlays: number;
   onBehind: (storyId: string) => void;
   onDeeper: (storyId: string) => void;
   onPlus: (reason: string) => void;
@@ -170,6 +172,12 @@ export function Today({
         <p className="t-body mt-2 text-deep/75">
           {todayDone ? "today's done. abstract is almost impressed." : "five minutes. one story. something to say out loud."}
         </p>
+
+        {sharePlays > 0 && (
+          <p className="mt-6 rounded-[14px] bg-spark p-4 font-semibold" role="status">
+            {sharePlays === 1 ? "1 person" : `${sharePlays} people`} played a story from your link. it worked.
+          </p>
+        )}
 
         {toldPrompt && toldStory && (
           <section className="mt-6 rounded-[14px] border-2 border-deep bg-white p-5" aria-label="how did it go">
@@ -338,13 +346,39 @@ export function Today({
         </section>
 
         {stage > 1 && (
-        <section>
-          <button onClick={onBadges} className="w-full rounded-[14px] border-2 border-line bg-white p-4 text-left">
-            <p className="display text-3xl font-bold">
-              {doneIds.size}
-              <span className="text-lg text-deep/60">/{stories.length}</span>
+        <section aria-label="your wall of wonders">
+          <div className="flex items-baseline justify-between">
+            <p className="t-title">your wall of wonders</p>
+            <p className="t-caption text-deep/70">
+              {doneIds.size} of {stories.length}
             </p>
-            <p className="t-caption text-deep/70">stories · see badges</p>
+          </div>
+          <ul className="mt-3 grid grid-cols-3 gap-2">
+            {stories.map((s, k) => {
+              const done = doneIds.has(s.id);
+              const tone = ["bg-deep text-spark", "bg-brand text-paper", "bg-spark text-deep", "bg-alert text-white"][k % 4];
+              return (
+                <li key={s.id}>
+                  {done ? (
+                    <button
+                      onClick={() => onStart(s.id)}
+                      className={`flex aspect-square w-full flex-col justify-between rounded-[12px] p-2 text-left ${tone}`}
+                      aria-label={`${s.title}, finished. play again`}
+                    >
+                      <Spark size={16} />
+                      <span className="display text-[0.8rem] font-bold leading-tight">{s.title.replace(/^the /, "")}</span>
+                    </button>
+                  ) : (
+                    <div className="flex aspect-square items-center justify-center rounded-[12px] border-2 border-dashed border-line text-xl text-deep/40" aria-label="a story still to find">
+                      ?
+                    </div>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+          <button onClick={onBadges} className="t-caption mt-3 underline text-deep/80">
+            see my badges
           </button>
         </section>
         )}

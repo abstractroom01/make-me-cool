@@ -9,7 +9,7 @@ import { allScores, buildTimeline, newBadgesFor, streaks } from "@/lib/score";
 import { storyForToday, todayKey } from "@/lib/schedule";
 import { clearGuest, loadGuest, saveGuest } from "@/lib/guest";
 import { loadPlus, type PlusState } from "@/lib/billing";
-import { track } from "@/lib/analytics";
+import { anonId, track } from "@/lib/analytics";
 import type { Completion, Profile, View } from "@/lib/types";
 import { Landing } from "@/components/Landing";
 import { ProfileForm } from "@/components/ProfileForm";
@@ -89,6 +89,10 @@ export default function Home() {
   }, []);
 
   const userId = session?.user.id;
+  const [sharePlays, setSharePlays] = useState(0);
+  useEffect(() => {
+    supabase.rpc("share_plays", { ref: anonId() }).then(({ data }) => setSharePlays(typeof data === "number" ? data : 0));
+  }, [userId]);
   const completions = session ? serverRows : guestRows;
 
   useEffect(() => {
@@ -167,12 +171,13 @@ export default function Home() {
     }
     if (session && profile === undefined) return; // wait until we know who this is
     openedFromLink.current = true;
+    window.history.replaceState(window.history.state, "", "/"); // clean the address first, so back returns to a plain Today
     if (!(session && profile === null)) {
       if (!session) setGuestMode(true);
-      track("story_started", { story: id, from: "share_link" }, session?.user.id);
+      const ref = new URLSearchParams(window.location.search).get("r") ?? "";
+      track("story_started", { story: id, from: "share_link", ref }, session?.user.id);
       go({ name: "deck", storyId: id });
     }
-    window.history.replaceState(window.history.state, "", "/");
   }, [ready, session, profile, go]);
 
   const signedOut = !session;
@@ -338,6 +343,7 @@ export default function Home() {
         completions={completions}
         plus={plus}
         onStart={startStory}
+        sharePlays={sharePlays}
         onBehind={(id) => go({ name: "behind", storyId: id })}
         onDeeper={(id) => go({ name: "deeper", storyId: id })}
         onPlus={goPlus}

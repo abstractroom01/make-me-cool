@@ -1,5 +1,6 @@
 "use client";
 
+import { RoomPhotoImg } from "./Rooms";
 import { useEffect, useState } from "react";
 import { SignInForm } from "./SignInForm";
 import { Chip, Spark } from "./ui";
@@ -272,6 +273,23 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
               </div>
             ))}
           </dl>
+          <div className="mt-8 grid grid-cols-2 gap-2 md:grid-cols-4">
+            <div className="col-span-2 aspect-[16/9] overflow-hidden rounded-[12px] md:row-span-2 md:aspect-auto">
+              <RoomPhotoImg id="crowd" />
+            </div>
+            <div className="aspect-[4/3] overflow-hidden rounded-[12px]">
+              <RoomPhotoImg id="blue" />
+            </div>
+            <div className="aspect-[4/3] overflow-hidden rounded-[12px]">
+              <RoomPhotoImg id="yellow" />
+            </div>
+            <div className="aspect-[4/3] overflow-hidden rounded-[12px]">
+              <RoomPhotoImg id="cheer" />
+            </div>
+            <div className="aspect-[4/3] overflow-hidden rounded-[12px]">
+              <RoomPhotoImg id="three" />
+            </div>
+          </div>
           <p className="t-body mt-6 max-w-2xl text-paper/80">the abstract room is an experiences and media company for india&apos;s most passionate pop-culture lovers.</p>
           <div className="mt-8 max-w-xl on-deep">
             <p className="t-title mb-3">still scrolling? that&apos;s literally the problem.</p>

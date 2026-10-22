@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { Story } from "@/data/stories";
 import { Chip, Steps } from "./ui";
 import { shareText, squares } from "@/lib/share";
+import { anonId } from "@/lib/analytics";
 
 export function Tell({
   story,
@@ -20,7 +21,7 @@ export function Tell({
 }) {
   const [copied, setCopied] = useState(false);
   const origin = typeof window !== "undefined" ? window.location.origin : "https://makemecool.me";
-  const link = `${origin}/s/${story.id}`;
+  const link = `${origin}/s/${story.id}?r=${encodeURIComponent(anonId())}`;
   const line = shareText({ title: story.title, day, marks, takeaway: story.takeaway, link });
   const canShare = typeof navigator !== "undefined" && typeof navigator.share === "function";
 
