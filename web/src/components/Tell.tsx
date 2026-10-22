@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { Story } from "@/data/stories";
-import { Chip } from "./ui";
+import { Chip, Steps } from "./ui";
 
 export function Tell({
   story,
@@ -41,7 +41,10 @@ export function Tell({
     <main className="min-h-dvh bg-paper">
       <div className="mx-auto flex min-h-dvh max-w-xl flex-col justify-center px-5 py-10">
         <div className="arrive">
-          <Chip tone="yellow">last step</Chip>
+          <Steps current={3} />
+          <div className="mt-6">
+            <Chip tone="yellow">last step</Chip>
+          </div>
           <h1 className="t-headline mt-4">
             now say it to <span className="accent-on-light">someone.</span>
           </h1>

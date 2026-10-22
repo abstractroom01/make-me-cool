@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { Card, Story } from "@/data/stories";
-import { Chip } from "./ui";
+import { Chip, Steps } from "./ui";
 import { Visual } from "./Visual";
 
 const face: Record<Card["kind"], string> = {
@@ -70,6 +70,10 @@ export function Deck({ story, onDone, onClose }: { story: Story; onDone: () => v
               <span key={k} className={`h-2.5 flex-1 rounded-full ${k <= i ? "bg-brand" : "bg-[#d8e4e3]"}`} />
             ))}
           </div>
+        </div>
+
+        <div className="mt-3">
+          <Steps current={1} />
         </div>
 
         <div className="mt-4 flex flex-wrap items-center gap-2">

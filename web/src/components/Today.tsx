@@ -48,11 +48,13 @@ export function AppShell({
               onClick={onPlus}
               className={`rounded-full px-3 py-1.5 text-sm font-bold ${plus?.active ? "bg-deep text-spark" : "border-2 border-deep text-deep"}`}
             >
-              {plus?.active ? (plus.trial ? `plus · ${daysLeft(plus.until)}d left` : "plus ✓") : "plus · 7 days free"}
+              {plus?.active ? (plus.trial ? `plus · ${daysLeft(plus.until)}d left` : "plus ✓") : <>plus<span className="hidden sm:inline"> · 7 days free</span></>}
             </button>
+            {streak > 0 && (
             <span className="inline-flex items-center gap-1.5 rounded-full bg-spark px-3 py-1.5 text-sm font-bold" aria-label={`${streak} day streak`}>
-              <Spark size={18} /> {streak}<span className="hidden sm:inline"> day streak</span>
+              <Spark size={18} /> {streak} day<span className="hidden sm:inline"> streak</span>
             </span>
+            )}
             {profile && (
               <button
                 onClick={() => setMenu(!menu)}
@@ -126,9 +128,10 @@ export function Today({
   const toldStory = toldPrompt ? stories.find((s) => s.id === toldPrompt.story_id) : undefined;
   const [asking, setAsking] = useState<"yes" | null>(null);
   const [time, setTime] = useState("08:00");
+  const stage = completions.length === 0 ? 0 : completions.length === 1 ? 1 : 2;
 
   return (
-    <main className="mx-auto grid max-w-6xl gap-8 px-5 py-8 md:px-8 md:py-12 lg:grid-cols-[1fr_360px]">
+    <main className={`mx-auto grid max-w-6xl gap-8 px-5 py-8 md:px-8 md:py-12 ${stage > 0 ? "lg:grid-cols-[1fr_360px]" : "lg:max-w-3xl"}`}>
       <div className="arrive min-w-0">
         <h1 className="t-headline">
           {profile ? (
@@ -144,26 +147,6 @@ export function Today({
         <p className="t-body mt-2 text-deep/75">
           {todayDone ? "today's done. abstract is almost impressed." : "five minutes. one story. something to say out loud."}
         </p>
-
-        <p className="t-caption mt-4 rounded-[14px] border-2 border-[#cfdcdb] bg-white p-3 text-deep/80">
-          these are sample stories. we&apos;re still fact-checking them, and each one lists what&apos;s still open.
-        </p>
-
-        {plus?.active && plus.trial && (
-          <p className="t-caption mt-4 rounded-[14px] bg-mist p-3" role="status">
-            you&apos;re on your free plus trial: {daysLeft(plus.until)} days left. the archive and behind the story are open.
-          </p>
-        )}
-
-        {!profile && (
-          <section className="mt-6 rounded-[14px] border-2 border-deep bg-white p-5">
-            <p className="t-title">save your score and streak</p>
-            <p className="t-body mt-1 text-deep/80">you&apos;re playing as a guest. sign in with your email and keep going tomorrow. free, no password.</p>
-            <div className="mt-3">
-              <SignInForm id="today" />
-            </div>
-          </section>
-        )}
 
         {toldPrompt && toldStory && (
           <section className="mt-6 rounded-[14px] border-2 border-deep bg-white p-5" aria-label="how did it go">
@@ -238,6 +221,28 @@ export function Today({
           </div>
         </section>
 
+        <p className="t-caption mt-4 rounded-[14px] border-2 border-[#cfdcdb] bg-white p-3 text-deep/80">
+          these are sample stories. we&apos;re still fact-checking them, and each one lists what&apos;s still open.
+        </p>
+
+        {plus?.active && plus.trial && (
+          <p className="t-caption mt-4 rounded-[14px] bg-mist p-3" role="status">
+            you&apos;re on your free plus trial: {daysLeft(plus.until)} days left. the archive and behind the story are open.
+          </p>
+        )}
+
+        {!profile && (
+          <section className="mt-6 rounded-[14px] border-2 border-deep bg-white p-5">
+            <p className="t-title">save your score and streak</p>
+            <p className="t-body mt-1 text-deep/80">you&apos;re playing as a guest. sign in with your email and keep going tomorrow. free, no password.</p>
+            <div className="mt-3">
+              <SignInForm id="today" />
+            </div>
+          </section>
+        )}
+
+        {stage > 0 && (
+          <>
         <h2 className="t-title mb-3 mt-10">earlier stories</h2>
         <ul className="space-y-3">
           {library.map((s) => {
@@ -265,9 +270,12 @@ export function Today({
           })}
           {library.length === 0 && <li className="t-body text-deep/70">nothing earlier yet. you&apos;re at the start.</li>}
         </ul>
+          </>
+        )}
 
       </div>
 
+      {stage > 0 && (
       <aside className="arrive space-y-5 lg:sticky lg:top-24 lg:self-start" aria-label="your progress">
         <section className="rounded-[14px] bg-deep p-6 text-paper">
           <div className="flex items-center justify-between">
@@ -278,8 +286,9 @@ export function Today({
           <button className="t-caption mt-1 underline text-paper/80" onClick={onExplain}>
             how is this calculated?
           </button>
+          {scores.slice(1).some((s) => s.unlocked) && (
           <div className="mt-4 grid grid-cols-3 gap-2 text-center">
-            {scores.slice(1).map((s) => (
+            {scores.slice(1).filter((s) => s.unlocked).map((s) => (
               <div key={s.window} className={`rounded-[14px] border-2 p-2 ${s.unlocked ? "border-paper/40" : "border-paper/15 opacity-70"}`}>
                 <p className="display text-xl font-bold">{s.unlocked ? s.score : "·"}</p>
                 <p className="t-caption text-paper/75">{s.window} day</p>
@@ -287,6 +296,7 @@ export function Today({
               </div>
             ))}
           </div>
+          )}
           <div className="mt-5 flex items-end justify-between">
             <p className="display text-4xl font-bold">
               {current}
@@ -299,6 +309,7 @@ export function Today({
           <p className="t-caption mt-4 text-paper/75">one rest day a week is on the house. a day with no story never counts against you.</p>
         </section>
 
+        {stage > 1 && (
         <section className="grid grid-cols-2 gap-3">
           <div className="rounded-[14px] border-2 border-[#cfdcdb] bg-white p-4">
             <p className="display text-3xl font-bold">{totalPoints}</p>
@@ -312,7 +323,9 @@ export function Today({
             <p className="t-caption text-deep/70">stories · see badges</p>
           </button>
         </section>
+        )}
 
+        {stage > 1 && (
         <section className="rounded-[14px] border-2 border-[#cfdcdb] bg-white p-5">
           <p className="t-title">a daily reminder</p>
           <p className="t-caption mt-1 text-deep/70">adds a repeating event to your phone&apos;s calendar. no app permissions needed.</p>
@@ -326,7 +339,9 @@ export function Today({
             </button>
           </div>
         </section>
+        )}
       </aside>
+      )}
     </main>
   );
 }

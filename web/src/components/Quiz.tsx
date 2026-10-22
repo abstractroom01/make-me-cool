@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { Question, Story } from "@/data/stories";
-import { Check } from "./ui";
+import { Check, Steps } from "./ui";
 
 const goodLines = ["nicely done!", "see, you knew that.", "okay, we're almost impressed.", "fine. that was good."];
 const badLines = ["not quite. no judgement. (some.)", "close. but no.", "bold answer. wrong, but bold."];
@@ -62,6 +62,10 @@ export function Quiz({
           <div className="h-4 flex-1 overflow-hidden rounded-full bg-[#d8e4e3]" role="progressbar" aria-valuemin={0} aria-valuemax={total} aria-valuenow={i + (checked ? 1 : 0)} aria-label="quiz progress">
             <div className="h-full rounded-full bg-brand transition-all duration-300" style={{ width: `${((i + (checked ? 1 : 0)) / total) * 100}%` }} />
           </div>
+        </div>
+
+        <div className="mt-3">
+          <Steps current={2} />
         </div>
 
         <div key={i} className="arrive mt-8 flex-1">

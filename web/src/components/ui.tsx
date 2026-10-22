@@ -66,3 +66,31 @@ export function WeekStrip({
     </div>
   );
 }
+
+/** Where you are in one session: read the story, answer the questions, tell someone. */
+export function Steps({ current }: { current: 1 | 2 | 3 }) {
+  const items = ["read", "answer", "tell"];
+  return (
+    <ol className="flex items-center justify-center gap-2 text-sm" aria-label={`step ${current} of 3`}>
+      {items.map((label, i) => {
+        const n = i + 1;
+        const done = n < current;
+        const here = n === current;
+        return (
+          <li key={label} className="flex items-center gap-2">
+            <span
+              className={`flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold ${
+                here ? "bg-deep text-spark" : done ? "bg-brand text-white" : "bg-[#d8e4e3] text-deep/60"
+              }`}
+              aria-hidden="true"
+            >
+              {done ? "✓" : n}
+            </span>
+            <span className={here ? "font-semibold text-deep" : "text-deep/60"}>{label}</span>
+            {n < 3 && <span className="mx-1 h-0.5 w-5 rounded bg-[#d8e4e3]" aria-hidden="true" />}
+          </li>
+        );
+      })}
+    </ol>
+  );
+}
