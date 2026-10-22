@@ -41,17 +41,17 @@ export function AppShell({
           <button onClick={onHome} className="flex items-center gap-2" aria-label="make me cool, home">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/brand/icon-main.png" alt="" className="h-9 w-9" />
-            <span className="display text-xl font-bold">make me cool</span>
+            <span className="display hidden text-xl font-bold sm:inline">make me cool</span>
           </button>
           <div className="relative flex items-center gap-2 md:gap-3">
             <button
               onClick={onPlus}
               className={`rounded-full px-3 py-1.5 text-sm font-bold ${plus?.active ? "bg-deep text-spark" : "border-2 border-deep text-deep"}`}
             >
-              {plus?.active ? "plus ✓" : "plus"}
+              {plus?.active ? (plus.trial ? `plus · ${daysLeft(plus.until)}d left` : "plus ✓") : "plus · 7 days free"}
             </button>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-spark px-3 py-1.5 text-sm font-bold" aria-label={`${streak} day streak`}>
-              <Spark size={18} /> {streak}
+              <Spark size={18} /> {streak}<span className="hidden sm:inline"> day streak</span>
             </span>
             {profile && (
               <button
@@ -145,6 +145,10 @@ export function Today({
           {todayDone ? "today's done. abstract is almost impressed." : "five minutes. one story. something to say out loud."}
         </p>
 
+        <p className="t-caption mt-4 rounded-[14px] border-2 border-[#cfdcdb] bg-white p-3 text-deep/80">
+          these are sample stories. we&apos;re still fact-checking them, and each one lists what&apos;s still open.
+        </p>
+
         {plus?.active && plus.trial && (
           <p className="t-caption mt-4 rounded-[14px] bg-mist p-3" role="status">
             you&apos;re on your free plus trial: {daysLeft(plus.until)} days left. the archive and behind the story are open.
@@ -205,7 +209,6 @@ export function Today({
                   {f}
                 </Chip>
               ))}
-              <Chip tone="light">sample</Chip>
             </div>
             <h2 id="today-title" className="t-headline mt-4">
               {todays.title}
@@ -217,7 +220,10 @@ export function Today({
                 picked by {curator.name || "a person at the abstract room"}
               </p>
               <p className="t-body mt-1 text-paper/90">{todays.why}</p>
-              <p className="t-caption mt-2 text-paper/75">still being checked: {todays.caveat.replace(/^sample story, not yet fact-checked\.\s*/i, "")}</p>
+              <details className="mt-2">
+                <summary className="t-caption cursor-pointer text-paper/80 underline">what&apos;s still being checked</summary>
+                <p className="t-caption mt-1 text-paper/75">{todays.caveat.replace(/^sample story, not yet fact-checked\.\s*/i, "")}</p>
+              </details>
             </div>
 
             <div className="mt-6 flex flex-wrap items-center gap-3">
@@ -259,9 +265,7 @@ export function Today({
           })}
           {library.length === 0 && <li className="t-body text-deep/70">nothing earlier yet. you&apos;re at the start.</li>}
         </ul>
-        <p className="t-caption mt-4 text-deep/65">
-          these are sample stories and haven&apos;t been fact-checked yet. real ones are checked against two sources before they go out.
-        </p>
+
       </div>
 
       <aside className="arrive space-y-5 lg:sticky lg:top-24 lg:self-start" aria-label="your progress">

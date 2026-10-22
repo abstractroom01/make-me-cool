@@ -76,7 +76,6 @@ export function Deck({ story, onDone, onClose }: { story: Story; onDone: () => v
           {story.fields.map((f) => (
             <Chip key={f}>{f}</Chip>
           ))}
-          <Chip tone="yellow">sample</Chip>
         </div>
 
         <div className="my-5 flex flex-1 items-center justify-center">
