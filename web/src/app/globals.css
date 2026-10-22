@@ -7,7 +7,9 @@
   --red: #e8483c;
   --paper: #fafcfb;
   --mist: #e6f1f0;
-  --line: var(--line);
+  --line: #cfdcdb;
+  --teal-ink: #067077;
+  --alert-strong: #c4372c;
   --line-soft: #e3eceb;
   --yellow-edge: #c79f00;
   --deep-edge: #021f22;
@@ -22,6 +24,8 @@
   --color-paper: var(--paper);
   --color-mist: var(--mist);
   --color-line: var(--line);
+  --color-brand-ink: var(--teal-ink);
+  --color-alert-strong: var(--alert-strong);
   --color-line-soft: var(--line-soft);
   --font-display: var(--font-josefin);
   --font-sans: var(--font-josefin);
@@ -72,7 +76,7 @@ h1, h2, h3, .display { font-family: var(--font-josefin), system-ui, sans-serif; 
   width: 100%; border-radius: 999px; border: 2px solid var(--line); background: #fff;
   padding: 0.95rem 1.4rem; font-size: 1rem; color: var(--deep); min-height: 52px;
 }
-.pill-input::placeholder { color: #6a8b8d; }
+.pill-input::placeholder { color: #5b7b7d; }
 .pill-input:focus { border-color: var(--teal); }
 .on-deep .pill-input { border-color: transparent; }
 

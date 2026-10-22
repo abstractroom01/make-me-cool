@@ -189,7 +189,7 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
                 <li key={id} className="w-[78%] shrink-0 snap-start overflow-hidden rounded-[14px] border-2 border-line bg-white shadow-[0_4px_0_var(--line)] sm:w-[46%] md:w-auto">
                   <Visual id={vis} />
                   <div className="p-4">
-                    <p className="t-caption font-semibold uppercase tracking-widest text-brand">{s.fields.join(" + ")}</p>
+                    <p className="t-caption font-semibold uppercase tracking-widest text-brand-ink">{s.fields.join(" + ")}</p>
                     <h4 className="display mt-1 text-lg font-bold leading-tight">{s.title}</h4>
                     <p className="t-caption mt-1 text-deep/80">{s.hook}</p>
                   </div>

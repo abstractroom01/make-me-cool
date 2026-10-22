@@ -9,11 +9,11 @@ export function LegalShell({ title, children }: { title: string; children: React
           ← make me cool
         </a>
         <h1 className="t-headline mt-4">{title}</h1>
-        <p className="t-caption mt-1 text-deep/65">last updated 21 october 2026</p>
+        <p className="t-caption mt-1 text-deep/70">last updated 21 october 2026</p>
         <div className="t-body mt-6 space-y-4 text-deep/90 [&_h2]:display [&_h2]:mt-8 [&_h2]:text-2xl [&_h2]:font-bold [&_li]:ml-5 [&_li]:list-disc">
           {children}
         </div>
-        <div className="t-caption mt-10 space-y-1 text-deep/65">
+        <div className="t-caption mt-10 space-y-1 text-deep/70">
           <p>
             questions? write to {business.supportEmail ? <a className="underline" href={`mailto:${business.supportEmail}`}>{business.supportEmail}</a> : "us through theabstractroom.com"}.
           </p>
@@ -83,7 +83,7 @@ export function Terms() {
       </ul>
       <h2>about the stories</h2>
       <p>
-        stories are for curiosity and conversation. we aim to check every claim against sources, and we label stories we haven&apos;t finished checking as samples. they are not professional advice. if you spot a mistake, tell us and we&apos;ll fix it and note the correction.
+        stories are for curiosity and conversation. we aim to check every claim against sources, list them, and say what is still open. they are not professional advice. if you spot a mistake, tell us and we&apos;ll fix it and note the correction.
       </p>
       <h2>your account</h2>
       <p>keep your sign-in email secure. don&apos;t misuse the app, try to break it, or copy the content to sell it.</p>

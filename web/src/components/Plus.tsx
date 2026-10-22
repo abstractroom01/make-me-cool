@@ -151,7 +151,7 @@ export function Plus({
                 {msg}
               </p>
             )}
-            <p className="t-caption mt-4 text-deep/65">
+            <p className="t-caption mt-4 text-deep/70">
               payments are handled by razorpay (upi, cards, netbanking). we never see your card details. see our <a className="underline" href="/refunds">refund policy</a> and{" "}
               <a className="underline" href="/terms">terms</a>.
             </p>

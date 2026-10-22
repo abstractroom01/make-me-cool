@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 const steps: [string, string][] = [
   ["a person picks it", "every story is chosen by sankalp sharma, the founder of the abstract room, not a feed or a formula. we look for a true story that connects two worlds, like film and food, or music and the brain."],
   ["we write it short", "about nine cards, plain words. any name or term a stranger wouldn't know gets explained on the spot. then four questions, ending with the line you could say out loud."],
-  ["we check the facts", "each story lists its sources, and says plainly what is still being checked. right now the stories you see are samples, and each one tells you what's still open."],
+  ["we check the facts", "each story lists its sources, and says plainly what is still being checked. we checked each current story against its sources, and each one tells you what is still open."],
   ["we add ways to go further", "after the story, a mix of things to watch, listen to, read and look at. films, podcasts, books and videos, not just articles."],
   ["you tell us how it went", "after every story you can say if you liked it and flag anything wrong or confusing. we read all of it and fix what we get wrong."],
 ];

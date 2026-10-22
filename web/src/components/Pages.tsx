@@ -25,7 +25,7 @@ export function Badges({ completions, onBack }: { completions: Completion[]; onB
         <p className="t-body mt-2 text-deep/80">they mark things you really did. nobody takes them away.</p>
         {groups.map((g) => (
           <section key={g} className="mt-8">
-            <h2 className="t-caption font-semibold uppercase tracking-widest text-brand">{g}</h2>
+            <h2 className="t-caption font-semibold uppercase tracking-widest text-brand-ink">{g}</h2>
             <ul className="mt-3 grid gap-3 sm:grid-cols-2">
               {BADGES.filter((b) => b.group === g).map((b) => {
                 const has = earned.has(b.id);
@@ -72,7 +72,7 @@ export function Explain({ onBack }: { onBack: () => void }) {
           <p>
             the score can go down. when it does, we won&apos;t say you lost something. it recovers the moment you finish the next story.
           </p>
-          <p className="t-caption text-deep/65">the 70 / 30 split is our best guess for now, and we&apos;ll adjust it as we learn what actually helps.</p>
+          <p className="t-caption text-deep/70">the 70 / 30 split is our best guess for now, and we&apos;ll adjust it as we learn what actually helps.</p>
         </div>
       </div>
     </div>

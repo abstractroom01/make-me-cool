@@ -80,13 +80,13 @@ export function Steps({ current }: { current: 1 | 2 | 3 }) {
           <li key={label} className="flex items-center gap-2">
             <span
               className={`flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold ${
-                here ? "bg-deep text-spark" : done ? "bg-brand text-white" : "bg-[#d8e4e3] text-deep/60"
+                here ? "bg-deep text-spark" : done ? "bg-brand-ink text-white" : "bg-[#d8e4e3] text-deep/70"
               }`}
               aria-hidden="true"
             >
               {done ? "✓" : n}
             </span>
-            <span className={here ? "font-semibold text-deep" : "text-deep/60"}>{label}</span>
+            <span className={here ? "font-semibold text-deep" : "text-deep/70"}>{label}</span>
             {n < 3 && <span className="mx-1 h-0.5 w-5 rounded bg-[#d8e4e3]" aria-hidden="true" />}
           </li>
         );

@@ -3,7 +3,7 @@
 export const curator = {
   name: "sankalp sharma",
   role: "founder, the abstract room",
-  photo: "",
+  photo: "/curator/sankalp.jpg",
   initials: "ss",
   bio: "sankalp started the abstract room while studying business, after noticing there were hardly any places to talk about film, books and ideas with other people. six years on it is a community that meets online and in person. he picks every story here, lists where it came from, and says plainly what is still being checked.",
 };

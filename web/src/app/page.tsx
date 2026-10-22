@@ -10,6 +10,7 @@ import { storyForToday, todayKey } from "@/lib/schedule";
 import { clearGuest, loadGuest, saveGuest } from "@/lib/guest";
 import { loadPlus, type PlusState } from "@/lib/billing";
 import { anonId, track } from "@/lib/analytics";
+import { clearProgress, getProgress } from "@/lib/progress";
 import type { Completion, Profile, View } from "@/lib/types";
 import { Landing } from "@/components/Landing";
 import { ProfileForm } from "@/components/ProfileForm";
@@ -185,11 +186,13 @@ export default function Home() {
 
   function startStory(id: string) {
     track("story_started", { story: id }, userId);
-    go({ name: "deck", storyId: id });
+    // quiz already under way: pick it up from the next question
+    go(getProgress(id)?.q ? { name: "quiz", storyId: id } : { name: "deck", storyId: id });
   }
 
   async function finishQuiz(storyId: string, correct: number, total: number, m: boolean[]) {
     setMarks(m);
+    clearProgress();
     const today = todayKey();
     const already = completions.find((c) => c.story_id === storyId);
     const joined = profile?.created_at?.slice(0, 10);

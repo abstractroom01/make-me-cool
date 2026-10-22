@@ -14,7 +14,7 @@ export function Deeper({ storyId, userId, onBack }: { storyId: string; userId?: 
         <button className="t-caption underline" onClick={onBack}>
           ← back
         </button>
-        <p className="t-caption mt-4 font-semibold uppercase tracking-widest text-brand">go deeper</p>
+        <p className="t-caption mt-4 font-semibold uppercase tracking-widest text-brand-ink">go deeper</p>
         <h1 className="t-headline mt-1">{story.title}</h1>
         <p className="t-body mt-2 text-deep/80">want more? a mix of things to watch, listen to, read and look at. start with whichever one sounds fun.</p>
         <div className="mt-6">
@@ -36,7 +36,7 @@ export function Help({ onBack }: { onBack: () => void }) {
     ["your streak", "how many days in a row you've finished a story. you get one rest day a week, so one missed day won't break it. days with no story never count against you."],
     ["your cool score", "a number out of 100 for the last 7 days (and later 30, 90 and 365). it counts the days you finished a story, and counts more when you also told someone."],
     ["badges", "small marks for things you really did, like finishing a week in a row or telling ten stories. nobody takes them away."],
-    ["sample stories", "the stories you see now are samples. we're still fact-checking them, and each one says what's still open."],
+    ["how we check", "each story lists its sources and says plainly what is still open. if you spot a mistake, tell us after the story and we fix it."],
     ["plus", "free forever: the daily story, quiz, score, streak and badges. plus adds the full archive and sources behind each story. new accounts get 7 days of plus free, and there is no auto-renewal."],
   ];
   return (
@@ -105,7 +105,7 @@ export function DeleteAccount({ email, onBack }: { email: string; onBack: () => 
         </label>
         <input id="del" className="pill-input mt-1" value={text} onChange={(e) => setText(e.target.value)} autoCapitalize="none" autoCorrect="off" />
         {err && (
-          <p className="t-caption mt-3 rounded-[14px] bg-alert px-3 py-2 text-white" role="alert">
+          <p className="t-caption mt-3 rounded-[14px] bg-alert-strong px-3 py-2 text-white" role="alert">
             {err}
           </p>
         )}

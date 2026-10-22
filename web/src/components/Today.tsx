@@ -8,6 +8,7 @@ import { allScores, buildTimeline, streaks } from "@/lib/score";
 import { isArchived, publishedStories, storyForToday, todayKey } from "@/lib/schedule";
 import { weekStrip } from "@/lib/week";
 import { downloadIcs } from "@/lib/ics";
+import { getProgress } from "@/lib/progress";
 import { daysLeft, type PlusState } from "@/lib/billing";
 import type { Completion, Profile } from "@/lib/types";
 import { Check, Chip, Spark, WeekStrip } from "./ui";
@@ -182,7 +183,7 @@ export function Today({
 
         {toldPrompt && toldStory && (
           <section className="mt-6 rounded-[14px] border-2 border-deep bg-white p-5" aria-label="how did it go">
-            <p className="t-caption font-semibold uppercase tracking-widest text-brand">one quick question</p>
+            <p className="t-caption font-semibold uppercase tracking-widest text-brand-ink">one quick question</p>
             <p className="t-title mt-1">did you tell anyone about &ldquo;{toldStory.title}&rdquo;?</p>
             {asking === "yes" ? (
               <div className="mt-3">
@@ -238,13 +239,13 @@ export function Today({
               <p className="t-body mt-1 text-paper/90">{todays.why}</p>
               <details className="mt-2">
                 <summary className="t-caption cursor-pointer text-paper/80 underline">what&apos;s still being checked</summary>
-                <p className="t-caption mt-1 text-paper/75">{todays.caveat.replace(/^sample story, not yet fact-checked\.\s*/i, "")}</p>
+                <p className="t-caption mt-1 text-paper/75">{todays.caveat}</p>
               </details>
             </div>
 
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <button className="btn btn-yellow" onClick={() => onStart(todays.id)}>
-                {todayDone ? "read it again" : "start story"}
+                {todayDone ? "read it again" : getProgress(todays.id) ? "continue story" : "start story"}
               </button>
               <button className="btn btn-ghost !bg-transparent !text-paper !border-paper/40 !shadow-none" onClick={() => onDeeper(todays.id)}>
                 go deeper
@@ -258,7 +259,7 @@ export function Today({
         </section>
 
         <p className="t-caption mt-4 rounded-[14px] border-2 border-line bg-white p-3 text-deep/80">
-          these are sample stories. we&apos;re still fact-checking them, and each one lists what&apos;s still open.
+          every story lists where it came from and what&apos;s still open. spot a mistake? tell us after the story.
         </p>
 
         {plus?.active && plus.trial && (
@@ -358,7 +359,7 @@ export function Today({
           <ul className="mt-3 grid grid-cols-3 gap-2">
             {stories.map((s, k) => {
               const done = doneIds.has(s.id);
-              const tone = ["bg-deep text-spark", "bg-brand text-paper", "bg-spark text-deep", "bg-alert text-white"][k % 4];
+              const tone = ["bg-deep text-spark", "bg-brand-ink text-paper", "bg-spark text-deep", "bg-alert-strong text-white"][k % 4];
               return (
                 <li key={s.id}>
                   {done ? (

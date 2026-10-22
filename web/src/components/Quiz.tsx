@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { getProgress, saveProgress } from "@/lib/progress";
 import type { Question, Story } from "@/data/stories";
 import { Check, Steps } from "./ui";
 import { checkFill } from "@/lib/answers";
@@ -22,12 +23,13 @@ export function Quiz({
   onFinish: (correct: number, total: number, marks: boolean[]) => void;
   onClose: () => void;
 }) {
-  const [i, setI] = useState(0);
+  const saved = getProgress(story.id)?.q;
+  const [i, setI] = useState(saved?.i ?? 0);
   const [picked, setPicked] = useState<number | null>(null);
   const [typed, setTyped] = useState("");
   const [checked, setChecked] = useState(false);
-  const [correct, setCorrect] = useState(0);
-  const [marks, setMarks] = useState<boolean[]>([]);
+  const [correct, setCorrect] = useState(saved?.correct ?? 0);
+  const [marks, setMarks] = useState<boolean[]>(saved?.marks ?? []);
 
   const q = story.quiz[i];
   const total = story.quiz.length;
@@ -40,8 +42,7 @@ export function Quiz({
   }
 
   function leave() {
-    const started = i > 0 || checked || ready;
-    if (!started || window.confirm("leave the quiz? your answers so far won't be saved.")) onClose();
+    onClose(); // answers so far are kept, so leaving costs nothing
   }
 
   function check() {
@@ -54,6 +55,7 @@ export function Quiz({
     const m = [...marks, right];
     if (i + 1 >= total) return onFinish(correct, total, m);
     setMarks(m);
+    saveProgress(story.id, { q: { i: i + 1, correct, marks: m } });
     setI(i + 1);
     setPicked(null);
     setTyped("");
@@ -96,7 +98,7 @@ export function Quiz({
         </div>
 
         <div key={i} className="arrive mt-8 flex-1">
-          <p className="t-caption font-semibold uppercase tracking-widest text-brand">
+          <p className="t-caption font-semibold uppercase tracking-widest text-brand-ink">
             {q.type === "line" ? "what would you say?" : q.type === "fill" ? "fill the gap" : `question ${i + 1} of ${total}`}
           </p>
           <h1 className="t-headline mt-2 !text-[1.75rem] md:!text-[2.25rem]">{q.type === "fill" ? q.prompt : q.prompt}</h1>

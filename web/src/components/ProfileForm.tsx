@@ -69,7 +69,7 @@ export function ProfileForm({ session, onDone }: { session: Session; onDone: (p:
             </span>
           </label>
           {err && (
-            <p className="t-caption rounded-[14px] bg-alert px-3 py-2 text-white" role="alert">
+            <p className="t-caption rounded-[14px] bg-alert-strong px-3 py-2 text-white" role="alert">
               {err}
             </p>
           )}

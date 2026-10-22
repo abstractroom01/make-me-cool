@@ -97,7 +97,7 @@ export function SignInForm({ id }: { id: string }) {
         we email you a one-time sign-in link
       </p>
       {state === "error" && (
-        <p className="t-caption w-full rounded-[14px] bg-alert px-3 py-2 text-white sm:basis-full" role="alert">
+        <p className="t-caption w-full rounded-[14px] bg-alert-strong px-3 py-2 text-white sm:basis-full" role="alert">
           {msg}
         </p>
       )}

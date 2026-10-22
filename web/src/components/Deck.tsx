@@ -4,16 +4,17 @@ import { useEffect, useRef, useState } from "react";
 import type { Card, Story } from "@/data/stories";
 import { Chip, Steps } from "./ui";
 import { Visual } from "./Visual";
+import { getProgress, saveProgress } from "@/lib/progress";
 
 const face: Record<Card["kind"], string> = {
   scene: "bg-deep text-paper",
   explain: "bg-white text-deep border-2 border-line",
   say: "bg-spark text-deep",
-  crew: "bg-brand text-white",
+  crew: "bg-brand-ink text-white",
 };
 
 export function Deck({ story, onDone, onClose }: { story: Story; onDone: () => void; onClose: () => void }) {
-  const [i, setI] = useState(0);
+  const [i, setI] = useState(() => Math.min(getProgress(story.id)?.card ?? 0, story.cards.length - 1));
   const [dx, setDx] = useState(0);
   const [dragging, setDragging] = useState(false);
   const startX = useRef<number | null>(null);
@@ -26,6 +27,10 @@ export function Deck({ story, onDone, onClose }: { story: Story; onDone: () => v
     if (n >= story.cards.length) return onDone();
     setI(n);
   }
+
+  useEffect(() => {
+    saveProgress(story.id, { card: i });
+  }, [story.id, i]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {

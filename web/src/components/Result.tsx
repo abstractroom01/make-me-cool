@@ -127,7 +127,7 @@ export function Result({
 
         {earned.length > 0 && (
           <div className="pop mt-4 rounded-[14px] bg-paper p-4 text-deep">
-            <p className="t-caption font-semibold uppercase tracking-widest text-brand">new badge</p>
+            <p className="t-caption font-semibold uppercase tracking-widest text-brand-ink">new badge</p>
             {earned.map((b) => (
               <p key={b.id} className="display mt-1 text-xl font-bold">
                 {b.name} <span className="t-caption font-normal text-deep/75">· {b.how}</span>
