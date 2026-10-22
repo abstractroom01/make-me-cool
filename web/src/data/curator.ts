@@ -2,6 +2,7 @@
 // photo: put a file in /public/curator/ and set the path here. While it is empty the app shows initials.
 export const curator = {
   name: "sankalp sharma",
+  shortName: "sankalp",
   role: "founder, the abstract room",
   photo: "/curator/sankalp.jpg",
   initials: "ss",

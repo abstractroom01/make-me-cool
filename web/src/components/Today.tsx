@@ -234,7 +234,7 @@ export function Today({
             <div className="mt-5 max-w-xl rounded-[14px] border-2 border-paper/25 p-4">
               <div className="flex items-center gap-2">
                 <CuratorBadge size={28} dark />
-                <p className="t-caption font-semibold uppercase tracking-widest text-spark">picked by {curator.name}</p>
+                <p className="t-caption font-semibold uppercase tracking-widest text-spark">picked by {curator.shortName}</p>
               </div>
               <p className="t-body mt-1 text-paper/90">{todays.why}</p>
               <details className="mt-2">
