@@ -94,3 +94,12 @@ Walked landing, story deck, quiz, share, result, Today, "go deeper", help and /h
 | 7 | flexibility | no way to resume mid-story after closing it | 2 | open |
 
 Still open ideas: save quiz progress if the phone sleeps; larger card text option; a tiny "what's plus?" line on the paywall.
+
+## 9. Design notes added 22 Oct 2026
+
+- **Colour tokens for text.** Brand teal `#098B93` is for large shapes and backgrounds. For text on light backgrounds use `--teal-ink #067077` (5.7:1 on paper). For error boxes with white text use `--alert-strong #C4372C` (5.3:1). Borders use `--line` and `--line-soft`.
+- **Contrast checks (measured):** deep on paper and paper/60+ on deep pass AA; teal on paper, white on red and white on teal failed and were replaced with the ink tokens above.
+- **Frames.** Photos, art and cards all use a 14px corner radius.
+- **Landing page.** Shortened to hero (with the curator's face and name), a one-row "how it works", the curator card, a taste of the stories, free vs plus, and the abstract room proof block.
+- **Progress.** A story and quiz keep their place for the day on this device ("continue story").
+- **Unconfirmed claims** stay in stories, phrased as "some say" or "rumour has it", and the story caveat says so.

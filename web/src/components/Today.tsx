@@ -208,7 +208,7 @@ export function Today({
                 <button className="btn btn-ghost !min-h-0 !px-5 !py-2" onClick={() => onAnswerTold(toldPrompt.story_id, false)}>
                   not this time
                 </button>
-                <button className="t-caption px-2 underline" onClick={() => onAnswerTold(toldPrompt.story_id, null)}>
+                <button className="t-caption px-3 py-3 underline" onClick={() => onAnswerTold(toldPrompt.story_id, null)}>
                   skip
                 </button>
               </div>
@@ -322,7 +322,7 @@ export function Today({
             <Spark size={26} />
           </div>
           <p className="display mt-2 text-6xl font-bold">{scores[0].score}</p>
-          <button className="t-caption mt-1 underline text-paper/80" onClick={onExplain}>
+          <button className="t-caption mt-1 py-2 underline text-paper/80" onClick={onExplain}>
             how is this calculated?
           </button>
           {scores.slice(1).some((s) => s.unlocked) && (
@@ -348,7 +348,7 @@ export function Today({
           <p className="t-caption mt-4 text-paper/75">one rest day a week is on the house. a day with no story never counts against you.</p>
         </section>
 
-        {stage > 1 && (
+        {stage > 0 && (
         <section aria-label="your wall of wonders">
           <div className="flex items-baseline justify-between">
             <p className="t-title">your wall of wonders</p>
@@ -365,14 +365,14 @@ export function Today({
                   {done ? (
                     <button
                       onClick={() => onStart(s.id)}
-                      className={`flex aspect-square w-full flex-col justify-between rounded-[12px] p-2 text-left ${tone}`}
+                      className={`flex aspect-square w-full flex-col justify-between rounded-[14px] p-2 text-left ${tone}`}
                       aria-label={`${s.title}, finished. play again`}
                     >
                       <Spark size={16} />
                       <span className="display text-[0.8rem] font-bold leading-tight">{s.title.replace(/^the /, "")}</span>
                     </button>
                   ) : (
-                    <div className="flex aspect-square items-center justify-center rounded-[12px] border-2 border-dashed border-line text-xl text-deep/40" aria-label="a story still to find">
+                    <div className="flex aspect-square items-center justify-center rounded-[14px] border-2 border-dashed border-line text-xl text-deep/40" aria-label="a story still to find">
                       ?
                     </div>
                   )}

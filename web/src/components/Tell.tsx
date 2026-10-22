@@ -90,7 +90,7 @@ export function Tell({
             )}
           </div>
 
-          <button className="t-body mx-auto mt-6 block underline" onClick={onContinue}>
+          <button className="t-body mx-auto mt-4 block px-4 py-3 underline" onClick={onContinue}>
             skip, i&apos;ll say it out loud
           </button>
         </div>

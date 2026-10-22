@@ -120,7 +120,7 @@ export function Result({
                 .join(" · ")}
             </p>
           )}
-          <button className="t-caption mt-3 block w-full text-center underline text-paper/80" onClick={onExplain}>
+          <button className="t-caption mt-1 block w-full py-3 text-center underline text-paper/80" onClick={onExplain}>
             how is the cool score worked out?
           </button>
         </section>

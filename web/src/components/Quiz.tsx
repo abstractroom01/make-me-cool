@@ -96,6 +96,7 @@ export function Quiz({
         <div className="mt-3">
           <Steps current={2} />
         </div>
+        <p className="t-caption mt-2 text-deep/70">your place is saved. close this and pick up later.</p>
 
         <div key={i} className="arrive mt-8 flex-1">
           <p className="t-caption font-semibold uppercase tracking-widest text-brand-ink">

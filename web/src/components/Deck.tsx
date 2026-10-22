@@ -80,6 +80,7 @@ export function Deck({ story, onDone, onClose }: { story: Story; onDone: () => v
         <div className="mt-3">
           <Steps current={1} />
         </div>
+        <p className="t-caption mt-2 text-deep/70">your place is saved. close this and pick up later.</p>
 
         <div className="mt-4 flex flex-wrap items-center gap-2">
           {story.fields.map((f) => (

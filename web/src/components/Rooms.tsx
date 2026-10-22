@@ -28,7 +28,7 @@ export function RoomsStrip({ lead, ids = ["pLaugh", "pSmile", "pGlasses"] }: { l
     <section className="mt-6" aria-label="from our rooms">
       <div className="grid grid-cols-3 gap-2">
         {ids.map((id) => (
-          <div key={id} className="aspect-[4/5] overflow-hidden rounded-[12px]">
+          <div key={id} className="aspect-[4/5] overflow-hidden rounded-[14px]">
             <RoomPhotoImg id={id} />
           </div>
         ))}

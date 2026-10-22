@@ -1,26 +1,13 @@
 "use client";
 
 import { RoomPhotoImg } from "./Rooms";
-import { CuratorCard } from "./Curator";
+import { CuratorBadge, CuratorCard } from "./Curator";
 import { useEffect, useState } from "react";
 import { SignInForm } from "./SignInForm";
 import { Chip, Spark } from "./ui";
 import { Visual } from "./Visual";
 import { stories, type Story } from "@/data/stories";
 import { storyForToday } from "@/lib/schedule";
-
-const topics = [
-  "cinema",
-  "literature",
-  "music",
-  "culture",
-  "language",
-  "art and paintings",
-  "history",
-  "psychology",
-  "philosophy",
-  "food",
-];
 
 function MockToday() {
   // the date is read on the device, so this is filled in after the page loads
@@ -49,18 +36,7 @@ function MockToday() {
   );
 }
 
-function Step({ n, title, text }: { n: string; title: string; text: string }) {
-  return (
-    <li className="rounded-[14px] border-2 border-line bg-white p-6 shadow-[0_4px_0_var(--line)]">
-      <span className="display flex h-11 w-11 items-center justify-center rounded-full bg-deep text-xl font-bold text-spark">{n}</span>
-      <h3 className="t-title mt-4">{title}</h3>
-      <p className="t-body mt-2 text-deep/80">{text}</p>
-    </li>
-  );
-}
-
 export function Landing({ onPlay }: { onPlay: () => void }) {
-  const [more, setMore] = useState(false);
   const [signIn, setSignIn] = useState(false);
   const [bar, setBar] = useState(false);
 
@@ -111,6 +87,10 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
               </button>
               <p className="t-body mt-3 font-semibold text-spark">free. no sign-up needed.</p>
               <p className="t-caption mt-1 text-paper/85">about 5 minutes · 9 cards · 4 questions</p>
+              <p className="mt-4 flex items-center gap-2.5 text-sm text-paper/90">
+                <CuratorBadge size={32} dark />
+                <span>picked by sankalp, founder of the abstract room</span>
+              </p>
               <button className="t-caption mt-3 underline text-paper/90" onClick={() => setSignIn(!signIn)}>
                 {signIn ? "hide sign in" : "already playing? sign in"}
               </button>
@@ -128,57 +108,47 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
       </section>
 
       {/* how it works */}
-      <section className="bg-paper px-5 py-14 md:px-8 md:py-20">
+      <section className="bg-paper px-5 py-10 md:px-8 md:py-14">
         <div className="mx-auto max-w-6xl">
-          <h2 className="t-headline max-w-3xl">
-            become <span className="accent-on-light">disgustingly</span> more cool
-          </h2>
-          <ol className="mt-8 grid gap-4 md:grid-cols-3 md:gap-5">
-            <Step n="1" title="read one story" text="every day you get one short story. a film trick, a dish everyone argues about, a language made up for aliens. you flip through it like cards." />
-            <Step n="2" title="answer four questions" text="nothing scary. the last one asks what you'd actually say about it at a party, and you pick the best line." />
-            <Step n="3" title="come back tomorrow" text="finishing a story lights your streak. do it again the next day and it grows. you get one rest day a week, and you keep it." />
+          <ol className="grid gap-4 md:grid-cols-3 md:gap-8">
+            {[
+              ["1", "read one story", "one short story a day, told as swipeable cards."],
+              ["2", "answer four questions", "the last one: which line would you really say at a party?"],
+              ["3", "come back tomorrow", "finish a story to light your streak. one rest day a week is free."],
+            ].map(([n, t, d]) => (
+              <li key={n} className="flex items-start gap-4">
+                <span className="display flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-deep text-lg font-bold text-spark">{n}</span>
+                <div>
+                  <h3 className="display text-xl font-bold">{t}</h3>
+                  <p className="t-body mt-0.5 text-deep/80">{d}</p>
+                </div>
+              </li>
+            ))}
           </ol>
         </div>
       </section>
 
       {/* the human behind it */}
-      <section className="bg-mist px-5 py-14 md:px-8 md:py-20">
+      <section className="bg-mist px-5 py-12 md:px-8 md:py-16">
         <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
           <h2 className="t-headline">
             a real person picks <span className="accent-on-light">every story.</span>
           </h2>
           <div className="t-body space-y-3 text-deep/90">
-            <p>
-              not an algorithm, and not a content farm. sankalp sharma, the founder of the abstract room, chooses each story, lists the sources, and says plainly what&apos;s still being checked.
-            </p>
-            <p>we use AI to help deliver and personalise the app. we never use it to choose a story or sign one off.</p>
+            <p>not an algorithm, and not a content farm. we use AI to help deliver the app, never to choose a story or sign one off.</p>
             <CuratorCard />
           </div>
         </div>
       </section>
 
-      {/* topics and the first stories */}
-      <section className="bg-paper px-5 py-14 md:px-8 md:py-20">
+      {/* the first stories */}
+      <section className="bg-paper px-5 py-12 md:px-8 md:py-16">
         <div className="mx-auto max-w-6xl">
           <h2 className="t-headline max-w-3xl">
-            what you&apos;ll learn <span className="accent-on-light">about</span>
+            a taste of the <span className="accent-on-light">first stories</span>
           </h2>
-          <p className="t-body mt-3 max-w-2xl text-deep/85">ten subjects to start. most stories mix two, because the best things to talk about sit between subjects.</p>
-          <ul className="mt-6 flex flex-wrap gap-2.5">
-            {topics.map((t, k) => (
-              <li
-                key={t}
-                className={`display rounded-full px-4 py-2 text-base font-semibold md:text-lg ${
-                  ["bg-deep text-paper", "bg-spark text-deep", "bg-mist text-deep", "border-2 border-deep text-deep"][k % 4]
-                }`}
-              >
-                {t}
-              </li>
-            ))}
-          </ul>
-
-          <h3 className="t-title mt-12">a taste of the first stories</h3>
-          <ul className="-mx-5 mt-4 flex snap-x gap-4 overflow-x-auto px-5 pb-3 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0">
+          <p className="t-body mt-3 max-w-2xl text-deep/85">film, food, language, art, history and more. most stories mix two, because the best things to talk about sit between subjects.</p>
+          <ul className="-mx-5 mt-5 flex snap-x gap-4 overflow-x-auto px-5 pb-3 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0">
             {[
               ["kuleshov", "kul-soup"],
               ["tikka", "tik-tin"],
@@ -201,7 +171,7 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
       </section>
 
       {/* free and plus */}
-      <section className="bg-mist px-5 py-14 md:px-8 md:py-20">
+      <section className="bg-mist px-5 py-12 md:px-8 md:py-16">
         <div className="mx-auto max-w-6xl">
           <h2 className="t-headline max-w-3xl">
             free for the <span className="accent-on-light">daily story.</span> plus for going deeper.
@@ -231,32 +201,8 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
         </div>
       </section>
 
-      {/* manifesto */}
-      <section className="bg-paper px-5 py-14 md:px-8 md:py-20">
-        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <h2 className="t-headline">we&apos;ve stopped being curious.</h2>
-          <div className="t-body space-y-4 text-deep/90">
-            <p>
-              about concepts, ideas, cinema, literature, philosophy, music, society. somewhere between the job, the deadlines and &ldquo;just one more reel,&rdquo; it all got quietly pushed aside. nobody decided it. it just happened.
-            </p>
-            <p>so before the brain completely rots, let&apos;s spare five minutes a day for a small mental workout.</p>
-            {more && (
-              <div className="arrive space-y-4">
-                <p>
-                  because let&apos;s be honest, nobody wants to be the one at the party who just nods along when the conversation gets good. you&apos;d rather be the one with a take, a story, a reference nobody saw coming. the one people actually want to hang out with.
-                </p>
-                <p className="display text-2xl font-bold">basically, cool.</p>
-              </div>
-            )}
-            <button className="btn btn-ghost" onClick={() => setMore(!more)} aria-expanded={more}>
-              {more ? "read less" : "read more"}
-            </button>
-          </div>
-        </div>
-      </section>
-
       {/* the abstract room */}
-      <section className="bg-deep px-5 py-14 text-paper md:px-8 md:py-20">
+      <section className="bg-deep px-5 py-12 text-paper md:px-8 md:py-16">
         <div className="mx-auto max-w-6xl">
           <p className="t-caption font-semibold uppercase tracking-widest text-spark">from the home of the abstract room</p>
           <h2 className="t-headline mt-3 max-w-3xl">
@@ -276,23 +222,26 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
             ))}
           </dl>
           <div className="mt-8 grid grid-cols-2 gap-2 md:grid-cols-4">
-            <div className="col-span-2 aspect-[16/9] overflow-hidden rounded-[12px] md:row-span-2 md:aspect-auto">
+            <div className="col-span-2 aspect-[16/9] overflow-hidden rounded-[14px] md:row-span-2 md:aspect-auto">
               <RoomPhotoImg id="crowd" />
             </div>
-            <div className="aspect-[4/3] overflow-hidden rounded-[12px]">
+            <div className="aspect-[4/3] overflow-hidden rounded-[14px]">
               <RoomPhotoImg id="blue" />
             </div>
-            <div className="aspect-[4/3] overflow-hidden rounded-[12px]">
+            <div className="aspect-[4/3] overflow-hidden rounded-[14px]">
               <RoomPhotoImg id="yellow" />
             </div>
-            <div className="aspect-[4/3] overflow-hidden rounded-[12px]">
+            <div className="aspect-[4/3] overflow-hidden rounded-[14px]">
               <RoomPhotoImg id="cheer" />
             </div>
-            <div className="aspect-[4/3] overflow-hidden rounded-[12px]">
+            <div className="aspect-[4/3] overflow-hidden rounded-[14px]">
               <RoomPhotoImg id="three" />
             </div>
           </div>
-          <p className="t-body mt-6 max-w-2xl text-paper/80">the abstract room is an experiences and media company for india&apos;s most passionate pop-culture lovers.</p>
+          <p className="t-body mt-6 max-w-2xl text-paper/90">
+            somewhere between the job, the deadlines and &ldquo;just one more reel,&rdquo; we stopped being curious. so before the brain completely rots, let&apos;s spare five minutes a day for a small mental workout. basically, cool.
+          </p>
+          <p className="t-body mt-4 max-w-2xl text-paper/80">the abstract room is an experiences and media company for india&apos;s most passionate pop-culture lovers.</p>
           <div className="mt-8 max-w-xl on-deep">
             <p className="t-title mb-3">still scrolling? that&apos;s literally the problem.</p>
             <button className="btn btn-yellow" onClick={onPlay}>
