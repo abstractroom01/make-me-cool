@@ -7,6 +7,7 @@ import { loadPlans, rupees, startCheckout, type PlusState } from "@/lib/billing"
 import { track } from "@/lib/analytics";
 import type { Plan } from "@/lib/types";
 import { SignInForm } from "./SignInForm";
+import { PLUS_PRICE } from "@/lib/pricing";
 import { Check, Chip } from "./ui";
 
 type Perk = { id: number; title: string; body: string };
@@ -119,11 +120,14 @@ export function Plus({
         {done && <p className="t-body mt-6 rounded-[14px] bg-spark p-4 font-semibold" role="status">you&apos;re on plus. thank you!</p>}
 
         {!session ? (
-          <section className="mt-8 rounded-[14px] border-2 border-line bg-white p-6">
-            <p className="t-title">sign in to get plus</p>
+          <section className="mt-8 rounded-[14px] border-2 border-deep bg-white p-6">
+            <p className="display text-xl font-bold">plus, 30 days</p>
+            <p className="display mt-1 text-4xl font-bold">{PLUS_PRICE}</p>
+            <p className="t-caption mt-1 text-deep/70">pay once. no auto-renewal. the price you see is the price you pay.</p>
+            <p className="t-title mt-6">sign in to buy</p>
             <p className="t-body mt-1 text-deep/80">it only takes your email. no password.</p>
             <div className="mt-3">
-              <SignInForm id="plus" />
+              <SignInForm id="plus" stacked />
             </div>
           </section>
         ) : plans === null ? (
