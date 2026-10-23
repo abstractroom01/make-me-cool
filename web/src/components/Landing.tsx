@@ -274,7 +274,7 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
           </dl>
           <div className="mt-8 grid grid-cols-2 gap-2 md:grid-cols-4">
             <div className="col-span-2 aspect-[16/9] overflow-hidden rounded-[14px] md:row-span-2 md:aspect-auto">
-              <RoomPhotoImg id="crowd" />
+              <RoomPhotoImg id="point" />
             </div>
             <div className="aspect-[4/3] overflow-hidden rounded-[14px]">
               <RoomPhotoImg id="blue" />
