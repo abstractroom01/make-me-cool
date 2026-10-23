@@ -14,7 +14,7 @@ export const business = {
   name: "the abstract room",
   supportEmail: "theabstractroom123india@gmail.com",
   // Fill these in when known; they only render when set.
-  legalName: "",
+  legalName: "Sankalp Rajesh Sharma",
   address: "",
   gstin: "",
   grievanceContact: "",
