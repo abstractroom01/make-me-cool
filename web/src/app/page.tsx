@@ -309,6 +309,7 @@ export default function Home() {
         completions={completions}
         guest={signedOut}
         userId={userId}
+        onPlus={() => goPlus("result")}
         onDeeper={() => go({ name: "deeper", storyId: view.storyId })}
         onExplain={() => go({ name: "explain" })}
         onNext={startStory}

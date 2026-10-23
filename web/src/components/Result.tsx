@@ -9,7 +9,8 @@ import { BADGES, allScores, buildTimeline, coolerMoment, streaks } from "@/lib/s
 import { todayKey } from "@/lib/schedule";
 import type { Completion } from "@/lib/types";
 import { Spark, WeekStrip } from "./ui";
-import { SignInForm } from "./SignInForm";
+import { JoinCard } from "./JoinCard";
+import { Reminder } from "./Reminder";
 import { weekStrip } from "@/lib/week";
 
 export function Result({
@@ -23,12 +24,14 @@ export function Result({
   completions,
   guest,
   userId,
+  onPlus,
   onDeeper,
   onExplain,
   onNext,
   onHome,
 }: {
   userId?: string;
+  onPlus: () => void;
   onDeeper: () => void;
   storyId: string;
   correct: number;
@@ -153,16 +156,12 @@ export function Result({
 
         <RoomsStrip lead="stories land best out loud. this is what that looks like at the abstract room." />
 
-        {/* 4. save it (guests only) */}
-        {guest && (
-          <section className="mt-6 rounded-[14px] bg-paper p-5 text-deep">
-            <p className="t-title">keep your score</p>
-            <p className="t-body mt-1 text-deep/80">sign in free and keep your streak going tomorrow. new accounts also get 7 days of plus free.</p>
-            <div className="mt-3">
-              <SignInForm id="result" />
-            </div>
-          </section>
-        )}
+        {/* 4. what next (guests only): sign up or see plus */}
+        {guest && <JoinCard onPlus={onPlus} />}
+
+        <div className="mt-6">
+          <Reminder dark />
+        </div>
 
         {/* 4b. an open loop for tomorrow */}
         {tomorrow && (

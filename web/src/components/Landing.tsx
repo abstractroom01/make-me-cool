@@ -1,13 +1,14 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { RoomPhotoImg } from "./Rooms";
 import { CuratorBadge, CuratorCard } from "./Curator";
-import { useEffect, useState } from "react";
 import { SignInForm } from "./SignInForm";
 import { Chip, Spark } from "./ui";
 import { Visual } from "./Visual";
 import { stories, type Story } from "@/data/stories";
 import { storyForToday } from "@/lib/schedule";
+import { PLUS_PRICE } from "@/lib/pricing";
 
 function MockToday() {
   // the date is read on the device, so this is filled in after the page loads
@@ -36,6 +37,25 @@ function MockToday() {
   );
 }
 
+const steps: [string, string][] = [
+  ["set us up for the morning", "add a daily reminder to your calendar in one tap, so a story is waiting for you every morning."],
+  ["explore a crazy story", "an insane piece of trivia, told as short swipeable cards. about three minutes."],
+  ["take a quick quiz", "four questions to lock it in. the last one: which line would you really say at a party?"],
+  ["share it with someone", "send the line to a friend. saying it out loud is how it sticks."],
+  ["keep your streak, get cooler", "every day you finish adds to your cool score. watch yourself get a few percent cooler each day."],
+  ["go deeper", "pick a film, podcast, book or video to dive further into. it isn't just articles."],
+];
+
+function InstagramIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4.2" />
+      <circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
 export function Landing({ onPlay }: { onPlay: () => void }) {
   const [signIn, setSignIn] = useState(false);
   const [bar, setBar] = useState(false);
@@ -51,36 +71,53 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  function openSignIn() {
+    setSignIn(true);
+    setTimeout(() => document.getElementById("hero-signin")?.scrollIntoView({ behavior: "smooth", block: "center" }), 50);
+  }
+
   return (
     <div>
-      {/* hero: full-bleed photo under a deep teal scrim */}
+      {/* hero: a joyful photo under a deep teal scrim */}
       <section className="relative isolate overflow-hidden bg-deep text-paper">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/brand/about-photo.webp" alt="" className="absolute inset-0 -z-20 h-full w-full object-cover object-[50%_20%]" />
+        <img src="/rooms/p-laugh.jpg" alt="" className="absolute inset-x-0 top-0 -z-20 h-[360px] w-full object-cover object-[50%_28%] lg:hidden" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/rooms/yellow.jpg" alt="" className="absolute inset-0 -z-20 hidden h-full w-full object-cover object-[60%_35%] lg:block" />
+        {/* phones: bright photo up top, fading to deep teal under the text */}
         <div
-          className="absolute inset-0 -z-10"
-          style={{ background: "linear-gradient(180deg, rgba(4,54,58,0.5) 0%, rgba(4,54,58,0.8) 38%, #04363a 92%)" }}
+          className="absolute inset-x-0 top-0 -z-10 h-[360px] lg:hidden"
+          style={{ background: "linear-gradient(180deg, rgba(4,54,58,0.55) 0%, rgba(4,54,58,0.05) 28%, rgba(4,54,58,0.1) 55%, #04363a 100%)" }}
         />
+        {/* wide screens: text side dark, photo side bright */}
         <div
           className="absolute inset-0 -z-10 hidden lg:block"
-          style={{ background: "linear-gradient(90deg, rgba(4,54,58,0.88) 0%, rgba(4,54,58,0.5) 50%, rgba(4,54,58,0) 100%)" }}
+          style={{ background: "linear-gradient(90deg, rgba(4,54,58,0.94) 0%, rgba(4,54,58,0.7) 38%, rgba(4,54,58,0.05) 72%), linear-gradient(180deg, rgba(4,54,58,0.35) 0%, rgba(4,54,58,0) 20%, rgba(4,54,58,0) 80%, #04363a 100%)" }}
         />
-        <header className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-6 md:px-8">
-          <span className="display text-xl font-bold md:text-2xl">make me cool</span>
-          <span className="flex items-center gap-2 text-sm text-paper/90">
-            by
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/brand/logo-main.png" alt="the abstract room" className="h-9 w-auto md:h-11" />
-          </span>
+        <header className="mx-auto flex max-w-6xl items-start justify-between px-5 pt-6 md:px-8">
+          <div>
+            <span className="display text-xl font-bold md:text-2xl">make me cool</span>
+            <span className="mt-1 flex items-center gap-2 text-sm text-paper/90">
+              by
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/brand/logo-main.png" alt="the abstract room" className="h-8 w-auto md:h-9" />
+            </span>
+          </div>
+          <button
+            className="display rounded-full border-2 border-paper/80 px-5 py-2.5 text-base font-bold text-paper hover:bg-paper/10"
+            onClick={openSignIn}
+          >
+            sign in
+          </button>
         </header>
 
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 pb-14 pt-14 md:px-8 md:pb-24 md:pt-24 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+        <div className="mx-auto mt-44 grid max-w-6xl items-center gap-10 px-5 pb-14 pt-8 lg:mt-0 lg:pt-12 md:px-8 md:pb-24 md:pt-20 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
           <div className="on-deep">
             <h1 className="t-display">
               knowing stuff is <span className="accent-on-deep">sexy</span>
             </h1>
-            <p className="t-title mt-5 font-semibold">a daily workout for your personality</p>
-            <p className="t-body mt-3 max-w-md text-paper/90">five minutes a day. one interesting thing. something to actually say at the houseparty.</p>
+            <p className="t-title mt-5 max-w-xl font-semibold">learn one fascinating story about the world every day.</p>
+            <p className="t-body mt-3 max-w-md text-paper/90">five minutes a day, and you&apos;ll always have something cool to say at a houseparty.</p>
             <div className="mt-7 max-w-xl">
               <button className="btn btn-yellow w-full sm:w-auto" onClick={onPlay}>
                 play today&apos;s story
@@ -91,12 +128,15 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
                 <CuratorBadge size={32} dark />
                 <span>picked by sankalp, founder of the abstract room</span>
               </p>
-              <button className="t-caption mt-3 underline text-paper/90" onClick={() => setSignIn(!signIn)}>
-                {signIn ? "hide sign in" : "already playing? sign in"}
+              <button
+                className="btn btn-ghost mt-5 w-full !bg-transparent !text-paper !border-paper/70 !shadow-none sm:w-auto"
+                onClick={() => (signIn ? setSignIn(false) : openSignIn())}
+              >
+                {signIn ? "hide sign in" : "i already have an account"}
               </button>
               {signIn && (
-                <div className="arrive mt-3">
-                  <SignInForm id="hero" />
+                <div id="hero-signin" className="arrive mt-3">
+                  <SignInForm id="hero" stacked />
                 </div>
               )}
             </div>
@@ -107,20 +147,19 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
         </div>
       </section>
 
-      {/* how it works */}
-      <section className="bg-paper px-5 py-10 md:px-8 md:py-14">
+      {/* how a day works */}
+      <section className="bg-paper px-5 py-12 md:px-8 md:py-16">
         <div className="mx-auto max-w-6xl">
-          <ol className="grid gap-4 md:grid-cols-3 md:gap-8">
-            {[
-              ["1", "read one story", "one short story a day, told as swipeable cards."],
-              ["2", "answer four questions", "the last one: which line would you really say at a party?"],
-              ["3", "come back tomorrow", "finish a story to light your streak. one rest day a week is free."],
-            ].map(([n, t, d]) => (
-              <li key={n} className="flex items-start gap-4">
-                <span className="display flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-deep text-lg font-bold text-spark">{n}</span>
+          <h2 className="t-headline max-w-3xl">
+            how a day <span className="accent-on-light">works</span>
+          </h2>
+          <ol className="mt-8 grid gap-x-10 gap-y-6 md:grid-cols-2 lg:grid-cols-3">
+            {steps.map(([t, d], i) => (
+              <li key={t} className="flex items-start gap-4">
+                <span className="display flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-deep text-xl font-bold text-spark">{i + 1}</span>
                 <div>
                   <h3 className="display text-xl font-bold">{t}</h3>
-                  <p className="t-body mt-0.5 text-deep/80">{d}</p>
+                  <p className="t-body mt-1 text-deep/80">{d}</p>
                 </div>
               </li>
             ))}
@@ -128,21 +167,8 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
         </div>
       </section>
 
-      {/* the human behind it */}
-      <section className="bg-mist px-5 py-12 md:px-8 md:py-16">
-        <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
-          <h2 className="t-headline">
-            a real person picks <span className="accent-on-light">every story.</span>
-          </h2>
-          <div className="t-body space-y-3 text-deep/90">
-            <p>not an algorithm, and not a content farm. we use AI to help deliver the app, never to choose a story or sign one off.</p>
-            <CuratorCard />
-          </div>
-        </div>
-      </section>
-
       {/* the first stories */}
-      <section className="bg-paper px-5 py-12 md:px-8 md:py-16">
+      <section className="bg-mist px-5 py-12 md:px-8 md:py-16">
         <div className="mx-auto max-w-6xl">
           <h2 className="t-headline max-w-3xl">
             a taste of the <span className="accent-on-light">first stories</span>
@@ -170,6 +196,28 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
         </div>
       </section>
 
+      {/* the human behind it */}
+      <section className="bg-paper px-5 py-12 md:px-8 md:py-16">
+        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
+          <div>
+            <h2 className="t-headline">
+              a real person picks <span className="accent-on-light">every story.</span>
+            </h2>
+            <p className="t-body mt-4 text-deep/85">not an algorithm, and not a content farm. AI only helps polish the language and keep it short. it never chooses a story or signs one off.</p>
+          </div>
+          <div className="space-y-5">
+            <CuratorCard />
+            <figure className="rounded-[14px] bg-deep p-6 text-paper">
+              <p className="t-caption font-semibold uppercase tracking-widest text-spark">why this is worth five minutes</p>
+              <blockquote className="display mt-3 text-xl font-semibold leading-snug md:text-2xl">
+                &ldquo;the more you know about the world, the cooler you get, and people want to be around you. every story you pick up is one more pixel. the more pixels you have, the clearer the picture of the world gets. it really doesn&apos;t take much: a little time, every day.&rdquo;
+              </blockquote>
+              <figcaption className="t-caption mt-3 text-paper/80">sankalp</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
       {/* free and plus */}
       <section className="bg-mist px-5 py-12 md:px-8 md:py-16">
         <div className="mx-auto max-w-6xl">
@@ -182,12 +230,15 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
               <ul className="t-body mt-3 space-y-2 text-deep/85">
                 <li>today&apos;s story, picked by sankalp</li>
                 <li>the quiz and the line to say out loud</li>
+                <li>go-deeper picks: films, podcasts, books</li>
                 <li>your cool score, streak and badges</li>
                 <li>the last 7 days of stories</li>
               </ul>
             </div>
             <div className="rounded-[14px] bg-deep p-6 text-paper shadow-[0_4px_0_#021f22]">
-              <p className="display text-2xl font-bold">plus</p>
+              <p className="display text-2xl font-bold">
+                plus <span className="text-spark">· {PLUS_PRICE} for 30 days</span>
+              </p>
               <ul className="t-body mt-3 space-y-2 text-paper/90">
                 <li>the full archive of past stories</li>
                 <li>behind the story: sources and what we&apos;re still checking</li>
@@ -195,7 +246,7 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
                   <strong className="text-spark">7 days free when you sign up</strong>
                 </li>
               </ul>
-              <p className="t-caption mt-4 text-paper/75">pay once for a pass. no auto-renewal. your pass helps pay the people who find and check the stories.</p>
+              <p className="t-caption mt-4 text-paper/80">pay once. no auto-renewal. payments open very soon. your pass helps pay the people who find and check the stories.</p>
             </div>
           </div>
         </div>
@@ -241,7 +292,6 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
           <p className="t-body mt-6 max-w-2xl text-paper/90">
             somewhere between the job, the deadlines and &ldquo;just one more reel,&rdquo; we stopped being curious. so before the brain completely rots, let&apos;s spare five minutes a day for a small mental workout. basically, cool.
           </p>
-          <p className="t-body mt-4 max-w-2xl text-paper/80">the abstract room is an experiences and media company for india&apos;s most passionate pop-culture lovers.</p>
           <div className="mt-8 max-w-xl on-deep">
             <p className="t-title mb-3">still scrolling? that&apos;s literally the problem.</p>
             <button className="btn btn-yellow" onClick={onPlay}>
@@ -251,20 +301,31 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
         </div>
       </section>
 
-      <footer className="bg-paper px-5 py-8 pb-24 text-deep md:px-8 md:pb-8">
+      {/* find us */}
+      <section className="bg-paper px-5 py-10 text-deep md:px-8">
+        <div className="mx-auto flex max-w-6xl flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <a className="btn btn-ghost sm:w-auto" href="/how">
+            how our stories are made
+          </a>
+          <a className="btn btn-ghost gap-2 sm:w-auto" href="https://theabstractroom.com/" target="_blank" rel="noopener noreferrer">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/brand/icon-main.png" alt="" className="h-6 w-6" />
+            theabstractroom.com
+          </a>
+          <a className="btn btn-ghost gap-2 sm:w-auto" href="https://www.instagram.com/the_abstractroom/" target="_blank" rel="noopener noreferrer">
+            <InstagramIcon />
+            @the_abstractroom
+          </a>
+        </div>
+      </section>
+
+      <footer className="bg-paper px-5 pb-24 pt-2 text-deep md:px-8 md:pb-8">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 text-sm">
           <span className="display font-bold">make me cool</span>
           <span className="flex flex-wrap gap-5">
-            <a className="underline" href="/how">how stories are made</a>
             <a className="underline" href="/privacy">privacy</a>
             <a className="underline" href="/terms">terms</a>
             <a className="underline" href="/refunds">refunds</a>
-            <a className="underline" href="https://theabstractroom.com/" target="_blank" rel="noopener noreferrer">
-              theabstractroom.com
-            </a>
-            <a className="underline" href="https://www.instagram.com/the_abstractroom/" target="_blank" rel="noopener noreferrer">
-              instagram
-            </a>
           </span>
         </div>
       </footer>

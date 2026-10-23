@@ -7,7 +7,7 @@ import { CuratorBadge } from "./Curator";
 import { allScores, buildTimeline, streaks } from "@/lib/score";
 import { isArchived, publishedStories, storyForToday, todayKey } from "@/lib/schedule";
 import { weekStrip } from "@/lib/week";
-import { downloadIcs } from "@/lib/ics";
+import { Reminder } from "./Reminder";
 import { getProgress } from "@/lib/progress";
 import { daysLeft, type PlusState } from "@/lib/billing";
 import type { Completion, Profile } from "@/lib/types";
@@ -154,7 +154,6 @@ export function Today({
     .sort((a, b) => b.completed_on.localeCompare(a.completed_on))[0];
   const toldStory = toldPrompt ? stories.find((s) => s.id === toldPrompt.story_id) : undefined;
   const [asking, setAsking] = useState<"yes" | null>(null);
-  const [time, setTime] = useState("08:00");
   const stage = completions.length === 0 ? 0 : completions.length === 1 ? 1 : 2;
 
   return (
@@ -275,7 +274,7 @@ export function Today({
               right now your progress is saved on this phone only. if you clear your browser data or switch phones, it&apos;s gone. sign in with your email to keep it. free, no password.
             </p>
             <div className="mt-3">
-              <SignInForm id="today" />
+              <SignInForm id="today" stacked />
             </div>
           </section>
         )}
@@ -386,21 +385,7 @@ export function Today({
         </section>
         )}
 
-        {stage > 1 && (
-        <section className="rounded-[14px] border-2 border-line bg-white p-5">
-          <p className="t-title">a daily reminder</p>
-          <p className="t-caption mt-1 text-deep/70">adds a repeating event to your phone&apos;s calendar. no app permissions needed.</p>
-          <div className="mt-3 flex items-center gap-2">
-            <label htmlFor="rt" className="sr-only">
-              reminder time
-            </label>
-            <input id="rt" type="time" value={time} onChange={(e) => setTime(e.target.value)} className="pill-input !w-32 !py-2" />
-            <button className="btn btn-ghost !min-h-0 !px-4 !py-2" onClick={() => downloadIcs(time)}>
-              add it
-            </button>
-          </div>
-        </section>
-        )}
+        {stage > 0 && <Reminder />}
       </aside>
       )}
     </main>

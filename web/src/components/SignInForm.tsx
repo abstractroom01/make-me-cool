@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 
-export function SignInForm({ id }: { id: string }) {
+export function SignInForm({ id, stacked = false }: { id: string; stacked?: boolean }) {
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [msg, setMsg] = useState("");
@@ -72,13 +72,13 @@ export function SignInForm({ id }: { id: string }) {
   }
 
   return (
-    <form onSubmit={send} className="flex w-full flex-col gap-3 sm:flex-row" aria-describedby={`${id}-hint`}>
+    <form onSubmit={send} className={`flex w-full flex-col gap-3 ${stacked ? "" : "sm:flex-row"}`} aria-describedby={`${id}-hint`}>
       <label htmlFor={`${id}-email`} className="sr-only">
         your email
       </label>
       <input
         id={`${id}-email`}
-        className="pill-input sm:flex-1"
+        className={`pill-input ${stacked ? "" : "sm:flex-1"}`}
         type="email"
         required
         placeholder="your email"
@@ -87,10 +87,10 @@ export function SignInForm({ id }: { id: string }) {
         autoComplete="email"
         inputMode="email"
       />
-      <button className="btn btn-yellow sm:w-auto" disabled={state === "sending"}>
+      <button className={`btn btn-yellow ${stacked ? "" : "sm:w-auto"}`} disabled={state === "sending"}>
         {state === "sending" ? "sending..." : "make me cool"}
       </button>
-      <p className="t-caption w-full opacity-80 sm:basis-full">
+      <p className="t-caption w-full opacity-80">
         by continuing you agree to our <a className="underline" href="/terms">terms</a> and <a className="underline" href="/privacy">privacy policy</a>.
       </p>
       <p id={`${id}-hint`} className="sr-only">

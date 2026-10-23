@@ -6,7 +6,7 @@ export const curator = {
   role: "founder, the abstract room",
   photo: "/curator/sankalp.jpg",
   initials: "ss",
-  bio: "sankalp started the abstract room while studying business, after noticing there were hardly any places to talk about film, books and ideas with other people. six years on it is a community that meets online and in person. he picks every story here, lists where it came from, and says plainly what is still being checked.",
+  bio: "sankalp turned his curiosity about art, people, storytelling and culture into one of the warmest pop-culture communities around, six years ago. today he still goes looking for wonderful, odd, abstract ideas, and keeps building on them. every story here is one he picked. he lists where it came from, and uses AI only to polish the language and keep it short. there is a real person behind these stories: him.",
 };
 
 // Shown on the legal pages and the billing page.
