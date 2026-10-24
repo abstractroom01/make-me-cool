@@ -81,9 +81,9 @@ export function Landing({ onPlay, onPlus }: { onPlay: () => void; onPlus: () => 
       {/* hero: a joyful photo under a deep teal scrim */}
       <section className="relative isolate overflow-hidden bg-deep text-paper">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/rooms/p-laugh.jpg" alt="" className="absolute inset-x-0 top-0 -z-20 h-[360px] w-full object-cover object-[50%_28%] lg:hidden" />
+        <img src="/rooms/hero-portrait.jpg" alt="" className="absolute inset-x-0 top-0 -z-20 h-[360px] w-full object-cover object-[50%_8%] lg:hidden" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/rooms/yellow.jpg" alt="" className="absolute inset-0 -z-20 hidden h-full w-full object-cover object-[60%_35%] lg:block" />
+        <img src="/rooms/hero-wide.jpg" alt="" className="absolute inset-0 -z-20 hidden h-full w-full object-cover object-[60%_20%] lg:block" />
         {/* phones: bright photo up top, fading to deep teal under the text */}
         <div
           className="absolute inset-x-0 top-0 -z-10 h-[360px] lg:hidden"
@@ -141,7 +141,7 @@ export function Landing({ onPlay, onPlus }: { onPlay: () => void; onPlus: () => 
               )}
             </div>
           </div>
-          <div className="flex justify-center lg:justify-end">
+          <div className="flex justify-center lg:items-end lg:justify-end lg:self-end">
             <MockToday />
           </div>
         </div>
