@@ -103,3 +103,17 @@ Still open ideas: save quiz progress if the phone sleeps; larger card text optio
 - **Landing page.** Shortened to hero (with the curator's face and name), a one-row "how it works", the curator card, a taste of the stories, free vs plus, and the abstract room proof block.
 - **Progress.** A story and quiz keep their place for the day on this device ("continue story").
 - **Unconfirmed claims** stay in stories, phrased as "some say" or "rumour has it", and the story caveat says so.
+
+## 10. Desktop and flow audit (24 Oct 2026)
+
+Method: ran automated checks (horizontal overflow, tap-target size, tiny text, over-long lines) at 1366, 768, 375 and 320 px on the landing page, every public route and each step of the app flow, plus looked at screenshots.
+
+Found and fixed:
+- Result screen was one narrow column on desktop (about 40% of the width, 2860 px tall). Now two columns on wide screens (the line, art and score on the left; go deeper, feedback, sign-up, reminder on the right).
+- Story deck was small on desktop. Wider card, bigger type, and the picture sits beside the words on wide screens.
+- Go-deeper page was one narrow column. Resources now sit in two columns on wide screens.
+- Free and paid cards (landing page and after the first story) now each have a button: "sign in for free access" and "commit to become cool · ₹99".
+- Small tap targets: "i'm not sure, show me the answer" and "spot a mistake" now have bigger tap areas.
+
+Checked and clean: no horizontal overflow on any route at any width, landing page at 1366, 768, 375, 320.
+Still to watch: plus page, badges and help at tablet width (looked fine in earlier phone checks), and the wall of wonders with many stories filled in.

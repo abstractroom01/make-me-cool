@@ -10,7 +10,7 @@ export function Deeper({ storyId, userId, onBack }: { storyId: string; userId?: 
   const story = stories.find((s) => s.id === storyId)!;
   return (
     <div className="min-h-dvh bg-paper">
-      <div className="mx-auto max-w-2xl px-5 py-8 md:px-8 md:py-12">
+      <div className="mx-auto max-w-2xl px-5 py-8 md:px-8 md:py-12 lg:max-w-4xl">
         <button className="t-caption underline" onClick={onBack}>
           ← back
         </button>
@@ -18,7 +18,7 @@ export function Deeper({ storyId, userId, onBack }: { storyId: string; userId?: 
         <h1 className="t-headline mt-1">{story.title}</h1>
         <p className="t-body mt-2 text-deep/80">want more? a mix of things to watch, listen to, read and look at. start with whichever one sounds fun.</p>
         <div className="mt-6">
-          <ResourceList items={story.resources} />
+          <ResourceList items={story.resources} columns />
         </div>
         <div className="mt-8">
           <Feedback storyId={storyId} userId={userId} />

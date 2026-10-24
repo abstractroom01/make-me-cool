@@ -46,7 +46,7 @@ export function Tell({
 
   return (
     <main className="min-h-dvh bg-paper">
-      <div className="mx-auto flex min-h-dvh max-w-xl flex-col justify-center px-5 py-10">
+      <div className="mx-auto flex min-h-dvh max-w-xl flex-col justify-center px-5 py-10 lg:max-w-2xl">
         <div className="arrive">
           <Steps current={3} />
           <div className="mt-6">

@@ -262,6 +262,7 @@ export default function Home() {
           setGuestMode(true);
           startStory(storyForToday().story.id);
         }}
+        onPlus={() => go({ name: "plus" })}
       />
     );
   }

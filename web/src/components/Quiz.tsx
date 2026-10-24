@@ -81,7 +81,7 @@ export function Quiz({
 
   return (
     <div className="min-h-dvh bg-paper">
-      <div className="mx-auto flex min-h-dvh max-w-xl flex-col px-5 py-5 pb-48 md:max-w-2xl md:py-8">
+      <div className="mx-auto flex min-h-dvh max-w-xl flex-col px-5 py-5 pb-48 md:max-w-2xl md:py-8 lg:max-w-3xl">
         <div className="flex items-center gap-4">
           <button onClick={leave} className="rounded-full p-2 text-deep hover:bg-mist" aria-label="leave quiz">
             <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
@@ -142,7 +142,7 @@ export function Quiz({
             </ul>
           )}
           {!checked && (
-            <button className="t-body mt-5 underline text-deep/70" onClick={skip}>
+            <button className="t-body mt-3 py-3 underline text-deep/70" onClick={skip}>
               i&apos;m not sure. show me the answer
             </button>
           )}
@@ -155,7 +155,7 @@ export function Quiz({
           checked ? (right ? "sheet border-[#b9d8d6] bg-mist" : "sheet border-[#f3c4bf] bg-[#fdeceb]") : "border-line-soft bg-paper"
         }`}
       >
-        <div className="mx-auto flex max-w-xl flex-col gap-3 px-5 py-4 md:max-w-2xl md:flex-row md:items-center md:justify-between md:py-6">
+        <div className="mx-auto flex max-w-xl flex-col gap-3 px-5 py-4 md:max-w-2xl lg:max-w-3xl md:flex-row md:items-center md:justify-between md:py-6">
           {checked ? (
             <>
               <div role="status" aria-live="polite">

@@ -63,7 +63,7 @@ export function Deck({ story, onDone, onClose }: { story: Story; onDone: () => v
 
   return (
     <div className="min-h-dvh bg-paper">
-      <div className="mx-auto flex min-h-dvh max-w-xl flex-col px-5 py-5 md:max-w-2xl md:py-8">
+      <div className="mx-auto flex min-h-dvh max-w-xl flex-col px-5 py-5 md:max-w-2xl md:py-8 lg:max-w-4xl">
         <div className="flex items-center gap-4">
           <button onClick={onClose} className="rounded-full p-2 text-deep hover:bg-mist" aria-label="close story">
             <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
@@ -109,7 +109,7 @@ export function Deck({ story, onDone, onClose }: { story: Story; onDone: () => v
               transition: dragging ? "none" : "transform 0.2s ease-out",
               touchAction: "pan-y",
             }}
-            className={`card-shadow relative flex min-h-[420px] w-full cursor-grab select-none flex-col justify-between rounded-[14px] p-7 md:min-h-[460px] md:p-10 ${face[card.kind]} ${dragging ? "" : "arrive"}`}
+            className={`card-shadow relative flex min-h-[420px] w-full cursor-grab select-none flex-col justify-between rounded-[14px] p-7 md:min-h-[460px] md:p-10 lg:min-h-[500px] lg:p-12 ${face[card.kind]} ${dragging ? "" : "arrive"}`}
             aria-live="polite"
           >
             <span
@@ -119,13 +119,13 @@ export function Deck({ story, onDone, onClose }: { story: Story; onDone: () => v
             >
               {card.tag}
             </span>
-            <div className="my-4 space-y-5">
+            <div className={`my-4 space-y-5 ${card.visual ? "lg:grid lg:grid-cols-2 lg:items-center lg:gap-10 lg:space-y-0" : ""}`}>
               {card.visual && <Visual id={card.visual} />}
               <p
                 className={`display font-semibold leading-[1.15] ${
                   card.visual || card.text.length > 150
-                    ? "text-[1.35rem] md:text-[1.75rem]"
-                    : "text-[1.9rem] md:text-[2.5rem]"
+                    ? "text-[1.35rem] md:text-[1.75rem] lg:text-[2rem]"
+                    : "text-[1.9rem] md:text-[2.5rem] lg:text-[3rem]"
                 }`}
               >
                 {card.text}

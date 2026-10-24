@@ -121,7 +121,7 @@ export function Feedback({ storyId, userId, dark = false }: { storyId: string; u
             </button>
           </div>
         ) : (
-          <button className={`t-caption underline ${muted}`} onClick={() => setMistake(true)}>
+          <button className={`t-caption py-2.5 underline ${muted}`} onClick={() => setMistake(true)}>
             spot a mistake, or something confusing?
           </button>
         )}

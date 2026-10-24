@@ -61,7 +61,7 @@ export function Result({
 
   return (
     <main className="min-h-dvh bg-deep text-paper">
-      <div className="arrive mx-auto max-w-xl px-5 py-10">
+      <div className="arrive mx-auto max-w-xl px-5 py-10 lg:max-w-6xl lg:px-8 lg:py-14">
         {/* 1. the moment */}
         <div className="pop inline-block">
           <Spark size={56} />
@@ -83,6 +83,8 @@ export function Result({
           <p className="t-title mt-2 text-spark">{current} day streak</p>
         )}
 
+        <div className="lg:mt-2 lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-10">
+        <div>
         {/* 2. the line to say: the whole point */}
         <section className="card-shadow mt-6 rounded-[14px] bg-spark p-6 text-deep">
           <p className="t-caption font-semibold uppercase tracking-widest">say it out loud</p>
@@ -139,6 +141,8 @@ export function Result({
           </div>
         )}
 
+        </div>
+        <div>
         {/* 3b. go deeper: not just articles */}
         <section className="mt-6" aria-label="go deeper">
           <p className="t-title">want more of this one?</p>
@@ -182,6 +186,9 @@ export function Result({
           <button className={`btn ${nextStory ? "btn-ghost" : "btn-yellow"}`} onClick={onHome}>
             back to today
           </button>
+        </div>
+
+        </div>
         </div>
 
         {/* 6. the small print, folded away */}

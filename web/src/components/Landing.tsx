@@ -56,7 +56,7 @@ function InstagramIcon() {
   );
 }
 
-export function Landing({ onPlay }: { onPlay: () => void }) {
+export function Landing({ onPlay, onPlus }: { onPlay: () => void; onPlus: () => void }) {
   const [signIn, setSignIn] = useState(false);
   const [bar, setBar] = useState(false);
 
@@ -234,6 +234,9 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
                 <li>your cool score, streak and badges</li>
                 <li>the last 7 days of stories</li>
               </ul>
+              <button className="btn btn-yellow mt-5 w-full" onClick={openSignIn}>
+                sign in for free access
+              </button>
             </div>
             <div className="rounded-[14px] bg-deep p-6 text-paper shadow-[0_4px_0_#021f22]">
               <p className="display text-2xl font-bold">
@@ -246,7 +249,10 @@ export function Landing({ onPlay }: { onPlay: () => void }) {
                   <strong className="text-spark">7 days free when you sign up</strong>
                 </li>
               </ul>
-              <p className="t-caption mt-4 text-paper/80">pay once. no auto-renewal. payments open very soon. your pass helps pay the people who find and check the stories.</p>
+              <button className="btn btn-yellow mt-5 w-full" onClick={onPlus}>
+                commit to become cool · {PLUS_PRICE}
+              </button>
+              <p className="t-caption mt-4 text-paper/80">pay once. no auto-renewal. your pass helps pay the people who find and check the stories.</p>
             </div>
           </div>
         </div>

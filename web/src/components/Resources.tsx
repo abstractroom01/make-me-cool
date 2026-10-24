@@ -66,9 +66,9 @@ function Icon({ type }: { type: Resource["type"] }): ReactNode {
   }
 }
 
-export function ResourceList({ items, dark = false }: { items: Resource[]; dark?: boolean }) {
+export function ResourceList({ items, dark = false, columns = false }: { items: Resource[]; dark?: boolean; columns?: boolean }) {
   return (
-    <ul className="space-y-3">
+    <ul className={columns ? "space-y-3 lg:grid lg:grid-cols-2 lg:gap-3 lg:space-y-0" : "space-y-3"}>
       {items.map((r) => {
         const body = (
           <>
