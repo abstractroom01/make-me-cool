@@ -12,7 +12,7 @@ export const curator = {
 // Shown on the legal pages and the billing page.
 export const business = {
   name: "the abstract room",
-  supportEmail: "theabstractroom123india@gmail.com",
+  supportEmail: "support@theabstractroom.com",
   // Fill these in when known; they only render when set.
   legalName: "Sankalp Rajesh Sharma",
   address: "",

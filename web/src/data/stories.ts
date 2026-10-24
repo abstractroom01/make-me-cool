@@ -35,7 +35,7 @@ export type Story = {
 export const stories: Story[] = [
   {
     id: "kuleshov",
-    publishDate: "2026-10-19",
+    publishDate: "2026-10-24",
     why: "i picked this because it explains something you do every day: reading meaning into whatever sits next to a face or a word.",
     title: "the kuleshov effect",
     fields: ["cinema", "psychology"],
@@ -100,7 +100,7 @@ export const stories: Story[] = [
   },
   {
     id: "tikka",
-    publishDate: "2026-10-20",
+    publishDate: "2026-10-25",
     why: "i picked this because everyone assumes a famous dish has one inventor, and the real story is a better argument.",
     title: "who invented chicken tikka masala?",
     fields: ["food", "history"],
@@ -166,7 +166,7 @@ export const stories: Story[] = [
   },
   {
     id: "klingon",
-    publishDate: "2026-10-21",
+    publishDate: "2026-10-26",
     why: "i picked this because it shows what a language actually is, by looking at one invented for aliens.",
     title: "the klingon language",
     fields: ["language", "cinema"],
@@ -232,7 +232,7 @@ export const stories: Story[] = [
 
   {
     id: "mozart",
-    publishDate: "2026-10-22",
+    publishDate: "2026-10-27",
     why: "i picked this because everyone repeats it and almost nobody has seen the study.",
     title: "the mozart effect",
     fields: ["psychology", "music"],
@@ -271,7 +271,7 @@ export const stories: Story[] = [
   },
   {
     id: "trolley",
-    publishDate: "2026-10-23",
+    publishDate: "2026-10-28",
     why: "i picked this because it turns an old philosophy puzzle into something you can argue about at dinner.",
     title: "the trolley problem and 40 million decisions",
     fields: ["philosophy", "psychology", "technology"],
@@ -310,7 +310,7 @@ export const stories: Story[] = [
   },
   {
     id: "wave",
-    publishDate: "2026-10-24",
+    publishDate: "2026-10-29",
     why: "i picked this because the most famous wave in art took a surprising trip onto a french music score.",
     title: "the wave on debussy's cover",
     fields: ["art", "music", "nature"],
@@ -348,7 +348,7 @@ export const stories: Story[] = [
   },
   {
     id: "yosegaki",
-    publishDate: "2026-10-25",
+    publishDate: "2026-10-30",
     why: "i picked this because a small object holds a big human story. handle with care.",
     title: "the flag that went home",
     fields: ["history", "culture", "language"],
