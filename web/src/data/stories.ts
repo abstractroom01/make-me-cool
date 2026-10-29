@@ -1,3 +1,4 @@
+import { monthStories } from "./months";
 export type CardKind = "scene" | "explain" | "say" | "crew";
 
 export type Card = { kind: CardKind; tag: string; text: string; visual?: string };
@@ -32,7 +33,7 @@ export type Story = {
   quiz: Question[];
 };
 
-export const stories: Story[] = [
+const firstWeek: Story[] = [
   {
     id: "kuleshov",
     publishDate: "2026-10-24",
@@ -55,7 +56,10 @@ export const stories: Story[] = [
     takeaway: "put two things side by side and people write the story themselves.",
     starter: "when did someone read your silence the wrong way?",
     caveat: "checked on 22 oct 2026 against the sources listed. still open: no film of the experiment survives, and kuleshov and pudovkin told it differently (for example, a girl or a woman in the coffin). the actor is usually named as ivan mozzhukhin. a 1992 replication did not find the effect; later studies did.",
-    sources: [{ label: "wikipedia: kuleshov effect", url: "https://en.wikipedia.org/wiki/Kuleshov_effect" }],
+    sources: [
+      { label: "wikipedia: kuleshov effect", url: "https://en.wikipedia.org/wiki/Kuleshov_effect" },
+      { label: "wikipedia: lev kuleshov", url: "https://en.wikipedia.org/wiki/Lev_Kuleshov" },
+    ],
     resources: [
       { type: "watch", title: "hitchcock explains the idea himself", by: "alfred hitchcock", url: "https://www.youtube.com/watch?v=hCAE0t6KwJY", note: "the director describes why cutting between a face and an object makes you read emotion into it." },
       { type: "film", title: "battleship potemkin (1925)", by: "sergei eisenstein", note: "a classic of the russian style of editing that grew out of ideas like this. it's a silent film, so you can follow the cuts without subtitles." },
@@ -186,7 +190,10 @@ export const stories: Story[] = [
     takeaway: "a language is just rules plus people who use them.",
     starter: "what's a language (or slang) you only use with one person?",
     caveat: "checked on 22 oct 2026 against the sources listed. still open: speaker numbers are estimates, and how much of gilgamesh has been translated. lines marked \"some say\" are popular claims we could not confirm.",
-    sources: [{ label: "wikipedia: klingon language", url: "https://en.wikipedia.org/wiki/Klingon_language" }],
+    sources: [
+      { label: "wikipedia: klingon language", url: "https://en.wikipedia.org/wiki/Klingon_language" },
+      { label: "air & space magazine: the man who taught mr. spock to speak vulcan", url: "https://www.airspacemag.com/as-interview/say-what-linguist-elaborates-180960198" },
+    ],
     resources: [
       { type: "read", title: "the man who taught mr. spock to speak vulcan", by: "air & space magazine", url: "https://www.airspacemag.com/as-interview/say-what-linguist-elaborates-180960198", note: "an interview with marc okrand, who answers some questions in klingon (with english translations)." },
       { type: "book", title: "the klingon dictionary", by: "marc okrand", note: "the 1985 book that made klingon a real language you can learn." },
@@ -387,3 +394,5 @@ export const stories: Story[] = [
     ],
   },
 ];
+
+export const stories: Story[] = [...firstWeek, ...monthStories];

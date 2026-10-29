@@ -48,7 +48,7 @@ Story dates are the proposed order from the story bank (they will be confirmed w
 | **4** | Thu 5 Nov | how "ok" got started | **Ask for the share.** Post the "send us your squares" message. Repost 3 good results to your story. (Referral) | WA-2, IG-story-2 |
 | **5** | Fri 6 Nov | the record we sent to the stars | **Peers.** One message each to the Ashoka alumni group, the Masters' Union group and the Shipped.money cohort. (Acquisition) | group message |
 | **6** | Sat 7 Nov | the ending sholay wasn't allowed | **Midpoint look.** 10 minutes: read the numbers and your first replies. Copy the best reply into a story. Stop the worst channel. (all) | n/a |
-| **7** | Sun 8 Nov | the oldest zero | **Week one post.** Post "the 3 stories people liked most" with real feedback quotes, to the community and Instagram. (Retention + Referral) | WA-3, IG-post |
+| **7** | Sun 8 Nov | the computer in the shipwreck (antikythera) | **Week one post.** Post "the 3 stories people liked most" with real feedback quotes, to the community and Instagram. (Retention + Referral) | WA-3, IG-post |
 | **8** | Mon 9 Nov | this is not a pipe | **Widen the audience.** Send the creator / newsletter swap message to 5 people (small India newsletters, quiz pages, a book or film creator). (Acquisition) | outreach DM |
 | **9** | Tue 10 Nov | the 176 pictures that became emoji | **Bring a friend.** One broadcast: "tell one person today" with the day's share link. (Referral) | WA-4 |
 | **10** | Wed 11 Nov | the stone that cracked egyptian | **Wrap and thank.** Post the real numbers and a thank-you, and ask for one-line feedback. Do not sell Plus. (Retention) | WA-5, LI-2 |
