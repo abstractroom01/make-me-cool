@@ -41,6 +41,7 @@ export function Privacy() {
         <li>what you do in the app: stories you finish, quiz results, points, whether you told someone and how it landed, your score and badges.</li>
         <li>payment records if you buy plus: the plan, the amount, the date and the payment reference. we never see or store your card or UPI details. razorpay handles those.</li>
         <li>simple usage events (for example, a story started or a button tapped), linked to an anonymous id or your account, so we can see what works.</li>
+        <li>anonymous visit data from microsoft clarity: which pages are opened, taps and scrolls, and short replays of a visit so we can find confusing screens. clarity hides the text you read and everything you type, and sets its own cookies to tell visits apart.</li>
       </ul>
       <h2>what we don&apos;t do</h2>
       <ul>
@@ -50,7 +51,7 @@ export function Privacy() {
       </ul>
       <h2>who helps us run this</h2>
       <p>
-        supabase (database, sign-in and email), vercel (hosting) and razorpay (payments). they process data for us to provide the service. our database is hosted in mumbai, india. the website itself is served through vercel&apos;s network, which may run in other countries. sign-in emails are sent through gmail.
+        supabase (database, sign-in and email), vercel (hosting), razorpay (payments) and microsoft clarity (anonymous usage analytics). they process data for us to provide the service. our database is hosted in mumbai, india. the website itself is served through vercel&apos;s network, which may run in other countries. sign-in emails are sent through gmail.
       </p>
       <h2>how long we keep it</h2>
       <p>
@@ -63,7 +64,7 @@ export function Privacy() {
         <li>the app is for people 18 and over.</li>
       </ul>
       <p>
-        to delete your account today, write to us from the email you signed up with. we are building a delete button into the app.
+        to delete your account, open the menu in the app and choose delete my account. you can also write to us from the email you signed up with.
       </p>
     </LegalShell>
   );
