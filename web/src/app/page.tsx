@@ -112,7 +112,18 @@ export default function Home() {
         setViewState({ name: "today" });
       }
     });
-    track("landing_viewed");
+    // where this visit came from, so the first 1,000 users can be traced (?utm_source=wa&utm_campaign=d1)
+    const q = new URLSearchParams(window.location.search);
+    const src = q.get("utm_source") ?? "";
+    const camp = q.get("utm_campaign") ?? "";
+    if (src) {
+      try {
+        if (!localStorage.getItem("mmc_first_src")) localStorage.setItem("mmc_first_src", `${src}|${camp}`);
+      } catch {
+        /* ignore */
+      }
+    }
+    track("landing_viewed", { src, medium: q.get("utm_medium") ?? "", campaign: camp, ref: q.get("r") ?? "" });
     return () => sub.subscription.unsubscribe();
   }, []);
 
