@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
   openGraph: { title: "make me cool", description: "one story a day. something to say out loud.", siteName: "make me cool", type: "website" },
   twitter: { card: "summary_large_image" },
+  verification: { google: "iz4EgdnDp-8_wGrWlWWfN5-4oy6qb6NGYbxJ5PldMhQ" },
 };
 
 export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#04363a" };
