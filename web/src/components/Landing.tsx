@@ -328,10 +328,10 @@ export function Landing({ onPlay, onPlus }: { onPlay: () => void; onPlus: () => 
       <footer className="bg-paper px-5 pb-24 pt-2 text-deep md:px-8 md:pb-8">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 text-sm">
           <span className="display font-bold">make me cool</span>
-          <span className="flex flex-wrap gap-5">
-            <a className="underline" href="/privacy">privacy</a>
-            <a className="underline" href="/terms">terms</a>
-            <a className="underline" href="/refunds">refunds</a>
+          <span className="flex flex-wrap gap-x-2">
+            <a className="inline-flex min-h-11 items-center px-2 underline" href="/privacy">privacy</a>
+            <a className="inline-flex min-h-11 items-center px-2 underline" href="/terms">terms</a>
+            <a className="inline-flex min-h-11 items-center px-2 underline" href="/refunds">refunds</a>
           </span>
         </div>
       </footer>

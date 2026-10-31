@@ -108,9 +108,10 @@ export function AppShell({
         </div>
       </header>
       {children}
-      <footer className="mx-auto max-w-6xl px-5 pb-10 pt-4 text-sm text-deep/70 md:px-8">
-        <a className="underline" href="/privacy">privacy</a> · <a className="underline" href="/terms">terms</a> ·{" "}
-        <a className="underline" href="/refunds">refunds</a>
+      <footer className="mx-auto flex max-w-6xl flex-wrap px-3 pb-10 pt-2 text-sm text-deep/70 md:px-6">
+        <a className="inline-flex min-h-11 items-center px-2 underline" href="/privacy">privacy</a>
+        <a className="inline-flex min-h-11 items-center px-2 underline" href="/terms">terms</a>
+        <a className="inline-flex min-h-11 items-center px-2 underline" href="/refunds">refunds</a>
       </footer>
     </div>
   );
