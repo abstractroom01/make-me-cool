@@ -1,17 +1,19 @@
 import { ImageResponse } from "next/og";
 import { stories } from "@/data/stories";
+import { isLive } from "@/lib/published";
 
 export const alt = "a story from make me cool";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export function generateStaticParams() {
-  return stories.map((s) => ({ id: s.id }));
-}
+export const dynamic = "force-dynamic";
 
 export default async function Image({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const s = stories.find((x) => x.id === id) ?? stories[0];
+  const found = stories.find((x) => x.id === id);
+  // a story that is not out yet has no picture, so the card cannot give it away
+  const s = found && isLive(found.publishDate) ? found : null;
+  if (!s) return new Response(null, { status: 404 });
   return new ImageResponse(
     (
       <div

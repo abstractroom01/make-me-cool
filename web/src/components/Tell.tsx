@@ -50,11 +50,9 @@ export function Tell({
         <div className="arrive">
           <Steps current={3} />
           <div className="mt-6">
-            <Chip tone="yellow">last step</Chip>
+            <Chip tone="light">last step</Chip>
           </div>
-          <h1 className="t-headline mt-4">
-            now say it to <span className="accent-on-light">someone.</span>
-          </h1>
+          <h1 className="t-headline mt-4">now say it to someone.</h1>
           <p className="t-body mt-3 text-deep/85">send this line to one person today. it takes five seconds, and it&apos;s how it sticks.</p>
 
           <div className="card-shadow mt-6 rounded-[14px] bg-spark p-6 text-deep">
@@ -68,7 +66,7 @@ export function Tell({
           </div>
 
           <a
-            className="btn btn-yellow mt-6 w-full"
+            className="btn btn-deep mt-6 w-full"
             href={`https://wa.me/?text=${encodeURIComponent(line)}`}
             target="_blank"
             rel="noopener noreferrer"

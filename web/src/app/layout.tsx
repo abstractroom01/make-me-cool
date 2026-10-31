@@ -23,8 +23,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={josefin.variable}>
       <body className="min-h-dvh">
         {children}
-        {/* Microsoft Clarity: anonymous usage and session replays, with text and inputs masked by default */}
-        <Script id="clarity" strategy="afterInteractive">
+        {/* Microsoft Clarity: anonymous usage and session replays, with text and inputs masked by default.
+            The id must not be "clarity": browsers expose elements by id on window, which would shadow window.clarity and stop it starting. */}
+        <Script id="ms-clarity-init" strategy="afterInteractive">
           {`(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","z55qgti7ty");`}
         </Script>
       </body>

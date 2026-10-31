@@ -4,14 +4,15 @@ import { stories } from "@/data/stories";
 import { Visual } from "@/components/Visual";
 import { PlayLink } from "@/components/PlayLink";
 
-export function generateStaticParams() {
-  return stories.map((s) => ({ id: s.id }));
-}
+import { isLive } from "@/lib/published";
+
+// rendered per request so a story that is not out yet cannot be opened from a guessed link
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;
   const s = stories.find((x) => x.id === id);
-  if (!s) return {};
+  if (!s || !isLive(s.publishDate)) return {};
   const title = `${s.title} · make me cool`;
   return {
     title,
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 export default async function SharedStory({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const s = stories.find((x) => x.id === id);
-  if (!s) notFound();
+  if (!s || !isLive(s.publishDate)) notFound();
   const vis = s.cards.find((c) => c.visual)?.visual;
 
   return (
@@ -36,7 +37,7 @@ export default async function SharedStory({ params }: { params: Promise<{ id: st
           <span className="display text-xl font-bold">make me cool</span>
         </a>
 
-        <p className="t-caption mt-10 font-semibold uppercase tracking-widest text-spark">{s.fields.join(" + ")}</p>
+        <p className="t-caption mt-10 font-semibold uppercase tracking-widest text-paper/70">{s.fields.join(" + ")}</p>
         <h1 className="t-headline mt-2">{s.title}</h1>
         <p className="t-body mt-3 text-paper/90">{s.hook}</p>
 
@@ -46,7 +47,7 @@ export default async function SharedStory({ params }: { params: Promise<{ id: st
           </div>
         )}
 
-        <section className="card-shadow mt-6 rounded-[14px] bg-spark p-6 text-deep">
+        <section className="card-shadow mt-6 rounded-[14px] bg-paper p-6 text-deep">
           <p className="t-caption font-semibold uppercase tracking-widest">the line to say out loud</p>
           <p className="display mt-2 text-3xl font-bold leading-tight">&ldquo;{s.takeaway}&rdquo;</p>
         </section>
